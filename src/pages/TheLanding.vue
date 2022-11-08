@@ -65,14 +65,14 @@
 </template>
 
 <script setup>
-import CreateAccount from '../components/Auth/CreateAccount.vue'
-import SignIn from '../components/Auth/SignIn.vue'
-import EmailSent from '../components/Auth/EmailSent.vue'
-import EmailConfirm from '../components/Auth/EmailConfirm.vue'
-import ForgotPassword from '../components/Auth/ForgotPassword.vue'
-import CheckEmail from '../components/Auth/CheckEmail.vue'
-import NewPassword from '../components/Auth/NewPassword.vue'
-import PasswordSuccess from '../components/Auth/PasswordSuccess.vue'
+import CreateAccount from '/src/components/Auth/CreateAccount.vue'
+import SignIn from '/src/components/Auth/SignIn.vue'
+import EmailSent from '/src/components/Auth/EmailSent.vue'
+import EmailConfirm from '/src/components/Auth/EmailConfirm.vue'
+import ForgotPassword from '/src/components/Auth/ForgotPassword.vue'
+import CheckEmail from '/src/components/Auth/CheckEmail.vue'
+import NewPassword from '/src/components/Auth/NewPassword.vue'
+import PasswordSuccess from '/src/components/Auth/PasswordSuccess.vue'
 
 
 
