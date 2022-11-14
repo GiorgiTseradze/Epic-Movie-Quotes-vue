@@ -16,8 +16,10 @@
             <!-- <EmailConfirm /> -->
             <!-- <ForgotPassword /> -->
             <!-- <CheckEmail /> -->
-            <NewPassword />
+            <!-- <NewPassword /> -->
             <!-- <PasswordSuccess /> -->
+            <!-- <NotFound /> -->
+            <!-- <PageForbidden /> -->
 
         <div class="flex w-full h-96">
             <div class="flex flex-col items-center w-full text-2xl font-bold text-[#DDCCAA] mt-32">
@@ -73,6 +75,8 @@ import ForgotPassword from '/src/components/Auth/ForgotPassword.vue'
 import CheckEmail from '/src/components/Auth/CheckEmail.vue'
 import NewPassword from '/src/components/Auth/NewPassword.vue'
 import PasswordSuccess from '/src/components/Auth/PasswordSuccess.vue'
+import NotFound from '/src/components/Error/NotFound.vue'
+import PageForbidden from '/src/components/Error/PageForbidden.vue'
 
 
 

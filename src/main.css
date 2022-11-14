@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gendulf {
+    background: linear-gradient(108.23deg, #CED4DA 12.77%, #FFFFFF 96.34%);
+}

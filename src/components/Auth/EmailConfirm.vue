@@ -1,6 +1,6 @@
 <template>
 <div class="flex justify-center w-full h-screen fixed bg-[#181623]]">
-    <div class="bg-[#181623] w-4/5 h-3/5 mt-20 rounded">
+    <div class="bg-[#181623] w-[22.5rem] h-3/5 mt-20 rounded">
         <div class="flex justify-center">
             <img class="mt-16" src="/src/assets/tick.svg" />
         </div>
