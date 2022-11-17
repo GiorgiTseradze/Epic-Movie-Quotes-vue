@@ -3,10 +3,10 @@
         <div class="flex justify-center items-center h-20 bg-[#24222F]">
             <div class="flex justify-between w-[20rem]">
                 <div>
-                    <img src="/src/assets/list.svg" />
+                    <img src="@/assets/list.svg" />
                 </div>
                 <div>
-                    <img src="/src/assets/bell.svg" />
+                    <img src="@/assets/bell.svg" />
                 </div>
             </div>
         </div>
@@ -24,27 +24,27 @@
                             <p class="text-white">Passwords should contain:</p>
                         </div>
                         <div class="flex mt-4 ml-6">
-                            <img src="/src/assets/greycirc.svg"/>
+                            <img src="@/assets/greycirc.svg"/>
                             <p class="ml-2 text-gray-500">8 or more characters</p>
                         </div>
                         <div class="flex mt-1 ml-6 pb-4">
-                            <img src="/src/assets/greencirc.svg"/>
+                            <img src="@/assets/greencirc.svg"/>
                             <p class="ml-2 text-white">15 lowercase character</p>
                         </div>
                     </div>
                 </div>
                
-                <form class="flex flex-col items-center mt-[2rem] w-full">
+                <Form @submit="handlesubmit" class="flex flex-col items-center mt-[2rem] w-full">
                     <div class="flex flex-col w-[20rem]">   
                         <label class="text-white" for="new_password">New password</label>
                         <div class="flex w-full justify-center">
-                            <input name="new_password" type="password" class="bg-[#CED4DA] w-full h-[3rem] rounded px-3 mt-2 outline-none" />
+                            <Field name="new_password" type="password" class="bg-[#CED4DA] w-full h-[3rem] rounded px-3 mt-2 outline-none" />
                         </div>
                     </div>
                     <div class="flex flex-col w-[20rem] mt-6">
                         <label class="text-white" for="confirm_password">Confirm new password</label>
                         <div class="flex w-full justify-center">
-                            <input name="confirm_password" type="password" class="bg-[#CED4DA] w-full h-[3rem] rounded px-3 mt-2 outline-none" />
+                            <Field name="confirm_password" type="password" class="bg-[#CED4DA] w-full h-[3rem] rounded px-3 mt-2 outline-none" />
                         </div>
                     </div>
                 </form>
@@ -70,6 +70,24 @@
 
 <script setup>
 
+import { Field, ErrorMessage, Form } from 'vee-validate';
+import axios from "@/config/axios/index.js";
 
+
+//to be changed
+const handleSubmit = (values) => {
+    axios
+        .post("reset", {
+          password: values.password,
+          password_confirmation: values.password_confirmation,
+        })
+        .then(() => {
+          alert("reset Successful!");
+          this.$router.push({ name: "landing" });
+        })
+        .catch((error) => {
+          alert(error.response.data.message);
+        });
+}
 
 </script>

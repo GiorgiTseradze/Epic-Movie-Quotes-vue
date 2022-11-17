@@ -8,8 +8,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         interstellar: "linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('@/assets/interstellar.png')",
-        tenenbaums: "linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('/src/assets/tenenbaums.png')",
-        lotr: "linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('/src/assets/lotr.png')",
+        tenenbaums: "linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('@/assets/tenenbaums.png')",
+        lotr: "linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('@/assets/lotr.png')",
       },
     },
   },
