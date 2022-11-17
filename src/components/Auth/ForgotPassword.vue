@@ -49,7 +49,7 @@ const handleSubmit = (values) => {
         })
         .then(() => {
           alert("Registration Successful!");
-          this.$router.push({ name: "/landing" });
+          this.$router.push({ name: "landing" });
         })
         .catch((error) => {
           alert(error.response.data.message);
