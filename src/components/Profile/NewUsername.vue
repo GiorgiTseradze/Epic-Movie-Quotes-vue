@@ -3,30 +3,30 @@
         <div class="flex justify-center items-center px-9 h-20 bg-[#24222F]">
             <div class="flex justify-between w-[20rem]">
                 <div>
-                    <img src="/src/assets/list.svg" />
+                    <img src="@/assets/list.svg" />
                 </div>
                 <div>
-                    <img src="/src/assets/bell.svg" />
+                    <img src="@/assets/bell.svg" />
                 </div>
             </div>
         </div>
 
         <div class="flex items-center justify-center h-[4rem]">
             <div class="w-[20rem]">
-                <img src="/src/assets/back.svg" class="w-5" />
+                <img src="@/assets/back.svg" class="w-5" />
             </div>
         </div>
         <div class="flex flex-col bg-[#24222F] h-[12rem]">
 
             <div>
-                <form class="flex flex-col items-center mt-[3rem] w-full">
+                <Form @submit=handleSubmit() class="flex flex-col items-center mt-[3rem] w-full">
                     <div class="flex flex-col w-[20rem]">
                         <label class="text-white" for="new_username">Enter new username</label>
                         <div class="flex w-full justify-center">
-                            <input name="new_username" class="bg-[#CED4DA] w-full h-[3rem] rounded px-3 mt-2 outline-none" />
+                            <Field name="new_username" class="bg-[#CED4DA] w-full h-[3rem] rounded px-3 mt-2 outline-none" />
                         </div>
                     </div>
-                </form>
+                </Form>
             </div>
         </div>
 

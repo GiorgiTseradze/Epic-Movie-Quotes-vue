@@ -3,10 +3,10 @@
         <div class="flex justify-center items-center px-9 h-20 bg-[#24222F]">
             <div class="flex justify-between items-center w-[20rem]">
                 <div>
-                <img class="text-gray-600" src="/src/assets/list.svg" />
+                <img class="text-gray-600" src="@/assets/list.svg" />
                 </div>
                 <div>
-                <img class="text-gray-600" src="/src/assets/bell.svg" />
+                <img class="text-gray-600" src="@/assets/bell.svg" />
                 </div>
             </div>
 

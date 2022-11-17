@@ -1,15 +1,20 @@
 <template>
     <div>
+        <div class="flex justify-center">
+            <router-view></router-view>
+        </div>
         <div class="flex flex-col bg-black h-[27.1rem]">
         <div class="flex justify-between items-center h-12 mt-8">
             <div class="text-[#DDCCAA] text-medium font-bold ml-9">
                 MOVIE QUOTES
             </div>
             <div class="text-white mr-9 border-2 p-2">
-                <button>Log in</button> 
+                <router-link to="login">
+                    <button>Log in</button> 
+                </router-link>
             </div>
         </div>
-        
+
             <!-- <CreateAccount /> -->
             <!-- <SignIn /> -->
             <!-- <EmailSent /> -->
@@ -67,16 +72,16 @@
 </template>
 
 <script setup>
-import CreateAccount from '/src/components/Auth/CreateAccount.vue'
-import SignIn from '/src/components/Auth/SignIn.vue'
-import EmailSent from '/src/components/Auth/EmailSent.vue'
-import EmailConfirm from '/src/components/Auth/EmailConfirm.vue'
-import ForgotPassword from '/src/components/Auth/ForgotPassword.vue'
-import CheckEmail from '/src/components/Auth/CheckEmail.vue'
-import NewPassword from '/src/components/Auth/NewPassword.vue'
-import PasswordSuccess from '/src/components/Auth/PasswordSuccess.vue'
-import NotFound from '/src/components/Error/NotFound.vue'
-import PageForbidden from '/src/components/Error/PageForbidden.vue'
+import CreateAccount from '@/components/Auth/CreateAccount.vue'
+import SignIn from '@/components/Auth/SignIn.vue'
+import EmailSent from '@/components/Auth/EmailSent.vue'
+import EmailConfirm from '@/components/Auth/EmailConfirm.vue'
+import ForgotPassword from '@/components/Auth/ForgotPassword.vue'
+import CheckEmail from '@/components/Auth/CheckEmail.vue'
+import NewPassword from '@/components/Auth/NewPassword.vue'
+import PasswordSuccess from '@/components/Auth/PasswordSuccess.vue'
+import NotFound from '@/components/Error/NotFound.vue'
+import PageForbidden from '@/components/Error/PageForbidden.vue'
 
 
 
