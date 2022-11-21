@@ -1,5 +1,9 @@
 <template>
-    <div class="flex flex-col bg-[#171623] h-screen">
+
+    <div class="flex flex-col bg-[#171623] w-full h-screen">
+        <div class="flex justify-center">
+            <router-view></router-view>
+        </div>
         <div class="flex justify-center items-center px-9 h-20 bg-[#24222F]">
             <div class="flex justify-between w-[20rem]">
                 <div>
@@ -16,15 +20,6 @@
                 <img src="@/assets/back.svg" class="w-5" />
             </div>
         </div>
-
-        <NewUsername />
-        <!-- <MakeChanges /> -->
-        <!-- <ChangeSuccessfull /> -->
-        <!-- <NewPassword /> -->
-        <!-- <ProfileEmail /> -->
-        <!-- <NewEmail /> -->
-        <!-- <EmailSuccessfull /> -->
-
 
         <div class="flex flex-col bg-[#24222F] h-[35.5rem]">
             <div class="flex justify-center mt-8">
@@ -70,14 +65,6 @@
 </template>
 
 <script setup>
-import NewUsername from '@/components/Profile/NewUsername.vue';
-import MakeChanges from '@/components/Profile/MakeChanges.vue';
-import ChangeSuccessfull from '@/components/Profile/ChangeSuccessfull.vue';
-import NewPassword from '@/components/Profile/NewPassword.vue';
-import ProfileEmail from '@/components/Profile/ProfileEmail.vue';
-import NewEmail from '@/components/Profile/NewEmail.vue';
-import EmailSuccessfull from '@/components/Profile/EmailSuccessfull.vue';
-
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axios from "@/config/axios/index.js";
 

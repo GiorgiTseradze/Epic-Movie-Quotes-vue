@@ -26,9 +26,22 @@
                                 <div>
                                     <img src="@/assets/notification.svg" />
                                 </div>
-                                <div class="flex px-7">
-                                    <p class="text-white">Eng</p>
-                                    <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
+                                <div class="flex flex-col px-7">
+                                    <div>
+                                        <button @click="handleLang" class="flex items-center">
+                                            <p class="text-white">Eng</p>
+                                            <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
+                                        </button>
+                                    </div>
+
+                                    <div v-if="lang" class="text-white bg-[#24222F] fixed mt-8 rounded">
+                                        <div class="pr-5 pb-2 border-b-[0.06rem] border-[#CED4DA]">
+                                            <button>ENG</button>
+                                        </div>
+                                        <div class="py-2">
+                                            <button>KA</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="flex justify-center items-center text-white border-[0.06rem] p-2 mr-10 rounded w-24">
                                     <button>Log out</button>
@@ -90,8 +103,15 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import ThePost from '@/components/NewsFeed/ThePost.vue';
 
+const lang = ref(false);
+
+const handleLang = () => {
+    console.log(lang)
+    return lang.value = !lang.value
+}
 </script>

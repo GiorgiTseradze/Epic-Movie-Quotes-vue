@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <div class="flex items-center justify-center h-14 w-full bg-[#D1E7DD]">
+    <div class="flex justify-center">
+        <div class="flex mt-[5.4rem] h-14 items-center w-[20rem] text-sm fixed bg-[#D1E7DD]">
             <img class="ml-4" src="@/assets/greentick.svg" />
-            <p class="ml-4 text-[#0F5132]">
+            <p class="w-[14rem] ml-4 text-[#0F5132]">
                 Changes updated succsessfully
             </p>
-            <button class="ml-14">
+            <button class="">
                 <img src="@/assets/x.svg"/>
             </button>
         </div>
