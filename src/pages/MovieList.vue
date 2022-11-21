@@ -65,9 +65,9 @@
                         <div>
                             <img src="@/assets/movie-female.svg" />
                         </div>
-                        <div class="ml-6">
-                            <p class="text-white text-2xl">Nino Tabagari</p>
-                            <p class="text-[#CED4DA]">Edit your profile</p>
+                        <div class="md:ml-4 ml-6">
+                            <p class="text-white lg:text-lg xl:text-2xl">Nino Tabagari</p>
+                            <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">Edit your profile</p>
                         </div>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
