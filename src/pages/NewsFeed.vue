@@ -69,8 +69,10 @@
                             <p class="ml-2 text-white">Write new quote</p>
                         </div>
                         <div class="hidden lg:flex items-center mt-8 ml-4">
-                            <img src="@/assets/search-grey.svg" />
-                            <p class="ml-2 text-[#CED4DA]"> Search by</p>
+                            <button class="flex">
+                                <img src="@/assets/search-grey.svg" />
+                                <p class="ml-2 text-[#CED4DA]"> Search by</p>
+                            </button>
                         </div>
                     </div>
 
