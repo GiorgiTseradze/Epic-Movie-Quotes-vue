@@ -26,6 +26,16 @@
             </div>
                 
             <TheComment />
+            <TheComment />
+
+            <div class="flex items-center w-[22.3rem] h-14 lg:ml-20 lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] lg:h-20 rounded bg-[#11101A]">
+                <div class="lg:ml-5">
+                    <img src="@/assets/purple-female.svg" />
+                </div>
+                <div class="bg-[#1C1B27] rounded lg:py-2 ml-2 w-full lg:ml-15 lg:w-[30rem] xl:w-[40rem] 2xl:w-[45rem]">
+                    <input class="bg-inherit ml-2 outline-none text-[#CED4DA]" placeholder="Write a comment"/>
+                </div>
+            </div>
         </div>
 
     </div>
