@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex flex-col">
-            <div class="flex flex-col items-center h-[22rem] lg:h-[38rem] lg:px-10 lg:py-10 w-[22.3rem] lg:ml-[4.8rem] lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] border-b-2 mt-7 border-[#54535A] lg:bg-[#11101A]">
+            <div class="flex flex-col items-center h-[22rem] lg:h-[30rem] xl:h-[35rem] 2xl:h-[38rem] lg:px-10 lg:py-10 w-[22.3rem] lg:ml-[4.8rem] lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] border-b-2 mt-7 border-[#54535A] lg:bg-[#11101A]">
                 <div class="flex items-center w-full">
                     <img src="@/assets/purple-female.svg" alt="profile-thumbnail" />
                     <p class="ml-4 text-white">Maia Nakashidze</p>
