@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-screen fixed bg-black">
+    <div class="flex flex-col md:w-[26.7rem] md:h-[30.3rem] md:mt-40 w-full h-screen fixed bg-[#181623] md:bg-[bg-[#24222F]">
         <div class="flex flex-col items-center w-full mt-16 text-white">
             <p class="text-[2rem] font-medium">Create new password</p>
             <p class="flex justify-center w-[19rem] text-sm mt-3 text-[#6C757D]">

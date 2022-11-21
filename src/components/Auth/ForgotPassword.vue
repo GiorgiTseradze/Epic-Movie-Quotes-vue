@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full h-screen fixed bg-black">
-        <div class="flex flex-col items-center w-full mt-16 text-white">
+    <div class="flex flex-col md:w-[26.7rem] md:h-[25.1rem] md:mt-40 w-full h-screen fixed bg-[#181623] md:bg-[bg-[#24222F]">
+        <div class="flex flex-col items-center w-full md:mt-16 mt-24 text-white">
             <p class="text-[2rem] font-medium">Forgot Password?</p>
             <p class="flex justify-center w-[19rem] text-sm mt-3 text-[#6C757D]">
                 Enter the email and we’ll send an email with
@@ -49,7 +49,7 @@ const handleSubmit = (values) => {
         })
         .then(() => {
           alert("Registration Successful!");
-          this.$router.push({ name: "landing" });
+          this.$router.push({ name: "/landing" });
         })
         .catch((error) => {
           alert(error.response.data.message);

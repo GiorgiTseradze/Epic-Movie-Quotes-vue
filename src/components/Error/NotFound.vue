@@ -5,7 +5,7 @@
                 <img class="mt-16" src="@/assets/ghost.svg" />
             </div>
             <div class="flex justify-center mt-4">
-                <p class="text-white text-2xl font-medium">Thank you!</p>
+                <p class="text-white text-2xl font-medium">Whoops!</p>
             </div>
             <div class="flex flex-col justify-center mt-4">
                 <p class="flex justify-center ml-2 text-white text-base">Please check your email and follow the</p>
@@ -18,4 +18,4 @@
                 </div>
         </div>  
     </div>
-    </template>
+</template>

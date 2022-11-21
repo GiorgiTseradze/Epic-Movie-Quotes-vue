@@ -1,6 +1,6 @@
 <template>
-    <div class="flex justify-center w-full h-screen fixed bg-[#181623]">
-        <div class="bg-bg-[#181623] w-4/5 h-3/5 mt-20 rounded">
+    <div class="flex justify-center md:w-[26.7rem] md:h-[42rem] md:mt-20 w-full h-screen fixed bg-[#181623] md:bg-inherit">
+        <div class="bg-[#24222F] w-[22.5rem] h-[25.8rem] mt-20 rounded">
             <div class="flex justify-center">
                 <img class="mt-16" src="@/assets/sent.svg" />
             </div>

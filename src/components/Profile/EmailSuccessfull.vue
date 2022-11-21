@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center">
-        <div class="flex flex-col mt-2 h-28 w-[22.5rem] bg-[#D1E7DD] rounded mx-3">
+        <div class="flex flex-col mt-2 h-28 w-[20rem] bg-[#D1E7DD] rounded mx-3">
             <div class="flex mt-3">
                 <div class="flex justify-center w-30">
                     <img class=" ml-4 h-6 w-6" src="@/assets/greentick.svg" />
