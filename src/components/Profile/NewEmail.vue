@@ -16,14 +16,14 @@
             </div>
         </div>
 
-        <div class="flex flex-col bg-[#24222F] h-[12rem]">
+        <div class="flex flex-col h-[12rem]">
 
             <div>
                 <Form @submit="handleSubmit" class="flex flex-col items-center mt-[3rem] w-full">
-                    <div class="flex flex-col w-[20rem]">
-                        <label class="text-white" for="new_email">Add new email</label>
+                    <div class="flex flex-col w-[23rem] h-[10rem] py-15 bg-[#24222F] rounded">
+                        <label class="text-white mt-10 ml-6" for="new_email">{{ $t("profile.add_new_email") }}</label>
                         <div class="flex w-full justify-center">
-                            <Field name="new_email" class="bg-[#CED4DA] w-full h-[3rem] rounded px-3 mt-2 outline-none" />
+                            <Field name="new_email" class="bg-[#CED4DA] w-[20rem] h-[3rem] rounded px-3 mt-2 outline-none" />
                         </div>
                     </div>
                 </Form>
@@ -31,11 +31,11 @@
         </div>
 
         <div class="flex justify-center items-center mt-20">
-            <div class="ml-10 text-[1.1rem]">
-                <p class="text-gray-300">Cancel</p>
+            <div class=" text-[1.1rem]">
+                <p class="text-gray-300">{{ $t("profile.cancel") }}</p>
             </div>
-            <div class="flex items-center justify-center ml-[11rem] bg-[#E31221] h-10 w-[4.3rem] rounded">
-                <button class="flex text-white">Add</button>
+            <div class="flex items-center justify-center ml-[11rem] bg-[#E31221] h-10 w-[5rem] rounded">
+                <button class="flex text-white">{{ $t("profile.add") }}</button>
             </div>
         </div>
 

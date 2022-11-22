@@ -5,20 +5,20 @@
                 <img class="mt-16" src="@/assets/sent.svg" />
             </div>
             <div class="flex justify-center mt-4">
-                <p class="text-white text-2xl font-medium">Check your email</p>
+                <p class="text-white text-2xl font-medium">{{ $t("auth.check_your_email") }}</p>
             </div>
             <div class="flex flex-col justify-center mt-4">
-                <p class="flex justify-center ml-2 text-white text-sm">We have sent a password recover instructions</p>
-                <p class="flex justify-center ml-2 text-white text-sm">to your email</p>
+                <p class="flex justify-center ml-2 text-white text-sm">{{ $t("auth.recover_instructions_sent") }}</p>
+                <p class="flex justify-center ml-2 text-white text-sm">{{ $t("auth.to_your_email") }}</p>
             </div>
             <div class="flex flex-col justify-center items-center w-full mt-5">
                 <div class="flex items-center justify-center bg-[#E31221] h-10 w-72 rounded">
-                    <button class="flex text-white">Go to my email</button>
+                    <button class="flex text-white">{{ $t("auth.go_to_my_email")}}</button>
                 </div>
             </div>
 
             <div class="flex justify-center w-full mt-5">
-                    <p class="flex text-[#6C757D]">Skip, I’ll confirm later</p>
+                    <p class="flex text-[#6C757D]">{{ $t("auth.skip_i_will_confirm_later" )}}</p>
             </div>
 
         </div>  

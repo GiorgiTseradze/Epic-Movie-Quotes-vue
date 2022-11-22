@@ -29,17 +29,17 @@
                                 <div class="flex flex-col px-7">
                                     <div>
                                         <button @click="handleLang" class="flex items-center">
-                                            <p class="text-white">Eng</p>
+                                            <p class="text-white">{{i18n.global.locale === 'en' ? "ENG" : "KA"}}</p>
                                             <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
                                         </button>
                                     </div>
 
                                     <div v-if="lang" class="text-white bg-[#24222F] fixed mt-8 rounded">
                                         <div class="pr-5 pb-2 border-b-[0.06rem] border-[#CED4DA]">
-                                            <button>ENG</button>
+                                            <button @click="changeLangEn">ENG</button>
                                         </div>
                                         <div class="py-2">
-                                            <button>KA</button>
+                                            <button @click="changeLangKa">KA</button>
                                         </div>
                                     </div>
                                 </div>
@@ -62,16 +62,16 @@
                         </div>
                         <div class="ml-6">
                             <p class="text-white text-2xl">Nino Tabagari</p>
-                            <p class="text-[#CED4DA]">Edit your profile</p>
+                            <p class="text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                         </div>
                     </div>
-                    <div class="flex w-[15rem] ml-3 mt-10">
+                    <div class="flex items-center w-[15rem] ml-3 mt-10">
                         <HomeIcon />
-                        <p class="ml-4 text-white fill-red-500">News Feed</p>
+                        <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
                     </div>
-                    <div class="flex w-[15rem] ml-3 mt-10">
+                    <div class="flex items-center w-[15rem] ml-3 mt-10">
                         <CameraIcon />
-                        <p class="ml-4 text-white">List of movies</p>
+                        <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
                     </div>
                 </div>
 
@@ -79,12 +79,12 @@
                     <div class="flex items-center w-full">
                         <div class="flex items-center lg:ml-20 w-[22.3rem] lg:w-[27rem] xl:w-[37rem] 2xl:w-[42rem] h-24 lg:h-[3.2rem] lg:mt-8 lg:bg-[#24222F] border-0 rounded">
                             <img class="ml-4" src="@/assets/type.svg" />
-                            <p class="ml-2 text-white">Write new quote</p>
+                            <p class="ml-2 text-white">{{ $t("feed.write_new_quote") }}</p>
                         </div>
                         <div class="hidden lg:flex items-center mt-8 ml-4">
                             <button class="flex">
                                 <img src="@/assets/search-grey.svg" />
-                                <p class="ml-2 text-[#CED4DA]"> Search by</p>
+                                <p class="ml-2 text-[#CED4DA]">{{ $t("texts.search") }}</p>
                             </button>
                         </div>
                     </div>
@@ -107,11 +107,22 @@ import { ref } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import ThePost from '@/components/NewsFeed/ThePost.vue';
+import i18n from '@/i18n/index.js'
 
 const lang = ref(false);
 
 const handleLang = () => {
-    console.log(lang)
     return lang.value = !lang.value
 }
+
+const changeLangEn = () => {
+    i18n.global.locale = 'en'
+    lang.value = !lang.value
+}
+
+const changeLangKa = () => {
+    i18n.global.locale = 'ka'
+    lang.value = !lang.value
+}
+
 </script>

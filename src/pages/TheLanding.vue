@@ -10,7 +10,7 @@
             </div>
             <div class="text-white mr-9 border-2 p-2">
                 <router-link to="login">
-                    <button>Log in</button> 
+                    <button>{{ $t("auth.log_in") }}</button> 
                 </router-link>
             </div>
         </div>
