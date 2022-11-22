@@ -5,14 +5,14 @@
                 <img class="mt-16" src="@/assets/tick.svg" />
             </div>
             <div class="flex justify-center mt-4">
-                <p class="text-white text-2xl font-medium">Thank you!</p>
+                <p class="text-white text-2xl font-medium">{{ $t("auth.thank_you") }}</p>
             </div>
             <div class="flex justify-center mt-4">
-                <p class="flex justify-center ml-2 text-white text-base">Your account has been activated.</p>
+                <p class="flex justify-center ml-2 text-white text-base">{{ $t("auth.your_account_has_been_activated") }}</p>
             </div>
             <div class="flex flex-col items-center w-full mt-5">
                     <div class="flex items-center justify-center bg-[#E31221] h-10 w-3/5 rounded">
-                        <button class="flex text-white">Go to my email</button>
+                        <button class="flex text-white">{{ $t("auth.go_to_my_email") }}</button>
                     </div>
                 </div>
         </div>  

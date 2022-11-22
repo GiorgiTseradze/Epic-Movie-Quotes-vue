@@ -29,22 +29,22 @@
                                 <div class="flex px-7">
                                     <div>
                                         <button @click="handleLang" class="flex items-center">
-                                            <p class="text-white">Eng</p>
+                                            <p class="text-white">{{i18n.global.locale === 'en' ? "ENG" : "KA"}}</p>
                                             <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
                                         </button>
                                     </div>
 
                                     <div v-if="lang" class="text-white bg-[#24222F] fixed mt-8 rounded">
                                         <div class="pr-5 pb-2 border-b-[0.06rem] border-[#CED4DA]">
-                                            <button>ENG</button>
+                                            <button @click="changeLangEn">ENG</button>
                                         </div>
                                         <div class="py-2">
-                                            <button>KA</button>
+                                            <button @click="changeLangKa">KA</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex justify-center items-center text-white border-[0.06rem] p-2 mr-10 rounded w-24">
-                                    <button>Log out</button>
+                                    <button>{{ $t("auth.log_out") }}</button>
                                 </div>
 
                             </div>
@@ -58,15 +58,15 @@
                 <div class="flex flex-col justify-center w-[22.3rem] h-24">
                     <div class="flex items-center justify-between w-full">
                         <div class="h-full">
-                            <p class="text-white font-medium text-2xl">My list of movies</p>
+                            <p class="text-white font-medium text-2xl">{{ $t("movie.my_list_of_movies") }}</p>
                         </div>
-                        <div class="flex items-center justify-center bg-[#E31221] h-10 w-[7.9rem] rounded">
-                            <button class="flex items-center justify-center text-white"><img class="mr-2" src="@/assets/add.svg"/>Add movie</button>
+                        <div class="flex items-center justify-center bg-[#E31221] h-10 w-[7.9rem] text-sm rounded">
+                            <button class="flex items-center justify-center text-white"><img class="mr-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie")}}</button>
                         </div>
                     </div>
                     <div>
                         <p class="text-white">
-                            (Total 25)
+                            ({{ $t("movie.total")}} 25)
                         </p>
                     </div>
                 </div>
@@ -80,24 +80,24 @@
                         </div>
                         <div class="md:ml-4 ml-6">
                             <p class="text-white lg:text-lg xl:text-2xl">Nino Tabagari</p>
-                            <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">Edit your profile</p>
+                            <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
                         </div>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
                         <HomeIcon />
-                        <p class="ml-4 text-white fill-red-500">News Feed</p>
+                        <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
                         <CameraIcon />
-                        <p class="ml-4 text-white">List of movies</p>
+                        <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
                     </div>
                 </div>
                 <div>
                     <div class="hidden lg:block w-full px-7 bg-[#181623] h-[5rem]">
                         <div class="flex items-center justify-between w-full">
                             <div class="flex h-full">
-                                <p class="text-white font-medium text-2xl">My list of movies</p>
-                                <p class="text-white ml-6 font-medium text-2xl">(Total 25)</p>
+                                <p class="text-white font-medium text-2xl">{{ $t("movie.my_list_of_movies") }}</p>
+                                <p class="text-white ml-4 font-medium text-2xl">({{ $t("movie.total") }} 25)</p>
                             </div>
                             
                             <div class="flex items-center justify-center h-[5rem]">
@@ -106,7 +106,7 @@
                                         <input class="w-16 ml-3 outline-none bg-inherit text-[#CED4DA]" placeholder="Search" />
                                     </div>
                                     <div class="flex items-center justify-center bg-[#E31221] h-10 w-[7rem] rounded">
-                                    <button class="flex items-center justify-center text-white"><img class="mr-2" src="@/assets/add.svg"/>Add movie</button>
+                                    <button class="flex items-center justify-center text-white text-sm"><img class="px-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie") }}</button>
                                 </div>
                             </div>
                             
@@ -137,11 +137,21 @@ import { ref } from 'vue';
 import TheMovie from '@/components/Movie/TheMovie.vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
+import i18n from '@/i18n/index.js'
 
 const lang = ref(false);
 
 const handleLang = () => {
-    console.log(lang)
     return lang.value = !lang.value
+}
+
+const changeLangEn = () => {
+    i18n.global.locale = 'en'
+    lang.value = !lang.value
+}
+
+const changeLangKa = () => {
+    i18n.global.locale = 'ka'
+    lang.value = !lang.value
 }
 </script>

@@ -1,0 +1,20 @@
+{
+    "changes_updated_successfully": "ცვლილებები წარმატებით აისახა",
+    "upload_new_photo": "ახალი ფოტოს ატვირთვა",
+    "username": "მომხმარებლის სახელი",
+    "edit": "შეცვლა",
+    "are_you_sure_to_make_changes": "ნამდვილად გსურს ცვლილებები?",
+    "cancel": "გათიშვა",
+    "confirm": "დათანხმება",
+    "add_new_email": "ახალი ელ-ფოსტის დამატება",
+    "add_new_username": "ახალი მომხმარებლის სახელის დამატება",
+    "add": "დამატება",
+    "primary_email": "მთავარი ელ-ფოსტა",
+    "make_this_primary": "გახადე მთავარი",
+    "remove": "წაშლა",
+    "passwords_should_contain": "პაროლები უნდა შეიცავდეს",
+    "8_or_more_characters": "8 ან მეტი სიმბოლო",
+    "15_lowercase_characters": "15 სიმბოლო დაბალ რეგისტრში",
+    "new_password": "ახალი პაროლი",
+    "confirm_new_password": "დაადასტურე ახალი პაროლი"
+}

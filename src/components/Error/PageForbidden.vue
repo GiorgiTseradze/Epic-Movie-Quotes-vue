@@ -8,12 +8,12 @@
                 <p class="text-white text-2xl font-medium">You shall not pass!</p>
             </div>
             <div class="flex flex-col justify-center mt-4">
-                <p class="flex justify-center ml-2 text-white text-base font-medium">Sorry, but  you don’t have permission to</p>
-                <p class="flex justify-center ml-2 text-white text-base font-medium">access this page</p>
+                <p class="flex justify-center ml-2 text-white text-base font-medium">{{ $t("texts.sorry_but_you_dont_have_permission_to") }}</p>
+                <p class="flex justify-center ml-2 text-white text-base font-medium">{{ $t("texts.access_this_page") }}</p>
             </div>
             <div class="flex flex-col items-center w-full mt-5">
-                    <div class="flex items-center justify-center bg-[#E31221] h-10 w-[9.3rem] rounded">
-                        <button class="flex text-white">Return home</button>
+                    <div class="flex items-center justify-center bg-[#E31221] h-[3.1rem] w-[10rem] rounded">
+                        <button class="flex text-white">{{ $t("texts.return_home") }}</button>
                     </div>
                 </div>
         </div>  

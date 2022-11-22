@@ -5,15 +5,15 @@
                 <img class="mt-16" src="@/assets/sent.svg" />
             </div>
             <div class="flex justify-center mt-4">
-                <p class="text-white text-2xl font-medium">Thank you!</p>
+                <p class="text-white text-2xl font-medium">{{ $t("auth.thank_you") }}</p>
             </div>
             <div class="flex flex-col justify-center mt-4">
-                <p class="flex justify-center ml-2 text-white text-base">Please check your email and follow the</p>
-                <p class="flex justify-center ml-2 text-white text-base">instructions to activate your account.</p>
+                <p class="flex justify-center ml-2 text-white text-base">{{ $t("auth.please_check_your_email_and_follow_the") }}</p>
+                <p class="flex justify-center ml-2 text-white text-base">{{ $t("auth.instructions_to_activate_your_account") }}</p>
             </div>
             <div class="flex flex-col items-center w-full mt-5">
                     <div class="flex items-center justify-center bg-[#E31221] h-10 w-3/5 rounded">
-                        <button class="flex text-white">Go to my email</button>
+                        <button class="flex text-white">{{ $t("auth.go_to_my_email") }}</button>
                     </div>
                 </div>
         </div>  

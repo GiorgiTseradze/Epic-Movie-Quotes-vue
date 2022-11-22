@@ -26,29 +26,29 @@
                 <img src="@/assets/profpic.svg" />
             </div>
             <div class="flex justify-center">
-                <p class="text-white text-xl mt-2">Upload new photo</p>
+                <p class="text-white text-xl mt-2">{{ $t("profile.upload_new_photo")}}</p>
             </div>
 
             <div>
                 <Form @submit="handlesubmit" class="flex flex-col items-center mt-[3rem] w-full">
                     <div class="flex flex-col border-b-2 border-gray-500 w-[20rem]">
-                        <label class="text-white" for="username">Username</label>
+                        <label class="text-white" for="username">{{ $t("profile.username")}}</label>
                         <div class="flex justify-between w-full">
                             <Field name="username" class="bg-[#24222F] outline-none text-white placeholder-white" />
-                            <button class="text-[#CED4DA]">Edit</button>
+                            <button class="text-[#CED4DA]">{{ $t("profile.edit") }}</button>
                         </div>
                     </div>
                     <div class="flex flex-col mt-6 border-b-2 border-gray-500 w-[20rem]">
-                        <label class="text-white" for="password">Password</label>
+                        <label class="text-white" for="password">{{ $t("auth.password") }}</label>
                         <div class="flex justify-between w-full">
                             <Field name="username" class="bg-[#24222F] text-gray-400 placeholder-white outline-none" type="password" />
-                            <button class="text-[#CED4DA]">Edit</button>
+                            <button class="text-[#CED4DA]">{{ $t("profile.edit") }}</button>
                         </div>
                     </div>
 
                     <div class="flex justify-between items-center text-white w-[20rem] mt-8">
                         <div>
-                            <p>EMAIL</p>
+                            <p>{{ $t("auth.email") }}</p>
                         </div>
                         <div>
                             <img src="@/assets/next.svg" />
