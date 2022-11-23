@@ -20,6 +20,9 @@ import ProfileNewPassword from '@/components/Profile/ProfileNewPassword.vue';
 import ProfileEmail from '@/components/Profile/ProfileEmail.vue';
 import NewEmail from '@/components/Profile/NewEmail.vue';
 import EmailSuccessfull from '@/components/Profile/EmailSuccessfull.vue';
+import isAuthenticated from "./guards";
+import { useAuthStore } from "@/stores/auth";
+import axios from "@/config/axios/jwt-axios.js";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +78,7 @@ const router = createRouter({
       path: "/profile",
       name: "profile",
       component: PersonalProfile,
+      beforeEnter: isAuthenticated,
       children: [
         {
           path: '/new-username',
@@ -134,6 +138,22 @@ const router = createRouter({
       component: MovieList,
     },
   ],
+});
+
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore();
+
+  if (authStore.authenticated === null) {
+    try {axios
+      await axios.get(`${import.meta.env.VITE_API_BASE_URL}me`);
+      authStore.authenticated = true;
+    } catch (err) {
+      authStore.authenticated = false;
+    } finally {
+      return next();
+    }
+  }
+  return next();
 });
 
 export default router;
