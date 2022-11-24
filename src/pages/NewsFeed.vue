@@ -44,7 +44,9 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-center items-center text-white border-[0.06rem] p-2 mr-10 rounded w-24">
-                                    <button>Log out</button>
+                                    <form @click="handleLogout" :action="url" >
+                                        <button>Log out</button>
+                                    </form>
                                 </div>
 
                             </div>
@@ -96,8 +98,6 @@
                 </div>
 
             </div>
-            
-
         </div>
     </div>
 </template>
@@ -108,8 +108,21 @@ import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import ThePost from '@/components/NewsFeed/ThePost.vue';
 import i18n from '@/i18n/index.js'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from "@/stores/auth";
+
+const authStore = useAuthStore();
+const router = useRouter();
 
 const lang = ref(false);
+
+const url = "http://127.0.0.1:8000/api/logout";
+
+const handleLogout = () => {
+    router.push({name: "landing"})
+    authStore.authenticated = false;
+    console.log(authStore.authenticated)
+}
 
 const handleLang = () => {
     return lang.value = !lang.value

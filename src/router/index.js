@@ -24,6 +24,8 @@ import isAuthenticated from "./guards";
 import { useAuthStore } from "@/stores/auth";
 import axios from "@/config/axios/jwt-axios.js";
 
+// axios.defaults.withCredentials = true;
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -78,7 +80,6 @@ const router = createRouter({
       path: "/profile",
       name: "profile",
       component: PersonalProfile,
-      beforeEnter: isAuthenticated,
       children: [
         {
           path: '/new-username',
@@ -131,6 +132,7 @@ const router = createRouter({
       path: "/news-feed",
       name: "newsFeed",
       component: NewsFeed,
+      beforeEnter: isAuthenticated,
     },
     {
       path: "/movie-list",

@@ -40,14 +40,16 @@
                         </div>
                     </div>
                 </Form>
-                
 
                 <div class="flex flex-col items-center w-full mt-3">
                     <div class="flex items-center justify-center bg-black border rounded border-white h-10 w-[22.5rem]">
-                        <button class="flex items-center text-white">
+                        <form :action="url">
+                            <button class="flex items-center text-white">
                             <img class="mr-2" src="@/assets/gmail.svg" /> 
                             {{ $t("auth.sign_in_with_google") }}
-                        </button>
+                            </button>
+                        </form>
+
                     </div>
                 </div>
 
@@ -71,6 +73,8 @@ const authStore = useAuthStore();
 
 const router = useRouter()
 
+const url = "http://127.0.0.1:8000/api/google/login";
+
 const handleSubmit = (values) => {
     axiosInstance
         .post("login", {
@@ -79,7 +83,7 @@ const handleSubmit = (values) => {
         })
         .then(() => {
             authStore.authenticated = true;
-            router.push({ name: 'profile'});
+            router.push({ name: 'newsFeed'});
         })
         .catch((error) => {
           console.log(error)    
