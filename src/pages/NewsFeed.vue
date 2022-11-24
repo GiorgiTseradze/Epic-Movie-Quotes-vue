@@ -116,7 +116,7 @@ const router = useRouter();
 
 const lang = ref(false);
 
-const url = "http://127.0.0.1:8000/api/logout";
+const url = `${import.meta.env.VITE_API_BASE_URL}logout`;
 
 const handleLogout = () => {
     router.push({name: "landing"})

@@ -73,7 +73,7 @@ const authStore = useAuthStore();
 
 const router = useRouter()
 
-const url = "http://127.0.0.1:8000/api/google/login";
+const url = `${import.meta.env.VITE_API_BASE_URL}google/login`;
 
 const handleSubmit = (values) => {
     axiosInstance
