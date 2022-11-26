@@ -55,7 +55,6 @@
             </div>
         </Form>
        
-
             <div class="flex flex-col items-center w-full mt-3">
                 <div class="flex items-center justify-center bg-black border rounded border-white h-10 w-[22.5rem]">
                     <button class="flex items-center text-white">

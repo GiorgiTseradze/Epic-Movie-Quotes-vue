@@ -38,7 +38,7 @@
                                         <div class="pr-5 pb-2 border-b-[0.06rem] border-[#CED4DA]">
                                             <button @click="changeLangEn">ENG</button>
                                         </div>
-                                        <div class="py-2">
+                                        <div class="py-2"> 
                                             <button @click="changeLangKa">KA</button>
                                         </div>
                                     </div>
@@ -60,8 +60,8 @@
                         <div class="h-full">
                             <p class="text-white font-medium text-2xl">{{ $t("movie.my_list_of_movies") }}</p>
                         </div>
-                        <div class="flex items-center justify-center bg-[#E31221] h-10 w-[7.9rem] text-sm rounded">
-                            <button class="flex items-center justify-center text-white"><img class="mr-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie")}}</button>
+                        <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] text-sm rounded">
+                                <button class="flex items-center justify-center text-white"><img class="mr-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie")}}</button>
                         </div>
                     </div>
                     <div>
@@ -106,7 +106,9 @@
                                         <input class="w-16 ml-3 outline-none bg-inherit text-[#CED4DA]" placeholder="Search" />
                                     </div>
                                     <div class="flex items-center justify-center bg-[#E31221] h-10 w-[7rem] rounded">
-                                    <button class="flex items-center justify-center text-white text-sm"><img class="px-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie") }}</button>
+                                    <router-link :to="{name: 'addMovie'}">
+                                        <button class="flex items-center justify-center text-white text-sm"><img class="px-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie") }}</button>
+                                    </router-link> 
                                 </div>
                             </div>
                             
