@@ -55,7 +55,9 @@
 
                 <div class="flex justify-center w-full mt-5">
                     <p class="text-[#6C757D]">{{ $t("auth.already_have_an_account") }}</p>
-                    <button class="text-[#0D6EFD] underline ml-1">{{ $t("auth.sign_up")}}</button>
+                    <router-link :to="{name: 'createAccount'}">
+                        <button class="text-[#0D6EFD] underline ml-1">{{ $t("auth.sign_up")}}</button>
+                    </router-link>
                 </div>
 
             </div>

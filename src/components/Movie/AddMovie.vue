@@ -23,16 +23,31 @@
         <div class="flex justify-center w-full mt-8">
             <Form @submit="handleSubmit" class="flex flex-col w-[20rem]">
                 <div class="flex items-center h-10 border-[0.06rem] border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_en" placeholder="Movie name" />
+                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_en" placeholder="Movie name" rules="required" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
+                <ErrorMessage name="name_en" class="text-red-500" />
+
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_ka" placeholder="ფილმის სახელი" />
+                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_ka" placeholder="ფილმის სახელი" rules="required" />
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
-                <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-gray-500 w-20 h-5 ml-5" name="genre" placeholder="Drama" />
+                <ErrorMessage name="name_ka" class="text-red-500" />
+
+                <div class="flex flex-wrap items-center h-max py-3 border-[0.06rem] mt-4 border-[#6C757D] rounded">
+                    <div class="flex text-white" v-for="(tag, index) in tags" :key="'tag'+index">
+                        <div class="flex w-max px-2 bg-gray-500 rounded ml-2">
+                            <p>{{ tag }}</p>
+                            <button class="ml-[0.3rem] w-2" @click="removeTag"><img src="@/assets/x-grey.svg" /> </button>
+                        </div>
+                    </div>
+                        <div class="flex">
+                            <Field v-model="tags" name="genre" >
+                            <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
+                            </Field>
+                        </div>
                 </div>
+
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
                     <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_en" placeholder="Director" />
                     <p class="text-[#6C757D]">Eng</p>
@@ -50,32 +65,32 @@
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field name="image" v-slot="{ handleChange, handleBlur, meta, value }" v-model="img">
+                    <Field name="image" v-slot="{ handleChange, handleBlur, meta, value }">
                         <div
                             @dragenter="onDragEnter"
                             @dragleave="onDragLeave"
-                            @dragover.prevent
+                            @dragover.prevent 
                             @drop="onDrop"
-                            class="relative mt-4 bg-transparent border-1 border-niceGrey placeholder-white w-full px-2.5 py-4 rounded lg:py-2 outline-none"
+                            class="relative mt-4 bg-transparent border-1 border-gray-500 placeholder-white w-full px-2.5 py-4 rounded lg:py-2 outline-none"
                             :class="{
-                            'border-niceRed': !meta.valid && meta.touched,
-                            'border-validGreen': meta.valid && meta.touched,
+                            'border-red-500': !meta.valid && meta.touched,
+                            'border-green-500': meta.valid && meta.touched,
                             'border-dotted border-4 border-blue-700': isDragging,
                             }"
                         >
                             <div class="flex justify-between lg:justify-start lg:gap-3">
                             <div class="flex gap-3 items-center">
-                                <camera-icon></camera-icon>
-                                <span class="mt-1 lg:hidden">Upload image</span>
-                                <span class="mt-1 invisible lg:visible">Drag and Drop</span>
+                                <CameraIcon />
+                                <span class="mt-1 text-white lg:hidden">Upload image</span>
+                                <span class="mt-1 text-white invisible lg:visible">Drag and Drop</span>
                             </div>
-                            <label for="movieImage" class="bg-fadePurple px-2 py-2">Choose File</label
+                            <label for="movieImage" class="bg-purple-500 px-2 py-2">Choose File</label
                             >
                             </div>
-                            <div v-if="value">
+                            <div v-if="value" class="text-white">
                             {{ value.name }}
                             </div>
-                            <input type="file" @change="handleChange" @blur="handleBlur" id="movieImage" placeholder="Choose file" />
+                            <input type="file" class="placeholder-white text-white" @change="handleChange" @blur="handleBlur" id="movieImage" placeholder="Choose file" />
                         </div>
                     </Field> 
                 </div>
@@ -91,12 +106,33 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
+import CameraIcon from '@/components/Icons/CameraIcon.vue';
 
 const router = useRouter()
 
+//genre input logic
+const tagValue = ref('');
+const tags = ref([]);
+
+//genre input functions
+
+const addTag = (e) => {
+    e.preventDefault();
+    if(!tagValue.value == ''){
+        tags.value.push(tagValue.value);
+        tagValue.value = '';
+    }
+}
+
+const removeTag = (index) => {
+        tags.value.splice(index, 1);
+      }
+
+//drag&&drop
 function onDragEnter(e) {
   e.preventDefault();
   dragCount.value++;
@@ -125,7 +161,7 @@ const handleSubmit = (values) => {
         .post("add-movie", {
           name_en: values.name_en,
           name_ka: values.name_ka,
-          genre: values.genre,
+          genre: JSON.stringify(tags.value),
           director_en: values.director_en,
           director_ka: values.director_ka,
           description_en: values.description_en,

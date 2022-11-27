@@ -103,6 +103,7 @@
 </template>
 
 <script setup>
+
 import { ref } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
