@@ -20,6 +20,8 @@ import ProfileNewPassword from '@/components/Profile/ProfileNewPassword.vue';
 import ProfileEmail from '@/components/Profile/ProfileEmail.vue';
 import NewEmail from '@/components/Profile/NewEmail.vue';
 import EmailSuccessfull from '@/components/Profile/EmailSuccessfull.vue';
+import AddMovie from '@/components/Movie/AddMovie.vue';
+import UpdateMovie from '@/components/Movie/UpdateMovie.vue';
 import isAuthenticated from "./guards";
 import { useAuthStore } from "@/stores/auth";
 import axios from "@/config/axios/jwt-axios.js";
@@ -138,6 +140,18 @@ const router = createRouter({
       path: "/movie-list",
       name: "movieList",
       component: MovieList,
+      children: [
+        {
+          path: '/add-movie',
+          name: 'addMovie',
+          component: AddMovie
+        },
+        {
+          path: '/update-movie',
+          name: 'updateMovie',
+          component: UpdateMovie
+        },
+      ]
     },
   ],
 });

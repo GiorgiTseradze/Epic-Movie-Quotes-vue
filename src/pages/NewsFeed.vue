@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="flex justify-center items-center text-white border-[0.06rem] p-2 mr-10 rounded w-24">
                                     <form @click="handleLogout">
-                                        <button>Log out</button>
+                                        <button>{{ $t("auth.log_out")}}</button>
                                     </form>
                                 </div>
 
@@ -103,6 +103,7 @@
 </template>
 
 <script setup>
+
 import { ref } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
@@ -128,7 +129,8 @@ const handleLogout = () => {
         })
         .catch((error) => {
           console.log(error)    
-        });}
+        });
+}
 
 const handleLang = () => {
     return lang.value = !lang.value
