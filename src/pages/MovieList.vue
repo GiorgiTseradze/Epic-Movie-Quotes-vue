@@ -44,7 +44,9 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-center items-center text-white border-[0.06rem] p-2 mr-10 rounded w-24">
-                                    <button>{{ $t("auth.log_out") }}</button>
+                                    <form @click="handleLogout">
+                                        <button>{{ $t("auth.log_out")}}</button>
+                                    </form>
                                 </div>
 
                             </div>
@@ -140,6 +142,27 @@ import TheMovie from '@/components/Movie/TheMovie.vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import i18n from '@/i18n/index.js'
+import { useAuthStore } from "@/stores/auth";
+import axiosInstance from "@/config/axios/jwt-axios.js";
+import { useRouter } from 'vue-router'
+import { useCrudStore } from "@/stores/crud";
+
+const movieStore = useCrudStore();
+const authStore = useAuthStore();
+const router = useRouter();
+const url = `${import.meta.env.VITE_API_BASE_URL}logout`;
+
+const handleLogout = () => {
+    axiosInstance
+        .post("logout")
+        .then(() => {
+            authStore.authenticated = false;
+            router.push({name: "landing"})
+        })
+        .catch((error) => {
+          console.log(error)    
+        });
+}
 
 const lang = ref(false);
 

@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center w-screen h-screen fixed overflow-scroll lg:overflow-hidden lg:w-[40rem] lg:h-[50rem] lg:mt-20 bg-black">
         <div class="flex justify-center items-center h-20 w-full border-b-[0.06rem] border-[#40414A]">
             <div class="flex w-28">
-                <p class="text-white">Add Movie</p>
+                <p class="text-white">Edit Movie</p>
             </div>
             <div class="flex absolute w-full justify-end">
                 <img class="mr-10" src="@/assets/x-grey.svg" />
@@ -129,8 +129,8 @@ const addTag = (e) => {
 }
 
 const removeTag = (index) => {
-        tags.value.splice(index, 1);
-      }
+    tags.value.splice(index, 1);
+}
 
 //drag&&drop
 function onDragEnter(e) {
@@ -158,7 +158,7 @@ const handleSubmit = (values) => {
     console.log(values)
 
     axiosInstance
-        .post("add-movie", {
+        .post("update-movie", {
           name_en: values.name_en,
           name_ka: values.name_ka,
           genre: JSON.stringify(tags.value),
@@ -173,7 +173,7 @@ const handleSubmit = (values) => {
             },
         })
         .then((response) => {
-          alert("Movie added Successfully!");
+          alert("Movie updated Successfully!");
           router.push({ name: 'movieList'});
           console.log(response);
         })
