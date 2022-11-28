@@ -1,4 +1,5 @@
 {
-    "write_new_quote": "Create new quote",
-    "write_a_comment": "Write a comment"
+  "write_new_quote": "Create new quote",
+  "write_a_comment": "Write a comment",
+  "edit_quote": "Edit Quote"
 }

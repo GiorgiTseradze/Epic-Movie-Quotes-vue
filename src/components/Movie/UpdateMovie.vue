@@ -5,7 +5,9 @@
                 <p class="text-white">Edit Movie</p>
             </div>
             <div class="flex absolute w-full justify-end">
-                <img class="mr-10" src="@/assets/x-grey.svg" />
+                <router-link :to="{name: 'movieList'}">
+                    <img class="mr-10" src="@/assets/x-grey.svg" />
+                </router-link>
             </div>
         </div>
 
@@ -63,6 +65,10 @@
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
                     <Field as="textarea" class="text-white w-[17rem] h-14 px-3 py-3 placeholder-white resize-none outline-none bg-inherit" name="description_ka" placeholder="ფილმის აღწერა"/>
                     <p class="text-[#6C757D]">ქარ</p>
+                </div>
+                <div class="hidden items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
+                    <Field value="1" class="text-white w-[17rem] h-14 overflow-hidden resize-none px-3 py-3 border-0 placeholder-white outline-none bg-inherit" name="movie_id" placeholder="Movie description" />
+                    <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
                     <Field name="image" v-slot="{ handleChange, handleBlur, meta, value }">
@@ -165,7 +171,8 @@ const handleSubmit = (values) => {
           director_ka: values.director_ka,
           description_en: values.description_en,
           description_ka: values.description_ka,
-          image: values.image
+          image: values.image,
+          movie_id: values.movie_id
         },{
             headers: {
                 "content-type": "multipart/form-data",

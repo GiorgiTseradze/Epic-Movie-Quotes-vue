@@ -3,6 +3,7 @@ import TheLanding from '@/pages/TheLanding.vue';
 import PersonalProfile from '@/pages/PersonalProfile.vue';
 import NewsFeed from '@/pages/NewsFeed.vue';
 import MovieList from '@/pages/MovieList.vue';
+import CurrentMovie from '@/pages/CurrentMovie.vue';
 import SignIn from '@/components/Auth/SignIn.vue';
 import CheckEmail from '@/components/Auth/CheckEmail.vue';
 import CreateAccount from '@/components/Auth/CreateAccount.vue';
@@ -23,6 +24,7 @@ import EmailSuccessfull from '@/components/Profile/EmailSuccessfull.vue';
 import AddMovie from '@/components/Movie/AddMovie.vue';
 import UpdateMovie from '@/components/Movie/UpdateMovie.vue';
 import AddQuote from '@/components/Quote/AddQuote.vue';
+import UpdateQuote from '@/components/Quote/UpdateQuote.vue';
 import isAuthenticated from "./guards";
 import { useAuthStore } from "@/stores/auth";
 import axios from "@/config/axios/jwt-axios.js";
@@ -142,6 +144,11 @@ const router = createRouter({
           name: 'addQuote',
           component: AddQuote
         },
+        {
+          path: '/update-quote',
+          name: 'updateQuote',
+          component: UpdateQuote
+        },
       ]
     },
     {
@@ -160,6 +167,11 @@ const router = createRouter({
           component: UpdateMovie
         },
       ]
+    },
+    {
+      path: "/current-movie",
+      name: "currentMovie",
+      component: CurrentMovie,
     },
   ],
 });
