@@ -8,12 +8,12 @@
                 </div>
                 <div class="flex w-full">
                     <div class="mt-4">
-                        <p class="text-sm text-white">“Follow your dream.”movie- Billy Elliot. (2000)</p>
+                        <p class="text-sm text-white">{{ quote }}</p>
                     </div>
                 </div>
                 <div class="flex flex-col w-full h-[12.5rem]">
                     <div class="flex w-full mt-4">
-                        <img class="lg:w-full lg:h-full" src="@/assets/post-photo.svg" alt="post-photo"/>
+                        <img class="lg:w-full lg:h-full" :src="image" alt="post-photo"/>
                     </div>
                     <div class="flex mt-4">
                         <p class="text-white">1</p>
@@ -43,10 +43,15 @@
 
 <script setup>
 import TheComment from '@/components/NewsFeed/TheComment.vue';
-// defineProps({
-//     name: {
-//         type: String,
-//         required: true,
-//     }
-// })
+
+defineProps({
+    quote: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: true,
+    }
+})
 </script>

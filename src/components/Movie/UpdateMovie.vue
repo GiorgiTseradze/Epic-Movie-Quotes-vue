@@ -80,7 +80,7 @@
                         >
                             <div class="flex justify-between lg:justify-start lg:gap-3">
                             <div class="flex gap-3 items-center">
-                                <CameraIcon />
+                                <img src="@/assets/photocamera.svg" />
                                 <span class="mt-1 text-white lg:hidden">Upload image</span>
                                 <span class="mt-1 text-white invisible lg:visible">Drag and Drop</span>
                             </div>
@@ -110,7 +110,6 @@ import { ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
-import CameraIcon from '@/components/Icons/CameraIcon.vue';
 
 const router = useRouter()
 

@@ -63,7 +63,9 @@
                             <p class="text-white font-medium text-2xl">{{ $t("movie.my_list_of_movies") }}</p>
                         </div>
                         <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] text-sm rounded">
+                            <router-link :to="{name: 'addMovie'}">
                                 <button class="flex items-center justify-center text-white"><img class="mr-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie")}}</button>
+                            </router-link>
                         </div>
                     </div>
                     <div>
@@ -117,16 +119,19 @@
                      </div>
                     </div>
                     <div class="flex flex-col lg:grid lg:grid-cols-3 w-full lg:w-full">
+
+                        <TheMovie 
+                        v-for="movie in movieStore.movies"
+                        v-bind:key="movie.name"
+                        :name="i18n.global.locale === 'en' ? movie.name.en : movie.name.ka"
+                        :id="movie.id"
+                        :image="imgUrl + movie.image"
+                        />
+                        
+                        <!--
                         <TheMovie />
                         <TheMovie />
-                        <TheMovie />
-                        <TheMovie />
-                        <TheMovie />
-                        <TheMovie />
-                        <TheMovie />
-                        <TheMovie />
-                        <TheMovie />
-                        <TheMovie />
+                        -->
                     </div>
                 </div>
 
@@ -150,7 +155,8 @@ import { useCrudStore } from "@/stores/crud";
 const movieStore = useCrudStore();
 const authStore = useAuthStore();
 const router = useRouter();
-const url = `${import.meta.env.VITE_API_BASE_URL}logout`;
+
+const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
 const handleLogout = () => {
     axiosInstance

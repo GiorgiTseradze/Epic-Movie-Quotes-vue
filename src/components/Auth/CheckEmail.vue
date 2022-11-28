@@ -6,7 +6,7 @@
             </div>
             <div class="flex justify-center mt-4">
                 <p class="text-white text-2xl font-medium">{{ $t("auth.check_your_email") }}</p>
-            </div>
+            </div>  
             <div class="flex flex-col justify-center mt-4">
                 <p class="flex justify-center ml-2 text-white text-sm">{{ $t("auth.recover_instructions_sent") }}</p>
                 <p class="flex justify-center ml-2 text-white text-sm">{{ $t("auth.to_your_email") }}</p>

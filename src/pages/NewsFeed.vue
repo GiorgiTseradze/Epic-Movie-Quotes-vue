@@ -81,7 +81,9 @@
                     <div class="flex items-center w-full">
                         <div class="flex items-center lg:ml-20 w-[22.3rem] lg:w-[27rem] xl:w-[37rem] 2xl:w-[42rem] h-24 lg:h-[3.2rem] lg:mt-8 lg:bg-[#24222F] border-0 rounded">
                             <img class="ml-4" src="@/assets/type.svg" />
-                            <p class="ml-2 text-white">{{ $t("feed.write_new_quote") }}</p>
+                            <router-link :to="{name: 'addQuote'}">
+                                <p class="ml-2 text-white">{{ $t("feed.write_new_quote") }}</p>
+                            </router-link> 
                         </div>
                         <div class="hidden lg:flex items-center mt-8 ml-4">
                             <button class="flex">
@@ -92,8 +94,13 @@
                     </div>
 
                     <div class="bg-[#181624]">
-                        <ThePost />
-                        <ThePost />
+                        <ThePost 
+                        v-for="quote in quoteStore.quotes"
+                        v-bind:key="quote.quote"
+                        :quote="i18n.global.locale === 'en' ? quote.quote.en : quote.quote.ka"
+                        :id="quote.id"
+                        :image="imgUrl + quote.image"
+                        />
                     </div>
                 </div>
 
@@ -112,13 +119,15 @@ import i18n from '@/i18n/index.js'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
+import { useCrudStore } from "@/stores/crud";
+
 
 const authStore = useAuthStore();
 const router = useRouter();
+const quoteStore = useCrudStore();
 
 const lang = ref(false);
-
-const url = `${import.meta.env.VITE_API_BASE_URL}logout`;
+const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
 const handleLogout = () => {
     axiosInstance

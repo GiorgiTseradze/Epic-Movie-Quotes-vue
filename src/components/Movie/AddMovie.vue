@@ -5,7 +5,9 @@
                 <p class="text-white">Add Movie</p>
             </div>
             <div class="flex absolute w-full justify-end">
-                <img class="mr-10" src="@/assets/x-grey.svg" />
+                <router-link :to="{name: 'movieList'}">
+                    <img class="mr-10" src="@/assets/x-grey.svg" />
+                </router-link>
             </div>
         </div>
 
@@ -80,7 +82,7 @@
                         >
                             <div class="flex justify-between lg:justify-start lg:gap-3">
                             <div class="flex gap-3 items-center">
-                                <CameraIcon />
+                                <img src="@/assets/photocamera.svg" />
                                 <span class="mt-1 text-white lg:hidden">Upload image</span>
                                 <span class="mt-1 text-white invisible lg:visible">Drag and Drop</span>
                             </div>
@@ -110,7 +112,6 @@ import { ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
-import CameraIcon from '@/components/Icons/CameraIcon.vue';
 
 const router = useRouter()
 
