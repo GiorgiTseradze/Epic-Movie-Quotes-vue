@@ -25,6 +25,7 @@ import AddMovie from '@/components/Movie/AddMovie.vue';
 import UpdateMovie from '@/components/Movie/UpdateMovie.vue';
 import AddQuote from '@/components/Quote/AddQuote.vue';
 import UpdateQuote from '@/components/Quote/UpdateQuote.vue';
+import CurrentQuote from '@/components/Quote/CurrentQuote.vue';
 import isAuthenticated from "./guards";
 import { useAuthStore } from "@/stores/auth";
 import axios from "@/config/axios/jwt-axios.js";
@@ -149,6 +150,11 @@ const router = createRouter({
           name: 'updateQuote',
           component: UpdateQuote
         },
+        {
+          path: "/current-quote/:quoteId",
+          name: 'currentQuote',
+          component: CurrentQuote
+        },
       ]
     },
     {
@@ -169,7 +175,7 @@ const router = createRouter({
       ]
     },
     {
-      path: "/current-movie",
+      path: "/current-movie/:movieId",
       name: "currentMovie",
       component: CurrentMovie,
     },

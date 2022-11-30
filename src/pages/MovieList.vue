@@ -105,7 +105,7 @@
                             </div>
                             
                             <div class="flex items-center justify-center h-[5rem]">
-                                    <div class="flex">
+                                    <div class="flex lg:ml-36 xl:ml-60 2xl:ml-80">
                                         <img src="@/assets/search.svg" />
                                         <input class="w-16 ml-3 outline-none bg-inherit text-[#CED4DA]" placeholder="Search" />
                                     </div>
@@ -119,7 +119,6 @@
                      </div>
                     </div>
                     <div class="flex flex-col lg:grid lg:grid-cols-3 w-full lg:w-full">
-
                         <TheMovie 
                         v-for="movie in movieStore.movies"
                         v-bind:key="movie.name"
@@ -127,11 +126,6 @@
                         :id="movie.id"
                         :image="imgUrl + movie.image"
                         />
-                        
-                        <!--
-                        <TheMovie />
-                        <TheMovie />
-                        -->
                     </div>
                 </div>
 

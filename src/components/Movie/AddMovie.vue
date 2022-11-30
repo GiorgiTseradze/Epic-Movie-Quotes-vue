@@ -167,7 +167,7 @@ const handleSubmit = (values) => {
           director_ka: values.director_ka,
           description_en: values.description_en,
           description_ka: values.description_ka,
-          image: values.image
+          image: values.image,
         },{
             headers: {
                 "content-type": "multipart/form-data",

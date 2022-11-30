@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="flex lg:w-full lg:bg-[#181624]">
+            <div class="flex lg:w-full h-full lg:bg-[#181624]">
                 <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/4">
                     <div class="flex mt-8 w-[15rem] ml-3">
                         <div>

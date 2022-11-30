@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="flex flex-col items-center w-full h-screen bg-[#181623]">
+        <div class="flex flex-col items-center w-full h-full overflow-scroll bg-[#181623]">
             <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
@@ -26,7 +26,7 @@
                                 <div class="flex px-7">
                                     <div>
                                         <button @click="handleLang" class="flex items-center">
-                                            <p class="text-white">{{i18n.global.locale === 'en' ? "ENG" : "KA"}}</p>
+                                            <p class="text-white">{{langStore.langKa === false ? "ENG" : "KA"}}</p>
                                             <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
                                         </button>
                                     </div>
@@ -53,27 +53,88 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-center lg:hidden w-full bg-[#181623]">
-                <div class="flex flex-col justify-center w-[22.3rem] h-24">
-                    <div class="flex items-center justify-between w-full">
-                        <div class="h-full">
-                            <p class="text-white font-medium text-2xl">{{ $t("movie.my_list_of_movies") }}</p>
-                        </div>
-                        <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] text-sm rounded">
-                            <router-link :to="{name: 'addMovie'}">
-                                <button class="flex items-center justify-center text-white"><img class="mr-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie")}}</button>
-                            </router-link>
+            <div class="flex flex-col items-center justify-center lg:hidden w-full bg-[#181623]">
+                <div class="flex flex-col w-[20rem] border-b-2 pb-10 border-[#54535A]">
+                    <div class="flex flex-col justify-center h-40 mt-10">
+                        <img class="w-[20rem]  h-[18rem] rounded" :src="imgUrl + movie?.image" />
+                    </div>
+                    <div>
+                        <p class="flex items-center text-[#DDCCAA] text-2xl font-bold mt-7">
+                            {{ langStore.langKa === false ? movie?.name.en : movie?.name.ka }}
+                        </p>
+                    </div>
+                    <div class="flex">
+                        <div v-for="genre in genres"  class="w-max mt-7 mr-2 bg-gray-500 rounded">
+                            <p class="font-bold text-white px-2 py-1" >
+                                {{ genre }}
+                            </p>
                         </div>
                     </div>
                     <div>
-                        <p class="text-white">
-                            ({{ $t("movie.total")}} 25)
+                        <p class="font-bold mt-7 text-[#CED4DA]">
+                            {{ $t("movie.director") }}: {{ langStore.langKa === false ? movie?.director.en : movie?.director.ka }}
                         </p>
                     </div>
+                    <div>
+                        <p class="text-[#CED4DA] mt-7">
+                            {{ $t("movie.description") }}: {{ langStore.langKa === false ? movie?.description.en : movie?.description.ka }}
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] mt-5 text-sm rounded">
+                            <router-link :to="{name: 'addQuote'}">
+                                <button class="flex items-center justify-center text-white">
+                                    <img class="mr-2" src="@/assets/add.svg"/>
+                                    {{ $t("feed.add_quote")}}
+                                </button>
+                            </router-link>
+                        </div>
+                    </div>
+                    
                 </div>
+                
+                <div class="flex justify-center w-full pb-10 pt-10">
+                    <div class="flex flex-col w-[20rem]">
+                        <div class="flex flex-col text-white">
+                            <p>
+                                All Quotes
+                            </p>
+                            <p>
+                                (Total 4)
+                            </p>
+                        </div>
+                        <div class="flex w-full bg-[#181623]">
+                            <div class="flex flex-col mt-7 rounded">
+                                <div>
+                                    <img src="@/assets/tenenbaums.png" />
+                                </div>
+                                <div class="mt-5 pb-5 border-b-2 border-[#54535A]">
+                                    <p class="flex text-white">"Love means never having to say you're sorry."</p>
+                                </div>
+                                <div class="flex items-center justify-between text-white mt-5">
+                                    <div class="flex">
+                                            <div class="flex">
+                                                <p>3</p>
+                                            <img class="ml-2" src="@/assets/comment.svg" />
+                                        </div>
+                                        <div class="flex ml-2">
+                                                <p>5</p>
+                                            <img class="ml-2" src="@/assets/heart.svg" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img src="@/assets/dots.svg" />
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="lg:flex w-full lg:w-full bg-[#181623]">
+            <div class="lg:flex w-full lg:w-full h-screen">
                 <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/5">
                     <div class="flex mt-8 w-[15rem] ml-3">
                         <div>
@@ -93,53 +154,122 @@
                         <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
                     </div>
                 </div>
+
                 <div>
-                    <div class="hidden lg:block w-full px-7 bg-[#181623] h-[5rem]">
-                        <div class="flex items-center justify-between w-full">
-                            <div class="flex h-full">
-                                <p class="text-white font-medium text-2xl">{{ $t("movie.my_list_of_movies") }}</p>
-                                <p class="text-white ml-4 font-medium text-2xl">({{ $t("movie.total") }} 25)</p>
-                            </div>
-                            
-                            <div class="flex items-center justify-center h-[5rem]">
-                                    <div class="flex">
-                                        <img src="@/assets/search.svg" />
-                                        <input class="w-16 ml-3 outline-none bg-inherit text-[#CED4DA]" placeholder="Search" />
+                    <div class="hidden lg:block w-full px-7 bg-[#181623]">
+                        <div class="flex flex-col items-center justify-between w-full">
+                            <div class="flex flex-col lg:w-[40rem] xl:w-[55rem] 2xl:w-[60rem] border-b-2 pb-10 border-[#54535A]">
+                                <div class="flex">
+                                    <div class="flex flex-col lg:w-[20rem] xl:w-[30rem] lg:h-[15rem] xl:h-[20rem] mt-10">
+                                        <img class="w-max h-max rounded" :src="imgUrl + movie?.image" />
                                     </div>
-                                    <div class="flex items-center justify-center bg-[#E31221] h-10 w-[7rem] rounded">
-                                    <router-link :to="{name: 'addMovie'}">
-                                        <button class="flex items-center justify-center text-white text-sm"><img class="px-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie") }}</button>
-                                    </router-link> 
+                                    <div class="flex flex-col lg:w-[20rem] xl:w-[25rem] 2xl:w-[30rem] ml-4">
+                                        <div>
+                                            <p class="flex items-center text-[#DDCCAA] text-2xl font-bold mt-7">
+                                                {{ langStore.langKa === false ? movie?.name.en : movie?.name.ka }}
+                                            </p>
+                                        </div>
+                                        <div class="flex">
+                                            <div v-for="genre in genres" class="flex w-max mt-4 mr-2 bg-gray-500 rounded">
+                                                <p class="font-bold text-white px-2 py-1" >
+                                                    {{ genre }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold mt-4 text-[#CED4DA]">
+                                                {{ $t("movie.director") }}: {{ langStore.langKa === false ? movie?.director.en : movie.director?.ka }}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[#CED4DA] mt-4">
+                                                {{ $t("movie.description") }}: {{ langStore.langKa === false ? movie?.description.en : movie?.description.ka }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="flex items-center h-10">
+                                    <div class="flex h-8 text-white border-r-2 border-[#54535A] pr-3">
+                                        <div class="flex mt-1">
+                                            <p>
+                                                {{ $t("movie.quotes") }}
+                                            </p>
+                                            <p class="ml-2">
+                                                ({{ $t("movie.total") }} 7)
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] ml-5 text-sm rounded">
+                                        <router-link :to="{name: 'addQuote'}">
+                                            <button class="flex items-center justify-center text-white">
+                                                <img class="mr-2" src="@/assets/add.svg"/>
+                                                {{ $t("feed.add_quote")}}
+                                            </button>
+                                        </router-link>
+                                    </div>
+                                </div>
+                            </div>       
+
+                            <div class="flex w-full pb-10 pt-10">
+                                <div class="flex flex-col lg:w-[30rem] xl:w-[35rem]">
+
+                                    <div v-for="quote in quotes" class="flex flex-col w-[30rem] xl:w-[35rem] pb-10">
+                                        <div class="flex w-full justify-center bg-[#11101A] pb-5 rounded">
+                                            <div class="flex flex-col mt-7 rounded">
+                                                <div class="flex w-[28rem] xl:w-[32rem] lg:h-[11rem] border-b-2 border-[#54535A]">
+                                                    <div class="w-[12rem] h-[8rem]">
+                                                        <img :src="imgUrl + quote?.image" />
+                                                    </div>
+                                                    <div class="w-[17rem] mt-5 ml-3 pb-5">
+                                                        <p class="flex text-white">{{ quote.quote?.en }}</p>
+                                                    </div>
+                                                    <div>
+                                                        <img src="@/assets/dots.svg" />
+                                                    </div>                  
+                                                </div>
+                                                <div class="flex items-center justify-between text-white mt-5">
+                                                    <div class="flex">
+                                                            <div class="flex">
+                                                                <p>3</p>
+                                                            <img class="ml-2" src="@/assets/comment.svg" />
+                                                        </div>
+                                                        <div class="flex ml-2">
+                                                                <p>5</p>
+                                                            <img class="ml-2" src="@/assets/heart.svg" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            
-                     </div>
-                    </div>
-                    <div class="flex flex-col lg:grid lg:grid-cols-3 w-full lg:w-full">
-
-
+                        </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import i18n from '@/i18n/index.js'
 import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
-import { useRouter } from 'vue-router'
-import { useCrudStore } from "@/stores/crud";
+import { useRoute, useRouter } from 'vue-router'
+import { useLangStore } from "@/stores/lang";
 
-const movieStore = useCrudStore();
 const authStore = useAuthStore();
+const langStore = useLangStore();
 const router = useRouter();
+const movie = ref();
+const quotes = ref();
+const genres = ref();
 
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
@@ -154,7 +284,6 @@ const handleLogout = () => {
           console.log(error)    
         });
 }
-
 const lang = ref(false);
 
 const handleLang = () => {
@@ -163,11 +292,23 @@ const handleLang = () => {
 
 const changeLangEn = () => {
     i18n.global.locale = 'en'
-    lang.value = !lang.value
+    langStore.langKa = false
+    return lang.value = !lang.value
 }
 
 const changeLangKa = () => {
     i18n.global.locale = 'ka'
-    lang.value = !lang.value
+    langStore.langKa = true
+    return lang.value = !lang.value
 }
+
+const movieId = useRoute().params.movieId;
+onBeforeMount(()=>{
+    axiosInstance.get('movies/'+movieId).then((response)=>{
+        console.log(response.data.quotes);
+        movie.value = response.data;
+        genres.value = JSON.parse(response.data.genre);
+        quotes.value = response.data.quotes;
+    })
+});
 </script>

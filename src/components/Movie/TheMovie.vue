@@ -1,6 +1,6 @@
 <template>
 <div class="flex items-center justify-center w-full h-full bg-[#181623]">
-    <div class="flex flex-col justify-center lg:w-[30rem] h-full lg:ml-5 lg:px-3 w-[22.3rem] mt-14">
+    <div @click="$router.push({name:'currentMovie',params:{movieId:id}})"  class="cursor-pointer flex flex-col justify-center lg:w-[30rem] h-full lg:ml-5 lg:px-3 w-[22.3rem] mt-14">
         <img :src="image" />
         <p class="text-white mt-4">{{ name }}</p>
         <div class="flex mt-4">
@@ -21,7 +21,11 @@ defineProps({
     image: {
         type: String,
         required: true,
+    },
+    id:{
+        type:Number,
+        required:true,
     }
-
 })
+
 </script>
