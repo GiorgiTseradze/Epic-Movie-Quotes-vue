@@ -146,7 +146,7 @@ const router = createRouter({
           component: AddQuote
         },
         {
-          path: '/update-quote',
+          path: '/update-quote/:quoteId',
           name: 'updateQuote',
           component: UpdateQuote
         },
