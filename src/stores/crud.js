@@ -6,49 +6,48 @@ export const useCrudStore = defineStore("crud", () => {
   const movies = ref([]);
   const quotes = ref([]);
   
-  onMounted(() => {
-    const getMovies = async () => {
-      try {
-        const response = await axiosInstance.get("/movies/show");
-          response.data.forEach((movie) => {
-            movies.value.push({
-              id: movie.id,
-              name: movie.name,
-              genre: movie.genre,
-              director: movie.director,
-              description: movie.description,
-              image: movie.image,
-            });
+  const getMovies = async () => {
+    try {
+      const response = await axiosInstance.get("/movies/show");
+        response.data.forEach((movie) => {
+          movies.value.push({
+            id: movie.id,
+            name: movie.name,
+            genre: movie.genre,
+            director: movie.director,
+            description: movie.description,
+            image: movie.image,
           });
-          console.log(response)
-      } catch(error) {
-        console.log(error);
-      }
+        });
+        console.log(response)
+    } catch(error) {
+      console.log(error);
     }
+  }
+
+  const getQuotes = async () => {
+    try {
+      const response = await axiosInstance.get("/quotes/show");
+        response.data.forEach((quote) => {
+          quotes.value.push({
+            id: quote.id,
+            quote: quote.quote,
+            image: quote.image,
+            movie: quote.movie_id,
+            user: quote.user_id
+          });
+        });
+        console.log(response)
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  onMounted(() => {
+    getQuotes();
     getMovies();
   });
 
-  onMounted(() => {
-    const getQuotes = async () => {
-      try {
-        const response = await axiosInstance.get("/quotes/show");
-          response.data.forEach((quote) => {
-            quotes.value.push({
-              id: quote.id,
-              quote: quote.quote,
-              image: quote.image,
-              movie: quote.movie_id,
-              user: quote.user_id
-            });
-          });
-          console.log(response)
-      } catch(error) {
-        console.log(error);
-      }
-    }
-    getQuotes();
-  })
 
-
-  return { movies, quotes };
+  return { movies, quotes, getMovies, getQuotes };
 });

@@ -4,7 +4,7 @@
             <router-view></router-view>
         </div>
 
-        <div class="flex flex-col items-center w-full h-full bg-[#101019]">
+        <div :class="store.quotes.length > 0 ? 'flex flex-col items-center w-full h-full bg-[#101019]' : 'flex flex-col items-center w-full h-screen bg-[#101019]'">
             <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
@@ -97,6 +97,7 @@
                         <ThePost 
                         v-for="quote in quoteStore.quotes"
                         v-bind:key="quote.quote"
+                        :key="quote.id"
                         :quote="i18n.global.locale === 'en' ? quote.quote.en : quote.quote.ka"
                         :id="quote.id"
                         :image="imgUrl + quote.image"
@@ -121,7 +122,7 @@ import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useCrudStore } from "@/stores/crud";
 
-
+const store = useCrudStore()
 const authStore = useAuthStore();
 const router = useRouter();
 const quoteStore = useCrudStore();

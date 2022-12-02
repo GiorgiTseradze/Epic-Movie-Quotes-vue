@@ -9,7 +9,6 @@
                     <div>
                         <p class="text-white ml-4">Nika Tsetskhladze</p>
                     </div>
-
                 </div>
                 <div class="flex mt-3">
                     <p class="text-white">
@@ -19,12 +18,7 @@
                         Arcu vitae mauris odio eget.
                     </p>
                 </div>
-                
-
-
             </div>
-
-
         </div>
     </div>
 </template>

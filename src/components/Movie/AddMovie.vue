@@ -45,7 +45,7 @@
                     </div>
                         <div class="flex">
                             <Field v-model="tags" name="genre" >
-                            <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
+                                <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
                             </Field>
                         </div>
                 </div>
@@ -112,7 +112,9 @@ import { ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
+import { useCrudStore } from "@/stores/crud";
 
+const movieStore = useCrudStore();
 const router = useRouter()
 
 //genre input logic
@@ -175,6 +177,7 @@ const handleSubmit = (values) => {
         })
         .then((response) => {
           alert("Movie added Successfully!");
+          movieStore.getMovies();
           router.push({ name: 'movieList'});
           console.log(response);
         })

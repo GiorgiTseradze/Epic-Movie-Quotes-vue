@@ -27,7 +27,14 @@
             </div>
                 
             <div class="flex flex-col lg:mt-0 lg:ml-20">
-                <TheComment />
+                <!-- <TheComment
+                v-for="quote in quoteStore.quotes"
+                        v-bind:key="quote.quote"
+                        :key="quote.id"
+                        :quote="i18n.global.locale === 'en' ? quote.quote.en : quote.quote.ka"
+                        :id="quote.id"
+                        :image="imgUrl + quote.image"
+                /> -->
                 <TheComment />
             </div>
 
@@ -36,16 +43,16 @@
                     <img src="@/assets/purple-female.svg" />
                 </div>
                 <div class="bg-[#1C1B27] rounded lg:py-2 ml-2 w-full lg:ml-15 lg:w-[30rem] xl:w-[40rem] 2xl:w-[45rem]">
-                    <input class="bg-inherit ml-2 outline-none text-[#CED4DA]" :placeholder="$t('feed.write_a_comment')" />
+                    <Field class="bg-inherit ml-2 outline-none text-[#CED4DA]" :placeholder="$t('feed.write_a_comment')" />
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 <script setup>
 import TheComment from '@/components/NewsFeed/TheComment.vue';
+import { Field, ErrorMessage, Form } from 'vee-validate';
 
 defineProps({
     quote: {

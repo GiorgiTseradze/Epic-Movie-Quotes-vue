@@ -1,7 +1,10 @@
 {
-  "write_new_quote": "Create new quote",
+  "write_new_quote": "Write new quote",
   "write_a_comment": "Write a comment",
   "edit_quote": "Edit Quote",
   "view_quote": "View Quote",
-  "add_quote": "Add quote"
+  "add_quote": "Add quote",
+  "choose_movie": "Choose movie",
+  "choose_file": "Choose file",
+  "post": "Post"
 }

@@ -16,7 +16,7 @@
             <div class="flex w-34 h-14 items-center">
                 <p class="hidden lg:block text-white">{{ $t("feed.view_quote")}}</p>
             </div>
-            <div class="flex absolute ml-[20rem] lg:w-full lg:justify-end z-0">
+            <div class="flex absolute ml-[20rem] lg:w-full lg:ml-[87rem] z-0">
                 <router-link :to="{name: 'newsFeed'}">
                     <img class="mr-10" src="@/assets/x-grey.svg" />
                 </router-link>
@@ -101,8 +101,6 @@ onBeforeMount(()=>{
 });
 
 const handleDelete = (values) => {
-    console.log(values)
-
     axiosInstance
         .post('delete-quote/'+quoteId)
         .then((response) => {

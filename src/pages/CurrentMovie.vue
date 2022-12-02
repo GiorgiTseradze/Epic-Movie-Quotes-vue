@@ -1,6 +1,8 @@
 <template>
     <div>
-
+        <div class="flex justify-center">
+            <router-view></router-view>
+        </div>
         <div class="flex flex-col items-center w-full h-full overflow-scroll bg-[#181623]">
             <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
@@ -45,9 +47,7 @@
                                         <button>{{ $t("auth.log_out")}}</button>
                                     </form>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                         </p>
                     </div>
                     <div class="flex">
-                        <div v-for="genre in genres"  class="w-max mt-7 mr-2 bg-gray-500 rounded">
+                        <div v-for="genre in genres" :key="genre" class="w-max mt-7 mr-2 bg-gray-500 rounded">
                             <p class="font-bold text-white px-2 py-1" >
                                 {{ genre }}
                             </p>
@@ -90,7 +90,6 @@
                             </router-link>
                         </div>
                     </div>
-                    
                 </div>
                 
                 <div class="flex justify-center w-full pb-10 pt-10">
@@ -125,13 +124,11 @@
                                     <div>
                                         <img src="@/assets/dots.svg" />
                                     </div>
-                                  
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="lg:flex w-full lg:w-full h-screen">
@@ -164,13 +161,26 @@
                                         <img class="w-max h-max rounded" :src="imgUrl + movie?.image" />
                                     </div>
                                     <div class="flex flex-col lg:w-[20rem] xl:w-[25rem] 2xl:w-[30rem] ml-4">
-                                        <div>
+                                        <div class="flex items-center justify-between">
                                             <p class="flex items-center text-[#DDCCAA] text-2xl font-bold mt-7">
                                                 {{ langStore.langKa === false ? movie?.name.en : movie?.name.ka }}
                                             </p>
+                                            <div class="flex">
+                                                <div class="flex items-center justify-center w-14 mt-5 border-[#40414A] border-r-2 ">
+                                                    <button class="pr-2 z-10" @click="$router.push({name:'updateMovie',params:{movieId:movie.id}})">
+                                                        <img src="@/assets/edit.svg" />
+                                                    </button>
+                                                </div>
+                                                <div class="flex items-center justify-center mt-5 h-10">
+                                                    <button @click="handleDelete" class="px-5  z-10">
+                                                        <img src="@/assets/delete.svg" />
+                                                    </button>
+                                                </div>
+                                            </div>
+          
                                         </div>
                                         <div class="flex">
-                                            <div v-for="genre in genres" class="flex w-max mt-4 mr-2 bg-gray-500 rounded">
+                                            <div v-for="genre in genres" :key="genre" class="flex w-max mt-4 mr-2 bg-gray-500 rounded">
                                                 <p class="font-bold text-white px-2 py-1" >
                                                     {{ genre }}
                                                 </p>
@@ -215,12 +225,12 @@
                             <div class="flex w-full pb-10 pt-10">
                                 <div class="flex flex-col lg:w-[30rem] xl:w-[35rem]">
 
-                                    <div v-for="quote in quotes" class="flex flex-col w-[30rem] xl:w-[35rem] pb-10">
+                                    <div v-for="quote in quotes" :key="quote" class="flex flex-col w-[30rem] xl:w-[35rem] pb-10">
                                         <div class="flex w-full justify-center bg-[#11101A] pb-5 rounded">
                                             <div class="flex flex-col mt-7 rounded">
                                                 <div class="flex w-[28rem] xl:w-[32rem] lg:h-[11rem] border-b-2 border-[#54535A]">
                                                     <div class="w-[12rem] h-[8rem]">
-                                                        <img :src="imgUrl + quote?.image" />
+                                                        <img class="object-fill" :src="imgUrl + quote?.image" />
                                                     </div>
                                                     <div class="w-[17rem] mt-5 ml-3 pb-5">
                                                         <p class="flex text-white">{{ quote.quote?.en }}</p>
@@ -270,6 +280,7 @@ const router = useRouter();
 const movie = ref();
 const quotes = ref();
 const genres = ref();
+const movieId = useRoute().params.movieId;
 
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
@@ -302,7 +313,21 @@ const changeLangKa = () => {
     return lang.value = !lang.value
 }
 
-const movieId = useRoute().params.movieId;
+const handleDelete = (values) => {
+    console.log(values)
+
+    axiosInstance
+        .post('delete-movie/'+movieId)
+        .then((response) => {
+          alert("Movie deleted Successfully!");
+          router.push({ name: 'movieList'});
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+}
+
 onBeforeMount(()=>{
     axiosInstance.get('movies/'+movieId).then((response)=>{
         console.log(response.data.quotes);

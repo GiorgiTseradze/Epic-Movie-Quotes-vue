@@ -21,104 +21,121 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="flex justify-center w-full mt-8">
             <Form @submit="handleSubmit" class="flex flex-col w-[20rem]">
                 <div class="flex items-center h-10 border-[0.06rem] border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_en" placeholder="Movie name" rules="required" />
+                    <Field v-model="nameEn" class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_en" placeholder="Movie name" rules="required" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <ErrorMessage name="name_en" class="text-red-500" />
 
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_ka" placeholder="ფილმის სახელი" rules="required" />
+                    <Field v-model="nameKa" class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_ka" placeholder="ფილმის სახელი" rules="required" />
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
                 <ErrorMessage name="name_ka" class="text-red-500" />
 
                 <div class="flex flex-wrap items-center h-max py-3 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <div class="flex text-white" v-for="(tag, index) in tags" :key="'tag'+index">
+                    <div class="flex text-white" v-for="(tag, index) in genres" :key="'tag'+index">
                         <div class="flex w-max px-2 bg-gray-500 rounded ml-2">
                             <p>{{ tag }}</p>
                             <button class="ml-[0.3rem] w-2" @click="removeTag"><img src="@/assets/x-grey.svg" /> </button>
                         </div>
                     </div>
                         <div class="flex">
-                            <Field v-model="tags" name="genre" >
+                            <Field v-model="genres" name="genre" >
                             <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
                             </Field>
                         </div>
                 </div>
 
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_en" placeholder="Director" />
+                    <Field v-model="dir" class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_en" placeholder="Director" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_ka" placeholder="რეჟისორი" />
+                    <Field v-model="dirKa" class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_ka" placeholder="რეჟისორი" />
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field as="textarea" class="text-white w-[17rem] h-14 overflow-hidden resize-none px-3 py-3 border-0 placeholder-white outline-none bg-inherit" name="description_en" placeholder="Movie description" />
+                    <Field v-model="desc" as="textarea" class="text-white w-[17rem] h-14 overflow-hidden resize-none px-3 py-3 border-0 placeholder-white outline-none bg-inherit" name="description_en" placeholder="Movie description" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field as="textarea" class="text-white w-[17rem] h-14 px-3 py-3 placeholder-white resize-none outline-none bg-inherit" name="description_ka" placeholder="ფილმის აღწერა"/>
+                    <Field v-model="descKa" as="textarea" class="text-white w-[17rem] h-14 px-3 py-3 placeholder-white resize-none outline-none bg-inherit" name="description_ka" placeholder="ფილმის აღწერა"/>
                     <p class="text-[#6C757D]">ქარ</p>
-                </div>
-                <div class="hidden items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field value="1" class="text-white w-[17rem] h-14 overflow-hidden resize-none px-3 py-3 border-0 placeholder-white outline-none bg-inherit" name="movie_id" placeholder="Movie description" />
-                    <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <file-input/>
 
                 <div>
-                    <button type="submit" class="text-white mt-10">Add movie</button>
+                    <button type="submit" class="text-white mt-10">{{$t("texts.save_changes")}}</button>
                 </div>
             </Form>
         </div>
-
-
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import FileInput from '@/components/form/FileInput.vue';
+
 const router = useRouter()
+const movieId = useRoute().params.movieId;
+const movie = ref();
+const nameEn = ref('');
+const nameKa = ref('');
+const genres = ref();
+const dir = ref('');
+const dirKa = ref('');
+const desc = ref('');
+const descKa = ref('');
 
 //genre input logic
 const tagValue = ref('');
-const tags = ref([]);
 
 //genre input functions
-
 const addTag = (e) => {
     e.preventDefault();
     if(!tagValue.value == ''){
-        tags.value.push(tagValue.value);
+        genres.value.push(tagValue.value);
         tagValue.value = '';
     }
 }
 
 const removeTag = (index) => {
-    tags.value.splice(index, 1);
+    genres.value.splice(index, 1);
 }
 
 //drag&&drop
 
+//get movie data
+onMounted(() => {
+    axiosInstance.get('movies/'+movieId).then((response)=>{
+        console.log(response.data);
+        movie.value = response.data;
+        nameEn.value = response.data.name.en;
+        nameKa.value = response.data.name.ka;
+        genres.value = JSON.parse(response.data.genre);
+        dir.value = response.data.director.en;
+        dirKa.value = response.data.director.ka;
+        desc.value = response.data.description.en
+        descKa.value = response.data.description.ka
+    })
+});
 
+//post updated movie data to back-end
 const handleSubmit = (values) => {
     console.log(values)
 
     axiosInstance
-        .post("update-movie", {
+        .post("update-movie/"+movieId, {
           name_en: values.name_en,
           name_ka: values.name_ka,
-          genre: JSON.stringify(tags.value),
+          genre: JSON.stringify(genres.value),
           director_en: values.director_en,
           director_ka: values.director_ka,
           description_en: values.description_en,

@@ -167,17 +167,19 @@ const router = createRouter({
           name: 'addMovie',
           component: AddMovie
         },
-        {
-          path: '/update-movie',
-          name: 'updateMovie',
-          component: UpdateMovie
-        },
       ]
     },
     {
       path: "/current-movie/:movieId",
       name: "currentMovie",
       component: CurrentMovie,
+      children: [
+        {
+          path: '/update-movie/:movieId',
+          name: 'updateMovie',
+          component: UpdateMovie
+        },
+      ]
     },
   ],
 });

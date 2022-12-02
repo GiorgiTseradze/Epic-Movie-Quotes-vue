@@ -121,6 +121,7 @@
                     <div class="flex flex-col lg:grid lg:grid-cols-3 w-full lg:w-full">
                         <TheMovie 
                         v-for="movie in movieStore.movies"
+                        :key="movie.id"
                         v-bind:key="movie.name"
                         :name="i18n.global.locale === 'en' ? movie.name.en : movie.name.ka"
                         :id="movie.id"
