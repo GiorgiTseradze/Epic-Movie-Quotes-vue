@@ -66,7 +66,7 @@ import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
 import i18n from '@/i18n/index.js'
-import FileInput from '../form/FileInput.vue';
+import FileInput from '@/components/form/FileInput.vue';
 import { useCrudStore } from "@/stores/crud";
 
 const movieStore = useCrudStore(); 

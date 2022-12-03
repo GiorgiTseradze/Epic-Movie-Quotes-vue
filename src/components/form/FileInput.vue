@@ -4,13 +4,7 @@
         <div
             @dragover.prevent 
             @drop.prevent="onDrop"
-            class="relative bg-transparent border-1 border-gray-500 placeholder-white w-full px-2.5 py-4 rounded lg:py-2 outline-none"
-            :class="{
-            'border-red-500': !meta.valid && meta.touched,
-            'border-green-500': meta.valid && meta.touched,
-            // 'border-dotted border-4 border-blue-700': isDragging,
-            }"
-        >
+            class="relative bg-transparent border-1 border-gray-500 placeholder-white w-full px-2.5 py-4 rounded lg:py-2 outline-none">
             <div class="flex justify-between itmes-center lg:justify-start lg:gap-3 w-full lg:w-[38rem]">
             <div v-if="fileModel" class="flex text-white items-center">
                 {{ fileModel.name }}
