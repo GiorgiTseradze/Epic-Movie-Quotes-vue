@@ -1,4 +1,10 @@
 {
-    "write_new_quote": "შექმენი ახალი პოსტი",
-    "write_a_comment": "კომენტარის დაწერა...."
+  "write_new_quote": "შექმენი ახალი ციტატა",
+  "write_a_comment": "კომენტარის დაწერა....",
+  "view_quote": "ციტატა",
+  "edit_quote": "ციტატის შეცვლა",
+  "add_quote": "ციტატის დამატება",
+  "choose_movie": "ფილმის არჩევა",
+  "choose_file": "ფაილის არჩევა",
+  "post": "დაპოსტვა"
 }

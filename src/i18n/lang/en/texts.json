@@ -1,12 +1,13 @@
 {
-    "search": "Search",
-    "news_feed": "News Feed",
-    "list_of_movies": "List of movies",
-    "edit_your_profile": "Edit your profile",
-    "please_check_your_email_and_follow_the": "Please check your email and follow the",
-    "instructions_to_activate_your_account": "instructions to activate your account.",
-    "go_to_my_email": "Go to my email",
-    "sorry_but_you_dont_have_permission_to": "Sorry, but  you don’t have permission to",
-    "access_this_page": "access this page",
-    "return_home": "Return home"
+  "search": "Search",
+  "news_feed": "News Feed",
+  "list_of_movies": "List of movies",
+  "edit_your_profile": "Edit your profile",
+  "please_check_your_email_and_follow_the": "Please check your email and follow the",
+  "instructions_to_activate_your_account": "instructions to activate your account.",
+  "go_to_my_email": "Go to my email",
+  "sorry_but_you_dont_have_permission_to": "Sorry, but  you don’t have permission to",
+  "access_this_page": "access this page",
+  "return_home": "Return home",
+  "save_changes": "Save Changes"
 }

@@ -5,7 +5,9 @@
                 <p class="text-white">Add Movie</p>
             </div>
             <div class="flex absolute w-full justify-end">
-                <img class="mr-10" src="@/assets/x-grey.svg" />
+                <router-link :to="{name: 'movieList'}">
+                    <img class="mr-10" src="@/assets/x-grey.svg" />
+                </router-link>
             </div>
         </div>
 
@@ -43,7 +45,7 @@
                     </div>
                         <div class="flex">
                             <Field v-model="tags" name="genre" >
-                            <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
+                                <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
                             </Field>
                         </div>
                 </div>
@@ -80,7 +82,7 @@
                         >
                             <div class="flex justify-between lg:justify-start lg:gap-3">
                             <div class="flex gap-3 items-center">
-                                <CameraIcon />
+                                <img src="@/assets/photocamera.svg" />
                                 <span class="mt-1 text-white lg:hidden">Upload image</span>
                                 <span class="mt-1 text-white invisible lg:visible">Drag and Drop</span>
                             </div>
@@ -110,8 +112,9 @@ import { ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
-import CameraIcon from '@/components/Icons/CameraIcon.vue';
+import { useCrudStore } from "@/stores/crud";
 
+const movieStore = useCrudStore();
 const router = useRouter()
 
 //genre input logic
@@ -166,7 +169,7 @@ const handleSubmit = (values) => {
           director_ka: values.director_ka,
           description_en: values.description_en,
           description_ka: values.description_ka,
-          image: values.image
+          image: values.image,
         },{
             headers: {
                 "content-type": "multipart/form-data",
@@ -174,6 +177,7 @@ const handleSubmit = (values) => {
         })
         .then((response) => {
           alert("Movie added Successfully!");
+          movieStore.getMovies();
           router.push({ name: 'movieList'});
           console.log(response);
         })

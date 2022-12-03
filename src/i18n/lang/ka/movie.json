@@ -1,5 +1,8 @@
 {
-    "my_list_of_movies": "ჩემი ფილმების სია",
-    "add_movie": "ფილმის დამატება",
-    "total": "სულ"
+  "my_list_of_movies": "ჩემი ფილმების სია",
+  "add_movie": "ფილმის დამატება",
+  "total": "სულ",
+  "quotes": "ციტატები",
+  "director": "რეჟისორი",
+  "description": "აღწერა"
 }

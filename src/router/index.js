@@ -3,6 +3,7 @@ import TheLanding from '@/pages/TheLanding.vue';
 import PersonalProfile from '@/pages/PersonalProfile.vue';
 import NewsFeed from '@/pages/NewsFeed.vue';
 import MovieList from '@/pages/MovieList.vue';
+import CurrentMovie from '@/pages/CurrentMovie.vue';
 import SignIn from '@/components/Auth/SignIn.vue';
 import CheckEmail from '@/components/Auth/CheckEmail.vue';
 import CreateAccount from '@/components/Auth/CreateAccount.vue';
@@ -22,6 +23,9 @@ import NewEmail from '@/components/Profile/NewEmail.vue';
 import EmailSuccessfull from '@/components/Profile/EmailSuccessfull.vue';
 import AddMovie from '@/components/Movie/AddMovie.vue';
 import UpdateMovie from '@/components/Movie/UpdateMovie.vue';
+import AddQuote from '@/components/Quote/AddQuote.vue';
+import UpdateQuote from '@/components/Quote/UpdateQuote.vue';
+import CurrentQuote from '@/components/Quote/CurrentQuote.vue';
 import isAuthenticated from "./guards";
 import { useAuthStore } from "@/stores/auth";
 import axios from "@/config/axios/jwt-axios.js";
@@ -135,6 +139,23 @@ const router = createRouter({
       name: "newsFeed",
       component: NewsFeed,
       beforeEnter: isAuthenticated,
+      children: [
+        {
+          path: '/add-quote',
+          name: 'addQuote',
+          component: AddQuote
+        },
+        {
+          path: '/update-quote/:quoteId',
+          name: 'updateQuote',
+          component: UpdateQuote
+        },
+        {
+          path: "/current-quote/:quoteId",
+          name: 'currentQuote',
+          component: CurrentQuote
+        },
+      ]
     },
     {
       path: "/movie-list",
@@ -146,8 +167,15 @@ const router = createRouter({
           name: 'addMovie',
           component: AddMovie
         },
+      ]
+    },
+    {
+      path: "/current-movie/:movieId",
+      name: "currentMovie",
+      component: CurrentMovie,
+      children: [
         {
-          path: '/update-movie',
+          path: '/update-movie/:movieId',
           name: 'updateMovie',
           component: UpdateMovie
         },
@@ -161,7 +189,7 @@ router.beforeEach(async (to, from, next) => {
 
   if (authStore.authenticated === null) {
     try {axios
-      await axios.get(`${import.meta.env.VITE_API_BASE_URL}me`);
+      await axios.get(`${import.meta.env.VITE_API_BASE_URL}/me`);
       authStore.authenticated = true;
     } catch (err) {
       authStore.authenticated = false;
