@@ -62,18 +62,22 @@
                         <div>
                             <img src="@/assets/movie-female.svg" />
                         </div>
-                        <div class="ml-6">
-                            <p class="text-white text-2xl">Nino Tabagari</p>
-                            <p class="text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
+                        <div class="md:ml-4 ml-6">
+                            <p class="text-white lg:text-lg xl:text-2xl">Nino Tabagari</p>
+                            <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                         </div>
                     </div>
                     <div class="flex items-center w-[15rem] ml-3 mt-10">
-                        <HomeIcon />
-                        <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
+                        <router-link class="flex" :to="{name: 'newsFeed'}">
+                            <HomeIcon />
+                            <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
+                        </router-link>
                     </div>
                     <div class="flex items-center w-[15rem] ml-3 mt-10">
-                        <CameraIcon />
-                        <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
+                        <router-link class="flex" :to="{name: 'movieList'}">
+                            <CameraIcon />
+                            <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
+                        </router-link>
                     </div>
                 </div>
 
@@ -101,6 +105,7 @@
                         :quote="i18n.global.locale === 'en' ? quote.quote.en : quote.quote.ka"
                         :id="quote.id"
                         :image="imgUrl + quote.image"
+                        :comments="quote.comments"
                         />
                     </div>
                 </div>

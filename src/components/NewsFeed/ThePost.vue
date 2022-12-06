@@ -26,25 +26,25 @@
                 </div>
             </div>
                 
-            <div class="flex flex-col lg:mt-0 lg:ml-20">
-                <!-- <TheComment
-                v-for="quote in quoteStore.quotes"
-                        v-bind:key="quote.quote"
-                        :key="quote.id"
-                        :quote="i18n.global.locale === 'en' ? quote.quote.en : quote.quote.ka"
-                        :id="quote.id"
-                        :image="imgUrl + quote.image"
-                /> -->
-                <TheComment />
+            <div class="flex flex-col lg:mt-0 lg:ml-20 lg:w-[30rem]">
+                <TheComment
+                v-for="comment in comments"
+                        v-bind:key="comment.id"
+                        :key="comment.id"
+                        :id="comment.id"
+                        :comment="comment.comment"
+                />
             </div>
 
             <div class="flex items-center px-5 lg:px-0  w-[22.3rem] h-14 lg:ml-20 lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] lg:h-20 rounded bg-[#11101A]">
                 <div class="lg:ml-5">
                     <img src="@/assets/purple-female.svg" />
                 </div>
-                <div class="bg-[#1C1B27] rounded lg:py-2 ml-2 w-full lg:ml-15 lg:w-[30rem] xl:w-[40rem] 2xl:w-[45rem]">
-                    <Field class="bg-inherit ml-2 outline-none text-[#CED4DA]" :placeholder="$t('feed.write_a_comment')" />
-                </div>
+                <Form @submit="handleSubmit">
+                    <div class="bg-[#1C1B27] rounded lg:py-2 ml-2 w-full lg:ml-15 lg:w-[30rem] xl:w-[40rem] 2xl:w-[45rem]">
+                        <Field class="bg-inherit ml-2 outline-none text-[#CED4DA]" name="comment" :placeholder="$t('feed.write_a_comment')" />
+                    </div>
+                </Form>
             </div>
         </div>
     </div>
@@ -53,8 +53,29 @@
 <script setup>
 import TheComment from '@/components/NewsFeed/TheComment.vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
+import { useRouter } from 'vue-router'
+import axiosInstance from "@/config/axios/index.js";
 
-defineProps({
+const router = useRouter()
+const quoteId = props.id
+
+const handleSubmit = (values) => {
+    axiosInstance
+        .post("add-comment", {
+            comment: values.comment,
+            quote_id: quoteId,
+        })
+        .then((response) => {
+          alert("Comment added Successfully!");
+          router.push({ name: 'newsFeed'});
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+}
+
+const props = defineProps({
     quote: {
         type: String,
         required: true,
@@ -63,9 +84,12 @@ defineProps({
         type: String,
         required: true,
     },
-        id:{
+    id: {
         type:Number,
-        required:true,
+        required: true,
+    },
+    comments: {
+        required: false
     }
 })
 </script>
