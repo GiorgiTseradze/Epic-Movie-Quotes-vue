@@ -7,10 +7,7 @@
             <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
-                        <div class="flex lg:hidden">
-                            <img src="@/assets/list.svg" />
-                        </div>
-
+                        <Burger />
                         <div class="flex lg:hidden">
                             <div class="flex">
                                 <img src="@/assets/notification.svg" />
@@ -276,6 +273,7 @@ import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useRoute, useRouter } from 'vue-router';
 import { useCrudStore } from "@/stores/crud";
+import Burger from '@/components/General/Burger.vue';
 
 const movieStore = useCrudStore();
 const authStore = useAuthStore();

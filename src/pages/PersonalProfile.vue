@@ -8,10 +8,7 @@
         <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
-                        <div class="flex lg:hidden">
-                            <img src="@/assets/list.svg" />
-                        </div>
-
+                        <Burger />
                         <div class="flex lg:hidden">
                             <div class="flex">
                                 <img src="@/assets/notification.svg" />
@@ -172,7 +169,7 @@
                             </div>
                         </Form>
 
-                        <Form @submit="handlesubmit" class="lg:hidden flex flex-col items-center mt-[3rem] w-full">
+                        <Form @submit="handleSubmit" class="lg:hidden flex flex-col items-center mt-[3rem] w-full">
                             <div class="flex flex-col border-b-2 border-gray-500 w-[20rem]">
                                 <label class="text-white" for="username">{{ $t("profile.username")}}</label>
                                 <div class="flex justify-between w-full">
@@ -216,6 +213,7 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from "@/stores/auth";
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
+import Burger from '@/components/General/Burger.vue';
 
 const authStore = useAuthStore();
 const router = useRouter();

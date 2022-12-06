@@ -2,9 +2,7 @@
     <div class="flex flex-col bg-[#171623] w-full h-screen fixed">
         <div class="flex justify-center items-center px-9 h-20 bg-[#24222F]">
             <div class="flex justify-between items-center w-[20rem]">
-                <div>
-                <img class="text-gray-600" src="@/assets/list.svg" />
-                </div>
+                <Burger />
                 <div>
                 <img class="text-gray-600" src="@/assets/bell.svg" />
                 </div>
@@ -42,6 +40,7 @@
 </template>
 
 <script setup>
+import Burger from '@/components/General/Burger.vue';
 
 
 

@@ -8,10 +8,7 @@
             <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
-                        <div class="flex lg:hidden">
-                            <img src="@/assets/list.svg" />
-                        </div>
-
+                        <Burger />
                         <div class="flex lg:hidden">
                             <div class="flex">
                                 <img src="@/assets/notification.svg" />
@@ -120,6 +117,7 @@
 import { ref } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
+import Burger from '@/components/General/Burger.vue';
 import ThePost from '@/components/NewsFeed/ThePost.vue';
 import i18n from '@/i18n/index.js'
 import { useRouter } from 'vue-router'
@@ -160,5 +158,11 @@ const changeLangKa = () => {
     i18n.global.locale = 'ka'
     lang.value = !lang.value
 }
+
+window.Echo.channel("add-comment").listen('.new-comment', (e) => {
+
+    //fetch posts again
+    quoteStore.getQuotes();
+})
 
 </script>
