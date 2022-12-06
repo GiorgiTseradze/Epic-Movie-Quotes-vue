@@ -34,7 +34,8 @@ export const useCrudStore = defineStore("crud", () => {
             quote: quote.quote,
             image: quote.image,
             movie: quote.movie_id,
-            user: quote.user_id
+            user: quote.user_id,
+            comments: quote.comments,
           });
         });
         console.log(response)

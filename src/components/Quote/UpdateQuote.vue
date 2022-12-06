@@ -1,10 +1,11 @@
 <template>
-    <div class="flex flex-col items-center w-screen h-screen fixed overflow-scroll lg:w-[50rem] lg:h-[60rem] pb-20 lg:mt-20 bg-black">
-        <div class="flex justify-center items-center h-16 w-full border-b-[0.06rem] lg:overflow-hidden  border-[#40414A]">
+    <div @click="$router.push({name: 'newsFeed'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
+    <div class="flex flex-col items-center z-50 w-screen h-screen fixed overflow-scroll lg:w-[50rem] lg:h-[60rem] pb-20 lg:mt-20 bg-black">
+        <div class="flex justify-center items-center h-16 lg:w-full border-b-[0.06rem] lg:overflow-hidden  border-[#40414A]">
             <div class="flex w-34 h-10 items-center">
                 <p class="text-white">{{ $t("feed.edit_quote")}}</p>
             </div>
-            <div class="flex absolute w-full justify-end">
+            <div class="flex absolute w-[22rem] lg:w-full justify-end">
                 <router-link :to="{name: 'newsFeed'}">
                     <img class="mr-10" src="@/assets/x-grey.svg" />
                 </router-link>
@@ -57,8 +58,8 @@
 
                     </div>
                 </Field> 
-             </div>
-                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-red-500 h-10 items-center justify-center mt-10">
+            </div>
+                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-[#E31221] h-10 items-center justify-center mt-10">
                     <button type="submit" class="text-white">{{ $t("texts.save_changes") }}</button>
                 </div>
             </Form>

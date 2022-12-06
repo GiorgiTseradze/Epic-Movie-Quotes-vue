@@ -12,13 +12,19 @@
                 </div>
                 <div class="flex mt-3">
                     <p class="text-white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Pellentesque nunc vel massa facilisis consequat elit morbi convallis convallis. 
-                        Volutpat vitae et nisl et. Adipiscing enim integer mi leo nisl. 
-                        Arcu vitae mauris odio eget.
+                        {{ comment }}
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script setup>
+
+defineProps({
+    comment: {
+        required: false
+    }
+})
+</script>p

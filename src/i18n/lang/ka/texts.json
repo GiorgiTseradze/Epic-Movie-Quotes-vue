@@ -9,5 +9,6 @@
   "sorry_but_you_dont_have_permission_to": "ბოდიში, არ გაქვს ამ გვერდზე",
   "access_this_page": "წვდომის უფლება",
   "return_home": "ლენდინგზე დაბრუნება",
-  "save_changes": "ცვლილებების შენახვა"
+  "save_changes": "ცვლილებების შენახვა",
+  "delete": "წაშლა"
 }

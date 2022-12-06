@@ -1,5 +1,6 @@
 <template>
-    <div class="flex flex-col items-center w-screen h-full fixed overflow-scroll lg:w-[50rem] lg:mt-20 bg-black">
+    <div @click="$router.push({name: 'newsFeed'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>
+    <div class="flex flex-col items-center w-screen h-full fixed overflow-scroll lg:w-[50rem] lg:mt-20 lg:bg-[#11101A] bg-black z-50">
         <div class="flex justify-center items-center h-20 w-full border-b-[0.06rem] border-[#40414A]">
             <div class="flex absolute justify-start w-[20rem] lg:w-full h-10 lg:ml-40">
                 <div class="flex items-center justify-center w-14 border-[#40414A] border-r-2 ">
@@ -23,8 +24,8 @@
             </div>
         </div>
 
-        <div class="flex items-center justify-center mt-8 w-full h-full">
-            <div class="flex items-center w-[20rem] lg:w-[40rem]">
+        <div class="flex items-center justify-center mt-8 w-full h-10">
+            <div class="flex items-center w-[20rem] lg:w-[40rem] h-10">
                 <div class="w-10">
                     <img src="@/assets/movie-female.svg" />
                 </div>
@@ -58,24 +59,29 @@
                         <img class="ml-3" src="@/assets/heart.svg" />
                     </div>  
 
+            </div>
+            <div class="flex flex-col mt-5">
+                <div class="flex flex-col lg:mt-0">
+                    <TheComment
+                        v-for="comment in quote?.comments"
+                            v-bind:key="comment.id"
+                            :key="comment.id"
+                            :id="comment.id"
+                            :comment="comment.comment"
+                    />
                 </div>
-                <div class="flex flex-col mt-5 lg:ml-20">
-                        <div class="flex flex-col lg:mt-0">
-                            <TheComment />
-                            <TheComment />
-                        </div>
-
-                        <div class="flex items-center px-5 lg:px-0  w-[22.3rem] h-14 lg:ml-20 lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] lg:h-20 rounded bg-[#11101A]">
-                            <div class="lg:ml-5">
-                                <img src="@/assets/purple-female.svg" />
-                            </div>
-                            <div class="bg-[#1C1B27] rounded lg:py-2 ml-2 w-full lg:ml-15 lg:w-[30rem] xl:w-[40rem] 2xl:w-[45rem]">
-                                <input class="bg-inherit ml-2 outline-none text-[#CED4DA]" :placeholder="$t('feed.write_a_comment')" />
-                            </div>
-                        </div>
+                <div class="flex items-center px-5 lg:px-0  w-[22.3rem] h-14 lg:w-[20rem] xl:w-[45rem] 2xl:w-[50rem] lg:h-20 rounded bg-[#11101A]">
+                    <div class="lg:ml-5">
+                        <img src="@/assets/purple-female.svg" />
                     </div>
+                    <Form @submit="handleSubmit">
+                        <div class="bg-[#1C1B27] rounded lg:py-2 ml-2 w-full lg:ml-15 lg:w-[30rem] xl:w-[40rem] 2xl:w-[45rem]">
+                            <Field class="bg-inherit ml-2 outline-none text-[#CED4DA]" name="comment" :placeholder="$t('feed.write_a_comment')" />  
+                        </div>
+                    </Form>
+                </div>
+            </div>
         </div>
-
     </div>
 </template>
 
@@ -93,12 +99,28 @@ const router = useRouter()
 
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
-onBeforeMount(()=>{
+onBeforeMount(() => {
     axiosInstance.get('quotes/'+quoteId).then((response)=>{
         console.log(response.data);
         quote.value = response.data
     })
 });
+
+const handleSubmit = (values) => {
+    axiosInstance
+        .post("add-comment", {
+            comment: values.comment,
+            quote_id: quoteId,
+        })
+        .then((response) => {
+          alert("Comment added Successfully!");
+          router.push({ name: 'newsFeed'});
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+}
 
 const handleDelete = (values) => {
     axiosInstance

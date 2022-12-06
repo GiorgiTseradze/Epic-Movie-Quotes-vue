@@ -88,12 +88,16 @@
                         </div>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
-                        <HomeIcon />
-                        <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
+                        <router-link class="flex" :to="{name: 'newsFeed'}">
+                            <HomeIcon />
+                            <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
+                        </router-link>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
-                        <CameraIcon />
-                        <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
+                        <router-link class="flex" :to="{name: 'movieList'}">
+                            <CameraIcon />
+                            <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
+                        </router-link>
                     </div>
                 </div>
                 <div>

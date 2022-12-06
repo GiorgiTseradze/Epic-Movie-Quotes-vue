@@ -28,7 +28,7 @@
                                 <div class="flex px-7">
                                     <div>
                                         <button @click="handleLang" class="flex items-center">
-                                            <p class="text-white">{{langStore.langKa === false ? "ENG" : "KA"}}</p>
+                                            <p class="text-white">{{locale === 'en' ? "ENG" : "KA"}}</p>
                                             <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
                                         </button>
                                     </div>
@@ -60,7 +60,7 @@
                     </div>
                     <div>
                         <p class="flex items-center text-[#DDCCAA] text-2xl font-bold mt-7">
-                            {{ langStore.langKa === false ? movie?.name.en : movie?.name.ka }}
+                            {{ locale === 'en' ? movie?.name?.en : movie?.name?.ka }}
                         </p>
                     </div>
                     <div class="flex">
@@ -72,12 +72,12 @@
                     </div>
                     <div>
                         <p class="font-bold mt-7 text-[#CED4DA]">
-                            {{ $t("movie.director") }}: {{ langStore.langKa === false ? movie?.director.en : movie?.director.ka }}
+                            {{ $t("movie.director") }}: {{ locale === 'en' ? movie?.director.en : movie?.director.ka }}
                         </p>
                     </div>
                     <div>
                         <p class="text-[#CED4DA] mt-7">
-                            {{ $t("movie.description") }}: {{ langStore.langKa === false ? movie?.description.en : movie?.description.ka }}
+                            {{ $t("movie.description") }}: {{ locale === 'en' ? movie?.description.en : movie?.description.ka }}
                         </p>
                     </div>
                     <div>
@@ -99,18 +99,18 @@
                                 All Quotes
                             </p>
                             <p>
-                                (Total 4)
+                                (Total {{ quotes?.length }})
                             </p>
                         </div>
-                        <div class="flex w-full bg-[#181623]">
-                            <div class="flex flex-col mt-7 rounded">
+                        <div class="flex flex-col w-full bg-[#181623]">
+                            <div v-for="quote in quotes" :key="quote.id" class="flex flex-col mt-7 rounded">
                                 <div>
-                                    <img src="@/assets/tenenbaums.png" />
+                                    <img :src="imgUrl + quote?.image" />
                                 </div>
                                 <div class="mt-5 pb-5 border-b-2 border-[#54535A]">
-                                    <p class="flex text-white">"Love means never having to say you're sorry."</p>
+                                    <p class="flex text-white">{{ locale === 'en' ? quote?.quote.en : quote?.quote.ka }}</p>
                                 </div>
-                                <div class="flex items-center justify-between text-white mt-5">
+                                <div class="flex relative items-center justify-between text-white mt-5">
                                     <div class="flex">
                                             <div class="flex">
                                                 <p>3</p>
@@ -121,8 +121,8 @@
                                             <img class="ml-2" src="@/assets/heart.svg" />
                                         </div>
                                     </div>
-                                    <div>
-                                        <img src="@/assets/dots.svg" />
+                                    <div class="flex absolute right-0">
+                                        <DotsMobile :id="quote.id" :movieId="movieId"/>   
                                     </div>
                                 </div>
                             </div>
@@ -143,12 +143,16 @@
                         </div>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
-                        <HomeIcon />
-                        <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
+                        <router-link class="flex" :to="{name: 'newsFeed'}">
+                            <HomeIcon />
+                            <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
+                        </router-link>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
-                        <CameraIcon />
-                        <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
+                        <router-link class="flex" :to="{name: 'movieList'}">
+                            <CameraIcon />
+                            <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
+                        </router-link>
                     </div>
                 </div>
 
@@ -163,7 +167,7 @@
                                     <div class="flex flex-col lg:w-[20rem] xl:w-[25rem] 2xl:w-[30rem] ml-4">
                                         <div class="flex items-center justify-between">
                                             <p class="flex items-center text-[#DDCCAA] text-2xl font-bold mt-7">
-                                                {{ langStore.langKa === false ? movie?.name.en : movie?.name.ka }}
+                                                {{ locale === 'en' ? movie?.name.en : movie?.name.ka }}
                                             </p>
                                             <div class="flex">
                                                 <div class="flex items-center justify-center w-14 mt-5 border-[#40414A] border-r-2 ">
@@ -188,16 +192,15 @@
                                         </div>
                                         <div>
                                             <p class="font-bold mt-4 text-[#CED4DA]">
-                                                {{ $t("movie.director") }}: {{ langStore.langKa === false ? movie?.director.en : movie.director?.ka }}
+                                                {{ $t("movie.director") }}: {{ locale === 'en' ? movie?.director.en : movie.director?.ka }}
                                             </p>
                                         </div>
                                         <div>
                                             <p class="text-[#CED4DA] mt-4">
-                                                {{ $t("movie.description") }}: {{ langStore.langKa === false ? movie?.description.en : movie?.description.ka }}
+                                                {{ $t("movie.description") }}: {{ locale === 'en' ? movie?.description.en : movie?.description.ka }}
                                             </p>
                                         </div>
-                                    </div>
-                                    
+                                    </div> 
                                 </div>
                                 
                                 <div class="flex items-center h-10">
@@ -228,16 +231,14 @@
                                     <div v-for="quote in quotes" :key="quote" class="flex flex-col w-[30rem] xl:w-[35rem] pb-10">
                                         <div class="flex w-full justify-center bg-[#11101A] pb-5 rounded">
                                             <div class="flex flex-col mt-7 rounded">
-                                                <div class="flex w-[28rem] xl:w-[32rem] lg:h-[11rem] border-b-2 border-[#54535A]">
+                                                <div class="flex relative w-[28rem] xl:w-[32rem] lg:h-[11rem] border-b-2 border-[#54535A]">
                                                     <div class="w-[12rem] h-[8rem]">
                                                         <img class="object-fill" :src="imgUrl + quote?.image" />
                                                     </div>
                                                     <div class="w-[17rem] mt-5 ml-3 pb-5">
-                                                        <p class="flex text-white">{{ quote.quote?.en }}</p>
+                                                        <p class="flex text-white">{{ locale === 'en' ? quote?.quote.en : quote?.quote.ka }}</p>
                                                     </div>
-                                                    <div>
-                                                        <img src="@/assets/dots.svg" />
-                                                    </div>                  
+                                                    <Dots :id="quote.id" :movieId="movieId"/>   
                                                 </div>
                                                 <div class="flex items-center justify-between text-white mt-5">
                                                     <div class="flex">
@@ -265,17 +266,19 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, ref, computed } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
-import i18n from '@/i18n/index.js'
+import Dots from '@/components/Movie/Dots.vue';
+import DotsMobile from '@/components/Movie/DotsMobile.vue';
+import i18n from '@/i18n/index.js';
 import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
-import { useRoute, useRouter } from 'vue-router'
-import { useLangStore } from "@/stores/lang";
+import { useRoute, useRouter } from 'vue-router';
+import { useCrudStore } from "@/stores/crud";
 
+const movieStore = useCrudStore();
 const authStore = useAuthStore();
-const langStore = useLangStore();
 const router = useRouter();
 const movie = ref();
 const quotes = ref();
@@ -283,6 +286,8 @@ const genres = ref();
 const movieId = useRoute().params.movieId;
 
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
+
+const locale = computed(() => i18n.global.locale)
 
 const handleLogout = () => {
     axiosInstance
@@ -295,6 +300,7 @@ const handleLogout = () => {
           console.log(error)    
         });
 }
+
 const lang = ref(false);
 
 const handleLang = () => {
@@ -303,14 +309,12 @@ const handleLang = () => {
 
 const changeLangEn = () => {
     i18n.global.locale = 'en'
-    langStore.langKa = false
-    return lang.value = !lang.value
+    lang.value = !lang.value
 }
 
 const changeLangKa = () => {
     i18n.global.locale = 'ka'
-    langStore.langKa = true
-    return lang.value = !lang.value
+    lang.value = !lang.value
 }
 
 const handleDelete = (values) => {
@@ -320,6 +324,7 @@ const handleDelete = (values) => {
         .post('delete-movie/'+movieId)
         .then((response) => {
           alert("Movie deleted Successfully!");
+          movieStore.getMovies();
           router.push({ name: 'movieList'});
           console.log(response);
         })
