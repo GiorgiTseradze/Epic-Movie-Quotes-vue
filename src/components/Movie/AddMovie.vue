@@ -1,5 +1,6 @@
 <template>
-    <div class="flex flex-col items-center w-screen h-screen fixed overflow-scroll lg:overflow-hidden lg:w-[40rem] lg:h-[50rem] lg:mt-20 bg-black">
+    <div @click="$router.push({name: 'movieList'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
+    <div class="flex flex-col items-center w-screen h-screen fixed overflow-scroll lg:overflow-hidden lg:w-[50rem] lg:h-[50rem] lg:mt-20 bg-black z-50">
         <div class="flex justify-center items-center h-20 w-full border-b-[0.06rem] border-[#40414A]">
             <div class="flex w-28">
                 <p class="text-white">Add Movie</p>
@@ -12,7 +13,7 @@
         </div>
 
         <div class="flex items-center justify-center mt-8 w-full">
-            <div class="flex items-center w-[20rem]">
+            <div class="flex items-center w-[20rem] lg:w-[40rem]">
                 <div class="w-10">
                     <img src="@/assets/movie-female.svg" />
                 </div>
@@ -23,15 +24,15 @@
         </div>
         
         <div class="flex justify-center w-full mt-8">
-            <Form @submit="handleSubmit" class="flex flex-col w-[20rem]">
+            <Form @submit="handleSubmit" class="flex flex-col w-[20rem] lg:w-[40rem]">
                 <div class="flex items-center h-10 border-[0.06rem] border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_en" placeholder="Movie name" rules="required" />
+                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit lg:w-[36rem]" name="name_en" placeholder="Movie name" rules="required" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <ErrorMessage name="name_en" class="text-red-500" />
 
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_ka" placeholder="ფილმის სახელი" rules="required" />
+                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit lg:w-[36rem]" name="name_ka" placeholder="ფილმის სახელი" rules="required" />
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
                 <ErrorMessage name="name_ka" class="text-red-500" />
@@ -51,54 +52,26 @@
                 </div>
 
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_en" placeholder="Director" />
+                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit lg:w-[36rem]" name="director_en" placeholder="Director" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_ka" placeholder="რეჟისორი" />
+                    <Field class="text-white px-3 placeholder-white outline-none bg-inherit lg:w-[36rem]" name="director_ka" placeholder="რეჟისორი" />
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field as="textarea" class="text-white w-[17rem] h-14 overflow-hidden resize-none px-3 py-3 border-0 placeholder-white outline-none bg-inherit" name="description_en" placeholder="Movie description" />
+                    <Field as="textarea" class="text-white w-[17rem] h-14 overflow-hidden lg:w-[36rem] resize-none px-3 py-3 border-0 placeholder-white outline-none bg-inherit" name="description_en" placeholder="Movie description" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field as="textarea" class="text-white w-[17rem] h-14 px-3 py-3 placeholder-white resize-none outline-none bg-inherit" name="description_ka" placeholder="ფილმის აღწერა"/>
+                    <Field as="textarea" class="text-white w-[17rem] h-14 px-3 py-3 lg:w-[36rem] placeholder-white resize-none outline-none bg-inherit" name="description_ka" placeholder="ფილმის აღწერა"/>
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
-                <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field name="image" v-slot="{ handleChange, handleBlur, meta, value }">
-                        <div
-                            @dragenter="onDragEnter"
-                            @dragleave="onDragLeave"
-                            @dragover.prevent 
-                            @drop="onDrop"
-                            class="relative mt-4 bg-transparent border-1 border-gray-500 placeholder-white w-full px-2.5 py-4 rounded lg:py-2 outline-none"
-                            :class="{
-                            'border-red-500': !meta.valid && meta.touched,
-                            'border-green-500': meta.valid && meta.touched,
-                            // 'border-dotted border-4 border-blue-700': isDragging,
-                            }"
-                        >
-                            <div class="flex justify-between lg:justify-start lg:gap-3">
-                            <div class="flex gap-3 items-center">
-                                <img src="@/assets/photocamera.svg" />
-                                <span class="mt-1 text-white lg:hidden">Upload image</span>
-                                <span class="mt-1 text-white invisible lg:visible">Drag and Drop</span>
-                            </div>
-                            <label for="movieImage" class="bg-purple-500 px-2 py-2">Choose File</label
-                            >
-                            </div>
-                            <div v-if="value" class="text-white">
-                            {{ value.name }}
-                            </div>
-                            <input type="file" class="placeholder-white text-white" @change="handleChange" @blur="handleBlur" id="movieImage" placeholder="Choose file" />
-                        </div>
-                    </Field> 
-                </div>
-
-                <div>
-                    <button type="submit" class="text-white mt-10">Add movie</button>
+                <FileInput />
+                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-red-500 h-10 items-center justify-center mt-10">
+                    <button type="submit" class="outline-none text-white px-20 py-2 lg:px-60">
+                        <p class="">{{ $t("movie.add_movie") }}</p>
+                    </button>
                 </div>
             </Form>
         </div>
@@ -113,6 +86,8 @@ import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
+import FileInput from '@/components/form/FileInput.vue';
+
 
 const movieStore = useCrudStore();
 const router = useRouter()

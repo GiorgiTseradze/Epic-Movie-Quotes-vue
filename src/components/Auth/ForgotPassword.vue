@@ -1,5 +1,6 @@
 <template>
-    <div class="flex flex-col md:w-[26.7rem] md:h-[25.1rem] md:mt-40 w-full h-screen fixed bg-[#181623] md:bg-[bg-[#24222F]">
+    <div @click="$router.push({name: 'landing'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
+    <div class="flex flex-col md:w-[26.7rem] md:h-[25.1rem] md:mt-40 w-full h-screen fixed bg-[#181623] md:bg-[bg-[#24222F] z-50">
         <div class="flex flex-col items-center w-full md:mt-16 mt-24 text-white">
             <p class="text-[2rem] font-medium">{{ $t("auth.forgot_password") }}</p>
             <p class="flex justify-center w-[20rem] text-sm mt-3 text-[#6C757D]">
@@ -20,7 +21,7 @@
                             <Field class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" name="email" :placeholder="$t('auth.enter_your_email')" />
                         </div>
                     </div>
-                    <ErrorMessage class="text-[#F15524]" name="" />
+                <ErrorMessage class="text-[#F15524]" name="" />
     
                     <div class="flex flex-col items-center w-full mt-5">
                         <div class="flex items-center justify-center bg-[#E31221] h-10 w-[22.5rem] rounded">
@@ -54,7 +55,8 @@ const handleSubmit = (values) => {
           this.$router.push({ name: "/landing" });
         })
         .catch((error) => {
-          alert(error.response.data.message);
+          alert(error);
+          console.log(error);
         });
 }
 

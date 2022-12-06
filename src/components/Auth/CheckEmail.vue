@@ -1,5 +1,6 @@
 <template>
-    <div class="flex justify-center md:w-[26.7rem] md:h-[42rem] md:mt-20 w-full h-screen fixed bg-[#181623] md:bg-inherit">
+    <div @click="$router.push({name: 'landing'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
+    <div class="flex justify-center md:w-[26.7rem] md:h-[42rem] md:mt-20 w-full h-screen fixed bg-[#181623] md:bg-inherit z-50">
         <div class="bg-[#24222F] w-[22.5rem] h-[25.8rem] mt-20 rounded">
             <div class="flex justify-center">
                 <img class="mt-16" src="@/assets/sent.svg" />

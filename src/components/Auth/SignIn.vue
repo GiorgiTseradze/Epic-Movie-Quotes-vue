@@ -1,5 +1,6 @@
 <template>
-    <div class="md:w-[37.5rem] md:h-[35.1rem] w-full lg:mt-28 h-screen fixed bg-[black]">
+    <div @click="$router.push({name: 'landing'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
+    <div class="md:w-[37.5rem] md:h-[35.1rem] w-full lg:mt-28 h-screen fixed bg-[black] z-50">
         <div class="flex flex-col items-center w-full mt-16 text-white">
             <p class="text-2xl">{{$t("auth.log_in_to_your_account") }}</p>
             <p class="text-[#6C757D]">{{ $t("auth.please_enter_your_details") }}</p>
@@ -29,8 +30,10 @@
                     <div class="flex flex-col items-center w-full mt-5">
                         <div class="flex items-center w-[22.5rem]">
                             <input type="checkbox" />
-                            <p class="text-white ml-1 text-base w-[7rem]">{{ $t("auth.remember_me") }}</p>
-                            <p class="text-[#0D6EFD] text-base underline ml-[6.5rem] w-[8.5rem]">{{ $t("auth.forgot_password") }}</p>
+                            <p class="text-white ml-1 text-base w-[8.5rem]">{{ $t("auth.remember_me") }}</p>
+                            <router-link :to="{name: 'forgotPassword'}">
+                                <p class="text-[#0D6EFD] text-base underline ml-[6rem] w-[8.5rem]">{{ $t("auth.forgot_password") }}</p>
+                            </router-link>
                         </div>
                     </div>
 

@@ -1,10 +1,11 @@
 <template>
-    <div class="flex flex-col items-center w-screen h-screen fixed overflow-scroll lg:overflow-hidden lg:w-[40rem] lg:h-[50rem] lg:mt-20 bg-black">
+    <div @click="$router.push({name: 'movieList'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
+    <div class="flex flex-col items-center w-screen h-screen fixed overflow-scroll lg:overflow-hidden lg:w-[50rem] lg:h-[50rem] lg:mt-20 bg-black z-50">
         <div class="flex justify-center items-center h-20 w-full border-b-[0.06rem] border-[#40414A]">
             <div class="flex w-28">
                 <p class="text-white">Edit Movie</p>
             </div>
-            <div class="flex absolute w-full justify-end">
+            <div class="flex absolute w-[22rem] lg:w-[45rem] justify-end">
                 <router-link :to="{name: 'movieList'}">
                     <img class="mr-10" src="@/assets/x-grey.svg" />
                 </router-link>
@@ -12,7 +13,7 @@
         </div>
 
         <div class="flex items-center justify-center mt-8 w-full">
-            <div class="flex items-center w-[20rem]">
+            <div class="flex items-center w-[20rem] lg:w-[40rem]">
                 <div class="w-10">
                     <img src="@/assets/movie-female.svg" />
                 </div>
@@ -23,15 +24,15 @@
         </div>
 
         <div class="flex justify-center w-full mt-8">
-            <Form @submit="handleSubmit" class="flex flex-col w-[20rem]">
+            <Form @submit="handleSubmit" class="flex flex-col w-[20rem] lg:w-[40rem]">
                 <div class="flex items-center h-10 border-[0.06rem] border-[#6C757D] rounded">
-                    <Field v-model="nameEn" class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_en" placeholder="Movie name" rules="required" />
+                    <Field v-model="nameEn" class="text-white px-3 placeholder-white outline-none bg-inherit lg:w-[36rem]" name="name_en" placeholder="Movie name" rules="required" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <ErrorMessage name="name_en" class="text-red-500" />
 
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="nameKa" class="text-white px-3 placeholder-white outline-none bg-inherit" name="name_ka" placeholder="ფილმის სახელი" rules="required" />
+                    <Field v-model="nameKa" class="text-white px-3 placeholder-white outline-none bg-inherit lg:w-[36rem]" name="name_ka" placeholder="ფილმის სახელი" rules="required" />
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
                 <ErrorMessage name="name_ka" class="text-red-500" />
@@ -51,25 +52,25 @@
                 </div>
 
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="dir" class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_en" placeholder="Director" />
+                    <Field v-model="dir" class="text-white px-3 placeholder-white outline-none bg-inherit lg:w-[36rem]" name="director_en" placeholder="Director" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <div class="flex items-center h-10 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="dirKa" class="text-white px-3 placeholder-white outline-none bg-inherit" name="director_ka" placeholder="რეჟისორი" />
+                    <Field v-model="dirKa" class="text-white px-3 placeholder-white outline-none bg-inherit lg:w-[36rem]" name="director_ka" placeholder="რეჟისორი" />
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="desc" as="textarea" class="text-white w-[17rem] h-14 overflow-hidden resize-none px-3 py-3 border-0 placeholder-white outline-none bg-inherit" name="description_en" placeholder="Movie description" />
+                    <Field v-model="desc" as="textarea" class="text-white w-[17rem] lg:w-[36rem] h-14 overflow-hidden resize-none px-3 py-3 border-0 placeholder-white outline-none bg-inherit" name="description_en" placeholder="Movie description" />
                     <p class="text-[#6C757D]">Eng</p>
                 </div>
                 <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="descKa" as="textarea" class="text-white w-[17rem] h-14 px-3 py-3 placeholder-white resize-none outline-none bg-inherit" name="description_ka" placeholder="ფილმის აღწერა"/>
+                    <Field v-model="descKa" as="textarea" class="text-white w-[17rem] h-14 px-3 py-3 lg:w-[36rem] placeholder-white resize-none outline-none bg-inherit" name="description_ka" placeholder="ფილმის აღწერა"/>
                     <p class="text-[#6C757D]">ქარ</p>
                 </div>
-                <file-input/>
+                <FileInput />
 
-                <div>
-                    <button type="submit" class="text-white mt-10">{{$t("texts.save_changes")}}</button>
+                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-[#E31221] h-10 items-center justify-center mt-10">
+                    <button type="submit" class="text-white">{{ $t("texts.save_changes") }}</button>
                 </div>
             </Form>
         </div>
