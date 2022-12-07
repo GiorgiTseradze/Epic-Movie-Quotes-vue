@@ -162,6 +162,7 @@ const changeLangKa = () => {
 window.Echo.channel("add-comment").listen('.new-comment', (e) => {
 
     //fetch posts again
+    console.log(e)
     quoteStore.getQuotes();
 })
 

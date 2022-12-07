@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-center w-full mt-5">
+            <div @click="$router.push({name: 'landing'})" class="cursor-pointer flex justify-center w-full mt-5">
                     <p class="flex text-[#6C757D]">{{ $t("auth.skip_i_will_confirm_later" )}}</p>
             </div>
 

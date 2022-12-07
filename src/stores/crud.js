@@ -29,14 +29,7 @@ export const useCrudStore = defineStore("crud", () => {
     try {
       const response = await axiosInstance.get("/quotes/show");
         response.data.forEach((quote) => {
-          quotes.value.push({
-            id: quote.id,
-            quote: quote.quote,
-            image: quote.image,
-            movie: quote.movie_id,
-            user: quote.user_id,
-            comments: quote.comments,
-          });
+          quotes.value = response.data;
         });
         console.log(response)
     } catch(error) {

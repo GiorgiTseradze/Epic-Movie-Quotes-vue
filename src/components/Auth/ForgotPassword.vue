@@ -44,6 +44,7 @@
 <script setup>
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axios from "@/config/axios/index.js";
+import router from "@/router";
 
 const handleSubmit = (values) => {
     axios
@@ -52,7 +53,7 @@ const handleSubmit = (values) => {
         })
         .then(() => {
           alert("Registration Successful!");
-          this.$router.push({ name: "/landing" });
+          router.push({ name: "checkEmail" });
         })
         .catch((error) => {
           alert(error);

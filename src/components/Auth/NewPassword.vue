@@ -37,8 +37,8 @@
                     </div>
                 </Form>
 
-                <div class="flex justify-center w-full mt-5">
-                    <button>
+                <div class="flex justify-center w-full mt-5" >
+                    <button @click="$router.push({name:'login'})">
                         <p class="flex text-[#6C757D]"><img class="mr-1" src="@/assets/back.svg" />{{ $t("auth.back_to_log_in")}}</p>
                     </button>
                 </div>
@@ -51,20 +51,40 @@
 <script setup>
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axios from "@/config/axios/index.js";
+import { useRoute } from 'vue-router';
+import { computed, onBeforeMount, ref } from 'vue';
+import router from "@/router";
+
+const token = ref();
+const email = ref('');
+onBeforeMount(()=>{
+    if(useRoute().query.reset_password_token){
+        token.value = useRoute().query.reset_password_token;
+        email.value = useRoute().query.email;
+    }
+    else{
+        router.push({name:'landing'});
+    }
+})
+setTimeout(() => {
+    console.log(token.value);
+}, 200);
 
 //to be changed
 const handleSubmit = (values) => {
     axios
-        .post("reset", {
-          password: values.password,
-          password_confirmation: values.password_confirmation,
+        .post("reset-password", {
+            email: email.value,
+            token: token.value,
+            password: values.password,
+            password_confirmation: values.password_confirmation,
         })
         .then(() => {
           alert("reset Successful!");
-          this.$router.push({ name: "landing" });
+          router.push({ name: "landing" });
         })
         .catch((error) => {
-          alert(error.response.data.message);
+          alert(error);
         });
 }
 </script>

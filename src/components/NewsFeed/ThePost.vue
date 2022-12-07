@@ -67,7 +67,6 @@ const handleSubmit = (values) => {
             quote_id: quoteId,
         })
         .then((response) => {
-          alert("Comment added Successfully!");
           router.push({ name: 'newsFeed'});
           console.log(response);
         })

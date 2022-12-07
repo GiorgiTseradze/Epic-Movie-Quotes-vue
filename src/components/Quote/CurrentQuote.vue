@@ -1,13 +1,13 @@
 <template>
     <div @click="$router.push({name: 'newsFeed'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
     <div class="flex flex-col items-center z-50 w-screen h-screen fixed overflow-scroll lg:w-[50rem] lg:h-[60rem] pb-20 lg:mt-20 bg-black">
-        <div class="flex justify-center items-center h-16 lg:w-full border-b-[0.06rem] lg:overflow-hidden  border-[#40414A]">
+        <div class="flex justify-center items-center py-5 lg:py-0 w-[22rem] lg:w-full lg:h-16 border-b-[0.06rem] lg:overflow-hidden bg-inherit border-[#40414A]">
             <div class="flex w-34 h-10 items-center">
                 <p class="text-white">{{ $t("feed.edit_quote")}}</p>
             </div>
-            <div class="flex absolute w-[22rem] lg:w-full justify-end">
+            <div class="flex absolute w-[21rem] lg:w-full justify-end">
                 <router-link :to="{name: 'newsFeed'}">
-                    <img class="mr-10" src="@/assets/x-grey.svg" />
+                    <img class="mr-4" src="@/assets/x-grey.svg" />
                 </router-link>
             </div>
         </div>
@@ -45,13 +45,13 @@
                         class="absolute mt-4 mr-80 bg-transparent border-1 border-gray-500 placeholder-white w-full lg:w-[40rem] lg:h-[10rem] px-2.5 py-4 rounded lg:py-2 outline-none"
                     >
                         <div class="lg:absolute flex ml-20 lg:ml-60">
-                            <div v-if="fileModel" class="text-white bg-[#00000088] px-3 py-3 rounded font-bold ml-4 text-2xl">
+                            <div v-if="fileModel" class="text-white bg-[#00000088] px-3 py-3 rounded font-bold text-2xl">
                                 {{ fileModel.name }}
                             </div>
                             <div v-else class="flex flex-col gap-3 bg-[#00000088] px-3 lg:py-3 rounded items-center">
-                                <img class="mt-10 lg:mt-3" src="@/assets/photocamera.svg" />
-                                <span class="mt-1 text-white lg:hidden">Upload image</span>
-                                <label for="movieImage" class="py-1 text-white invisible lg:visible cursor-pointer">Change Photo</label>
+                                <img class="mt-6 lg:mt-3" src="@/assets/photocamera.svg" />
+                                <span class="mt-1 text-white hidden">Upload image</span>
+                                <label for="movieImage" class="py-1 pb-4 text-white cursor-pointer">Change Photo</label>
                                 <input type="file" class="placeholder-white text-white hidden cursor-pointer" @input="setValue" id="movieImage" placeholder="Choose file" />
                             </div>
                         </div>
