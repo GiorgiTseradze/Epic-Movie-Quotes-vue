@@ -10,11 +10,47 @@
             <div class="flex justify-center mt-4">
                 <p class="flex justify-center ml-2 text-white text-base">{{ $t("auth.your_account_has_been_activated") }}</p>
             </div>
-            <div class="flex flex-col items-center w-full mt-5">
+            <div @click="$router.push({name: 'newsFeed'})" class="flex flex-col items-center w-full mt-5">
                     <div class="flex items-center justify-center bg-[#E31221] h-10 w-3/5 rounded">
-                        <button class="flex text-white">{{ $t("auth.go_to_my_email") }}</button>
+                            <button class="flex text-white">{{ $t("auth.go_to_my_news_feed") }}</button>
                     </div>
-                </div>
+            </div>
         </div>  
     </div>
 </template>
+
+<script setup>
+import { onMounted, onBeforeMount, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import router from "@/router";
+import axiosInstance from "@/config/axios/index.js";
+
+const token = ref();
+const email = ref('');
+
+onBeforeMount(()=>{
+    if(useRoute().query.verify_user_token){
+        token.value = useRoute().query.verify_user_token;
+        email.value = useRoute().query.email;
+    }
+    else{
+        router.push({name:'landing'});
+    }
+});
+
+onMounted(() => {
+    axiosInstance
+        .post("verify-user", {
+            email: email.value,
+            token: token.value,
+        })
+        .then(() => {
+          alert("Verification Successful!");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
+
+</script>

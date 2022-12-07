@@ -13,7 +13,9 @@
             </div>
             <div class="flex flex-col items-center w-full mt-5">
                     <div class="flex items-center justify-center bg-[#E31221] h-12 w-[10rem] rounded">
-                        <button class="flex text-white">{{ $t("texts.go_to_my_email") }}</button>
+                        <a href="https://mail.google.com/" target="_blank">
+                            <button class="flex text-white">{{ $t("auth.go_to_my_email") }}</button>
+                        </a>
                     </div>
                 </div>
         </div>  

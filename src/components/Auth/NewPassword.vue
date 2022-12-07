@@ -50,7 +50,7 @@
 
 <script setup>
 import { Field, ErrorMessage, Form } from 'vee-validate';
-import axios from "@/config/axios/index.js";
+import axiosInstance from "@/config/axios/index.js";
 import { useRoute } from 'vue-router';
 import { computed, onBeforeMount, ref } from 'vue';
 import router from "@/router";
@@ -70,9 +70,9 @@ setTimeout(() => {
     console.log(token.value);
 }, 200);
 
-//to be changed
+
 const handleSubmit = (values) => {
-    axios
+    axiosInstance
         .post("reset-password", {
             email: email.value,
             token: token.value,
@@ -81,7 +81,7 @@ const handleSubmit = (values) => {
         })
         .then(() => {
           alert("reset Successful!");
-          router.push({ name: "landing" });
+          router.push({ name: "login" });
         })
         .catch((error) => {
           alert(error);

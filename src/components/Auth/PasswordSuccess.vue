@@ -11,7 +11,7 @@
                 <p class="flex justify-center ml-2 text-white text-base">{{ $t("auth.your_password_changed_successfully") }}</p>
             </div>
             <div class="flex flex-col items-center w-full mt-5">
-                    <div class="flex items-center justify-center bg-[#E31221] h-10 w-[12rem] rounded">
+                    <div @click="$router.push({name: 'newsFeed'})" class="flex items-center justify-center bg-[#E31221] h-10 w-[12rem] rounded">
                         <button class="flex text-white">{{ $t("auth.go_to_my_news_feed") }}</button>
                     </div>
                 </div>

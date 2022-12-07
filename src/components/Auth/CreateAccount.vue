@@ -77,7 +77,7 @@
 
 <script setup>
 import { Field, ErrorMessage, Form } from 'vee-validate';
-import axios from "@/config/axios/index.js";
+import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -85,8 +85,7 @@ const router = useRouter()
 
 const handleSubmit = (values) => {
     console.log(values)
-
-    axios
+    axiosInstance
         .post("register", {
           name: values.name,
           email: values.email,
@@ -95,12 +94,11 @@ const handleSubmit = (values) => {
         })
         .then((response) => {
           alert("Registration Successful!");
-          router.push({ name: 'checkEmail'});
+          router.push({ name: 'emailSent'});
           console.log(response);
         })
         .catch((error) => {
           console.log(error);
-
         });
 }
 
