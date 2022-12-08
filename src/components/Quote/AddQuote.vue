@@ -26,15 +26,25 @@
             
             <div class="flex justify-center w-full mt-8 pb-10">
                 <Form @submit="handleSubmit" class="flex flex-col w-[20rem] lg:w-[40rem]">
-                    <div class="flex items-center h-16 lg:h-20 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                        <Field as="textarea" class="text-white w-[17rem] lg:w-[34rem] h-14 overflow-hidden resize-none px-3 py-3 border-0 placeholder-[#6C757D] outline-none bg-inherit" 
-                        name="quote_en" placeholder="Write new quote" />
-                        <p class="lg:ml-10 text-white">Eng</p>
+                    <div class="flex items-center h-16 lg:h-20 mt-4">
+                        <Field v-slot="{ field, meta }" rules="required" name="quote_en" >
+                            <input type="textarea" v-bind="field" placeholder="Write new quote" 
+                                class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full lg:w-[34rem] h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
+                                :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                                : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                            />
+                        </Field>
+                        <p class="ml-[17rem] text-white absolute">Eng</p>
                     </div>
-                    <div class="flex items-center h-16 lg:h-20 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                        <Field as="textarea" class="text-white w-[17rem] lg:w-[34rem] h-14 px-3 py-3 placeholder-[#6C757D] resize-none outline-none bg-inherit" 
-                        name="quote_ka" placeholder="ახალი ციტატა"/>
-                        <p class="lg:ml-10 text-white">ქარ</p>
+                    <div class="flex items-center h-16 lg:h-20 mt-4">
+                        <Field v-slot="{ field, meta }" rules="required" name="quote_ka" >
+                            <input type="textarea" v-bind="field" placeholder="ახალი ციტატა" 
+                                class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full lg:w-[34rem] h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
+                                :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                                : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                            />
+                        </Field>
+                        <p class="ml-[17rem] text-white absolute">ქარ</p>
                     </div>
                     <FileInput/>
                         <div @click="handleChoose" class="flex cursor-pointer items-center h-16 mt-4 rounded bg-[#000000]">
@@ -68,7 +78,7 @@ import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
 import i18n from '@/i18n/index.js'
-import FileInput from '@/components/FileInput.vue';
+import FileInput from '../form/FileInput.vue';
 import { useCrudStore } from "@/stores/crud";
 
 const movieStore = useCrudStore(); 

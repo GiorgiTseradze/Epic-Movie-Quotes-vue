@@ -3,5 +3,17 @@
 @tailwind utilities;
 
 .gendulf {
-    background: linear-gradient(108.23deg, #CED4DA 12.77%, #FFFFFF 96.34%);
+  background: linear-gradient(108.23deg, #ced4da 12.77%, #ffffff 96.34%);
+}
+
+@font-face {
+  font-family: "Neue";
+  src: local("Neue"),
+    url(@/fonts/Helvetica_Neue_LT_GEO_45_Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"),
+    url(@/fonts/Helvetica_Neue_LT_65_Medium.ttf) format("truetype");
 }

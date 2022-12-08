@@ -8,7 +8,7 @@
         <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
-                        <Burger />
+                        <TheBurger />
                         <div class="flex lg:hidden">
                             <div class="flex">
                                 <img src="@/assets/notification.svg" />
@@ -213,7 +213,7 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from "@/stores/auth";
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
-import Burger from '@/components/General/Burger.vue';
+import TheBurger from '@/components/General/TheBurger.vue';
 
 const authStore = useAuthStore();
 const router = useRouter();

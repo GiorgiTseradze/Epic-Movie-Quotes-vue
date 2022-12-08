@@ -40,8 +40,8 @@
 
             </div>
 
-        <div class="flex w-full h-full">
-            <div class="flex flex-col items-center w-full h-max text-2xl font-bold text-[#DDCCAA] mt-72">
+        <div class="flex w-full lg:h-full h-[20rem]">
+            <div class="flex flex-col items-center w-full h-[20rem] lg:h-max text-2xl font-bold text-[#DDCCAA] mt-20 lg:mt-72">
                 <p>
                     Find any quote in 
                 </p>
@@ -57,7 +57,16 @@
         </div>
 
         <div class="flex lg:w-screen lg:h-screen h-96">
-            <div class="flex flex-col justify-center w-full h-screen bg-interstellar text-2xl font-bold text-white mt-32">
+            <div class="relative w-full h-full lg:hidden">
+                <img src="@/assets/interstellar.png" />
+                <div class="absolute top-12 flex flex-col justify-center w-4/5 text-white">
+                    <p class="ml-10 font-bold">
+                        - ”You have to leave something behind to go forward”
+                    </p>
+                    <p class="ml-10 mt-5 text-base font-bold">Interstellar, 2014</p>
+                </div>
+            </div>
+            <div class="hidden lg:flex flex-col justify-center w-full h-screen bg-interstellar text-2xl font-bold text-white mt-32">
                 <p class="ml-10 font-bold text-xl">
                     - ”You have to leave something behind to go forward”
                 </p>
@@ -66,7 +75,19 @@
         </div>
 
         <div class="flex lg:w-screen lg:h-screen h-96">
-            <div class="flex flex-col justify-center w-full h-screen bg-tenenbaums text-2xl font-bold text-white mt-32">
+            <div class="relative w-full h-full lg:hidden">
+                <img src="@/assets/tenenbaums.png" />
+                <div class="absolute top-12 flex flex-col justify-center w-4/5 text-white">
+                    <p class="ml-10 font-bold">
+                        - “I think we’re just gonna
+                            have to be secretly in love
+                            with earch other and
+                            leave it that”
+                    </p>
+                    <p class="ml-10 mt-5 text-base font-bold">The Royal Tenenbaums, 2001</p>
+                </div>
+            </div>
+            <div class="hidden lg:flex flex-col justify-center w-full h-screen bg-tenenbaums text-2xl font-bold text-white mt-32">
                 <p class="ml-10 font-bold text-xl">
                     - “I think we’re just gonna
                         have to be secretly in love
@@ -78,7 +99,16 @@
         </div>
 
         <div class="flex lg:w-screen lg:h-screen h-96">
-            <div class="flex flex-col justify-center w-full h-screen lg:h-screen bg-lotr text-2xl font-bold text-white mt-32">
+            <div class="relative w-full h-full lg:hidden">
+                <img src="@/assets/lotr.png" />
+                <div class="absolute top-12 flex flex-col justify-center w-4/5 text-white">
+                    <p class="ml-10 font-bold">
+                        - “I see in your eyes the same fear that would take the heart of me....”
+                    </p>
+                    <p class="ml-10 mt-5 text-base font-bold">The Lord of The Rings, 2003</p>
+                </div>
+            </div>
+            <div class="hidden lg:flex flex-col justify-center w-full h-screen lg:h-screen bg-lotr text-2xl font-bold text-white mt-32">
                 <p class="ml-10 font-bold text-xl">
                     - ”You have to leave something behind to go forward”
                 </p>

@@ -13,21 +13,23 @@
                         <div class="w-[22.5rem]">
                             <section class="flex text-white">{{ $t("auth.email") }}<p class="text-red-500 ml-1"> *</p></section>
                         </div>
-                        <div class="flex w-[22.5rem] justify-center">
-                            <Field name="email" class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" :placeholder="$t('auth.email')" />
+                        <div class="flex flex-col relative w-[22.5rem]">
+                            <Field name="email" rules="required|min:3" class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" :placeholder="$t('auth.email')" />
+                            <ErrorMessage name="email" class="absolute mt-[3rem] text-sm text-[#F15524]" />
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-center w-full mt-5">
+                    <div class="flex flex-col items-center w-full mt-6">
                         <div class="w-[22.5rem]">
                             <section class="flex text-white">{{ $t("auth.password") }}<p class="text-red-500 ml-1"> *</p></section>
                         </div>
-                        <div class="flex w-[22.5rem] justify-center">
-                            <Field name="password" type="password" class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" :placeholder="$t('auth.password')" />
+                        <div class="flex flex-col relative w-[22.5rem]">
+                            <Field name="password" rules="required" type="password" class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" :placeholder="$t('auth.password')" />
+                            <ErrorMessage name="password" class="absolute mt-[3rem] text-sm text-[#F15524]" />
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-center w-full mt-5">
+                    <div class="flex flex-col items-center w-full mt-7">
                         <div class="flex items-center w-[22.5rem]">
                             <input type="checkbox" />
                             <p class="text-white ml-1 text-base w-[8.5rem]">{{ $t("auth.remember_me") }}</p>
@@ -91,7 +93,11 @@ const handleSubmit = (values) => {
             router.push({ name: 'newsFeed'});
         })
         .catch((error) => {
-          console.log(error)    
+            const errors = error.response.data.errors;
+
+            for(const key in errors){
+            actions.setFieldError(key,errors[key]);
+            } 
         });
 }
 
