@@ -1,8 +1,7 @@
 <template>
     <div>
         <div class="flex flex-col">
-            <div @click="$router.push({name:'currentQuote',params:{quoteId:id}})"
-            class="flex flex-col items-center cursor-pointer h-[26.5rem] lg:h-[38rem] xl:h-[43rem] 2xl:h-[46rem] px-5 lg:px-10 lg:py-10 w-[22.3rem] lg:ml-[4.8rem] lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] border-b-2 mt-7 border-[#54535A] lg:bg-[#11101A]"
+            <div class="flex flex-col items-center cursor-pointer h-[26.5rem] lg:h-[38rem] xl:h-[43rem] 2xl:h-[46rem] px-5 lg:px-10 lg:py-10 w-[22.3rem] lg:ml-[4.8rem] lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] border-b-2 mt-7 border-[#54535A] lg:bg-[#11101A]"
             >
                 <div class="flex items-center w-full">
                     <img src="@/assets/purple-female.svg" alt="profile-thumbnail" />
@@ -58,7 +57,6 @@ import axiosInstance from "@/config/axios/index.js";
 
 const router = useRouter()
 const quoteId = props.id
-
 
 const handleSubmit = (values) => {
     axiosInstance

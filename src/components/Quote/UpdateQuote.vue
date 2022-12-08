@@ -91,7 +91,6 @@ const quoteId = useRoute().params.quoteId;
 const quoteEn = ref('');
 const quoteKa = ref('');
 const quoteImg = ref('');
-const image = ref(imgUrl + quoteImg);
 console.log(quoteImg.value)
 
 //drag&&drop

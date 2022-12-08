@@ -52,7 +52,7 @@
                             <div class="flex items-center text-white w-[17rem] h-14 px-14 py-3 placeholder-white resize-none outline-none bg-inherit">
                                 <p>{{selected?selected:$t('feed.choose_movie')}}</p>
                             </div>
-                            <img :class="chooseMovie ? 'rotate-180' : 'rotate-0'" class="transition-all ease-linear ml-6 lg:ml-12 w-4" src="@/assets/down-arrow.svg" />
+                            <img :class="chooseMovie ? 'rotate-180' : 'rotate-0'" class="transition-all ease-linear ml-6 lg:ml-80 w-4" src="@/assets/down-arrow.svg" />
                         </div>
                     <div>
                             <Field v-model="movieId" name="movie_id" class="hidden bg-inherit text-white">

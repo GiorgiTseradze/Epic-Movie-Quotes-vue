@@ -5,7 +5,7 @@
             <div class="flex w-28">
                 <p class="text-white">Add Movie</p>
             </div>
-            <div class="flex absolute w-full justify-end">
+            <div class="flex absolute w-[22rem] lg:w-[45rem] justify-end">
                 <router-link :to="{name: 'movieList'}">
                     <img class="mr-10" src="@/assets/x-grey.svg" />
                 </router-link>
