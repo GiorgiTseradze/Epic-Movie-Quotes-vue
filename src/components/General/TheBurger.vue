@@ -28,6 +28,11 @@
                         <p class="ml-4 md:text-lg text-white">{{ $t("texts.list_of_movies") }}</p>
                     </router-link>
                 </div>
+                <div class="flex justify-center items-center text-white border-[0.06rem] p-2 mr-10 rounded w-24 ml-5 mt-7">
+                    <form @click="handleLogout">
+                        <button>{{ $t("auth.log_out")}}</button>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -38,11 +43,28 @@
 <script setup>
 import { ref } from 'vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
+import { useRouter } from 'vue-router'
+import { useAuthStore } from "@/stores/auth";
+import axiosInstance from "@/config/axios/jwt-axios.js";
 
+const authStore = useAuthStore();
+const router = useRouter();
 const burger = ref(false);
 
 const handleBurger = () => {
     burger.value = !burger.value
+}
+
+const handleLogout = () => {
+    axiosInstance
+        .post("logout")
+        .then(() => {
+            authStore.authenticated = false;
+            router.push({name: "landing"})
+        })
+        .catch((error) => {
+          console.log(error)    
+        });
 }
 
 </script>
