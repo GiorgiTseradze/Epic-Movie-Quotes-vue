@@ -29,27 +29,27 @@
                     <div class="flex items-center h-16 lg:h-20 mt-4">
                         <Field v-slot="{ field, meta }" rules="required" name="quote_en" >
                             <input type="textarea" v-bind="field" placeholder="Write new quote" 
-                                class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full lg:w-[34rem] h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
+                                class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
                                 :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                                 : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                             />
                         </Field>
-                        <p class="ml-[17rem] text-white absolute">Eng</p>
+                        <p class="ml-[17rem] lg:ml-[36rem] text-white absolute">Eng</p>
                     </div>
                     <div class="flex items-center h-16 lg:h-20 mt-4">
                         <Field v-slot="{ field, meta }" rules="required" name="quote_ka" >
                             <input type="textarea" v-bind="field" placeholder="ახალი ციტატა" 
-                                class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full lg:w-[34rem] h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
+                                class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
                                 :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                                 : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                             />
                         </Field>
-                        <p class="ml-[17rem] text-white absolute">ქარ</p>
+                        <p class="ml-[17rem] lg:ml-[36rem] text-white absolute">ქარ</p>
                     </div>
                     <FileInput/>
                         <div @click="handleChoose" class="flex cursor-pointer items-center h-16 mt-4 rounded bg-[#000000]">
                             <img class="absolute ml-4 w-6" src="@/assets/camera-white.svg" />
-                            <div class="flex items-center text-white w-[17rem] lg:w-[34rem] h-14 px-14 py-3 placeholder-white resize-none outline-none bg-inherit">
+                            <div class="flex items-center text-white w-[17rem] h-14 px-14 py-3 placeholder-white resize-none outline-none bg-inherit">
                                 <p>{{selected?selected:$t('feed.choose_movie')}}</p>
                             </div>
                             <img :class="chooseMovie ? 'rotate-180' : 'rotate-0'" class="transition-all ease-linear ml-6 lg:ml-12 w-4" src="@/assets/down-arrow.svg" />

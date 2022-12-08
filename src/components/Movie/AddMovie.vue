@@ -27,21 +27,21 @@
             <Form @submit="handleSubmit" v-slot="{ field, meta }" class="flex flex-col w-[20rem] lg:w-[40rem]">
                 <div class="flex items-center w-full">
                     <Field v-slot="{ field, meta }" name="name_en"  rules="required" >
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit lg:w-[36rem]"
+                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="Movie name" v-bind="field" />
-                        <p class="text-[#6C757D] absolute ml-[17rem]">Eng</p>
+                        <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                     </Field>
                 </div>
 
                 <div class="flex items-center h-10 mt-4">
                     <Field v-slot="{ field, meta }" name="name_ka" rules="required">
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit lg:w-[36rem]"
+                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="ფილმის სახელი" v-bind="field" />
-                        <p class="text-[#6C757D] absolute ml-[17rem]">ქარ</p>
+                        <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                     </Field>
                 </div>
 
@@ -60,39 +60,39 @@
                 </div>
                 <div class="flex items-center h-10 mt-4">
                     <Field v-slot="{ field, meta }" name="director_en" rules="required">
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit lg:w-[36rem]"
+                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="Director" v-bind="field" />
-                        <p class="text-[#6C757D] absolute ml-[17rem]">Eng</p>
+                        <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                     </Field>
                 </div>
                 <div class="flex items-center h-10 mt-4">
                     <Field v-slot="{ field, meta }" name="director_ka" rules="required">
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit lg:w-[36rem]"
+                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="რეჟისორი" v-bind="field" />
-                        <p class="text-[#6C757D] absolute ml-[17rem]">ქარ</p>
+                        <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                     </Field>
                 </div>
                 <div class="flex items-center h-16 mt-4 ">
                     <Field v-slot="{ field, meta }" name="description_en" rules="required">
                         <input placeholder="Movie description" type="textarea" v-bind="field"
-                        class="text-white h-14 overflow-hidden w-full lg:w-[36rem] border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
+                        class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
-                    <p class="text-[#6C757D] absolute ml-[17rem]">Eng</p>
+                    <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                 </div>
                 <div class="flex items-center h-16 mt-4 ">
                     <Field v-slot="{ field, meta }" name="description_ka" rules="required">
                         <input placeholder="ფილმის აღწერა" type="textarea" v-bind="field"
-                        class="text-white h-14 overflow-hidden w-full lg:w-[36rem] border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
+                        class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
-                    <p class="text-[#6C757D] absolute ml-[17rem]">ქარ</p>
+                    <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                 </div>
                 <FileInput />
                 <div class="flex w-[20rem] lg:w-[40rem] rounded bg-red-500 h-10 items-center justify-center mt-10">
