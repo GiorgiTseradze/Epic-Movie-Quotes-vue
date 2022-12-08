@@ -9,6 +9,7 @@
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
                         <TheBurger />
+                        <TheSearch route="newsFeed"/>
                         <div class="flex lg:hidden">
                             <div class="flex">
                                 <img src="@/assets/notification.svg" />
@@ -118,6 +119,7 @@ import { ref } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import TheBurger from '@/components/General/TheBurger.vue';
+import TheSearch from '@/components/Search/TheSearch.vue';
 import ThePost from '@/components/NewsFeed/ThePost.vue';
 import i18n from '@/i18n/index.js'
 import { useRouter } from 'vue-router'
