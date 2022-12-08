@@ -2,7 +2,7 @@
     <div class="flex flex-col bg-[#171623] w-full h-screen fixed">
         <div class="flex justify-center items-center h-20 bg-[#24222F]">
             <div class="flex justify-between w-[20rem]">
-                <Burger />
+                <TheBurger />
                 <div>
                     <img src="@/assets/bell.svg" />
                 </div>
@@ -90,7 +90,7 @@
 </template>
 
 <script setup>
-import Burger from '@/components/General/Burger.vue';
+import TheBurger from '@/components/General/TheBurger.vue';
 
 
 
