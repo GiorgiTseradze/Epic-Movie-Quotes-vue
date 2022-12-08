@@ -72,9 +72,11 @@ import { onMounted, ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter, useRoute } from 'vue-router'
+import { useCrudStore } from "@/stores/crud";
 
 const fileModel = ref(null);
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
+const quoteStore = useCrudStore();
 
 function setValue(e) {
     fileModel.value = e.target.files[0];
@@ -133,6 +135,7 @@ const handleSubmit = (values) => {
         })
         .then((response) => {
           alert("Quote updated Successfully!");
+          quoteStore.getQuotes();
           router.push({ name: 'newsFeed'});
           console.log(response);
         })

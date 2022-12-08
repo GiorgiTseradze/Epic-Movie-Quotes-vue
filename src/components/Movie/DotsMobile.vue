@@ -31,7 +31,9 @@
 <script setup>
 import { ref } from 'vue'
 import axiosInstance from "@/config/axios/index.js";
+import { useCrudStore } from "@/stores/crud";
 
+const quoteStore = useCrudStore();
 const open = ref(false)
 
 const id = props.id
@@ -45,6 +47,7 @@ const handleDelete = () => {
         .post('delete-quote/'+id)
         .then((response) => {
           alert("Quote deleted Successfully!");
+          quoteStore.getQuotes();
           router.push({name:'currentMovie',params:{movieId:movieId}});
           console.log(response);
         })

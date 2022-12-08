@@ -64,11 +64,11 @@
                         <p class="text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                     </div>
                 </div>
-                <div class="flex items-center w-[15rem] ml-3 mt-10">
+                <div @click="$router.push({name: 'newsFeed'})" class="cursor-pointer flex items-center w-[15rem] ml-3 mt-10">
                     <HomeIcon />
                     <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
                 </div>
-                <div class="flex items-center w-[15rem] ml-3 mt-10">
+                <div @click="$router.push({name: 'movieList'})" class="cursor-pointer flex items-center w-[15rem] ml-3 mt-10">
                     <CameraIcon />
                     <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
                 </div>

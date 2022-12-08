@@ -83,6 +83,7 @@ import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter, useRoute } from 'vue-router'
 import FileInput from '@/components/form/FileInput.vue';
+import { useCrudStore } from "@/stores/crud";
 
 const router = useRouter()
 const movieId = useRoute().params.movieId;
@@ -94,6 +95,7 @@ const dir = ref('');
 const dirKa = ref('');
 const desc = ref('');
 const descKa = ref('');
+const movieStore = useCrudStore();
 
 //genre input logic
 const tagValue = ref('');
@@ -142,7 +144,7 @@ const handleSubmit = (values) => {
           description_en: values.description_en,
           description_ka: values.description_ka,
           image: values.image,
-          movie_id: values.movie_id
+          movie_id: movieId
         },{
             headers: {
                 "content-type": "multipart/form-data",
@@ -150,6 +152,7 @@ const handleSubmit = (values) => {
         })
         .then((response) => {
           alert("Movie updated Successfully!");
+          movieStore.getMovies();
           router.push({ name: 'movieList'});
           console.log(response);
         })
