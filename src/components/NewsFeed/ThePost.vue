@@ -59,6 +59,7 @@ import axiosInstance from "@/config/axios/index.js";
 const router = useRouter()
 const quoteId = props.id
 
+
 const handleSubmit = (values) => {
     axiosInstance
         .post("add-comment", {
@@ -66,7 +67,6 @@ const handleSubmit = (values) => {
             quote_id: quoteId,
         })
         .then((response) => {
-          alert("Comment added Successfully!");
           router.push({ name: 'newsFeed'});
           console.log(response);
         })

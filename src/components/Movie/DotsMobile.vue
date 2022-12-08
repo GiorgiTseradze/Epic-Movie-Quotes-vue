@@ -1,5 +1,6 @@
 <template>
-    <div class="relative">
+    <div v-if="open" @click="handleDots" class="flex justify-center fixed w-screen h-screen z-40"></div>        
+    <div class="relative z-50">
         <div @click="handleDots" class="cursor-pointer relative">
             <img src="@/assets/dots.svg" />
         </div>

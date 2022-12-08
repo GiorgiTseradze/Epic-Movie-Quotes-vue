@@ -18,7 +18,6 @@ axiosInstance.interceptors.response.use(
       const authStore = useAuthStore();
       authStore.authenticated = false;
       // this should redirect on 401 error page
-      router.push("/");
     }
     return Promise.reject(error);
   }
