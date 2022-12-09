@@ -1,7 +1,7 @@
 <template>
     <div v-if="burger" @click="handleBurger" class="lg:hidden flex justify-center fixed w-screen h-[100rem] backdrop-blur-sm z-40"></div>        
-    <div class="z-50">
-        <div @click="handleBurger" class="flex lg:hidden z-50">
+    <div class="z-41">
+        <div @click="handleBurger" class="flex lg:hidden z-41">
             <img src="@/assets/list.svg" />
         </div>
         

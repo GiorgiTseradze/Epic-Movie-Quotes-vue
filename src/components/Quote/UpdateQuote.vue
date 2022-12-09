@@ -51,6 +51,7 @@
                             <div v-else class="flex flex-col gap-3 bg-[#00000088] px-3 lg:py-3 rounded items-center">
                                 <img class="mt-10 lg:mt-3" src="@/assets/photocamera.svg" />
                                 <span class="mt-1 text-white lg:hidden">Upload image</span>
+                                <span class="mt-1 lg:hidden text-white invisible absolute w-full">Drag and Drop</span>
                                 <label for="movieImage" class="py-1 text-white invisible lg:visible cursor-pointer">Change Photo</label>
                                 <input type="file" class="placeholder-white text-white hidden cursor-pointer" @input="setValue" id="movieImage" placeholder="Choose file" />
                             </div>

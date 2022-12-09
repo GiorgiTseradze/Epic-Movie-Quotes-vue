@@ -1,8 +1,8 @@
 <template>
     <div @click="$router.push({name: 'movieList'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
     <div class="flex flex-col items-center w-screen h-screen fixed overflow-scroll lg:overflow-hidden lg:w-[50rem] lg:h-[50rem] lg:mt-20 bg-black z-50">
-        <div class="flex justify-center items-center h-20 w-full border-b-[0.06rem] border-[#40414A]">
-            <div class="flex w-28">
+        <div class="flex justify-center items-center h-20 lg:h-16 w-full border-b-[0.06rem] border-[#40414A]">
+            <div class="flex w-28 h-14 items-center">
                 <p class="text-white">Add Movie</p>
             </div>
             <div class="flex absolute w-[22rem] lg:w-[45rem] justify-end">

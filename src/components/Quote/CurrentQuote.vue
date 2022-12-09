@@ -1,11 +1,21 @@
 <template>
     <div @click="$router.push({name: 'newsFeed'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
     <div class="flex flex-col items-center z-50 w-screen h-screen fixed overflow-scroll lg:w-[50rem] lg:h-[60rem] pb-20 lg:mt-20 bg-black">
-        <div class="flex justify-center items-center py-5 lg:py-0 w-[22rem] lg:w-full lg:h-16 border-b-[0.06rem] lg:overflow-hidden bg-inherit border-[#40414A]">
-            <div class="flex w-34 h-10 items-center">
-                <p class="text-white">{{ $t("feed.edit_quote")}}</p>
+        <div class="flex items-center py-5 lg:py-0 w-[22rem] lg:w-full lg:h-16 border-b-[0.06rem] bg-inherit border-[#40414A]">
+            <div class="flex mt-3 ml-2 lg:ml-16 px-3 h-5 border-r-[0.06rem] border-[#40414A]">
+                <button @click="$router.push({name:'updateQuote',params:{quoteId}})" class="flex items-center">
+                    <img src="@/assets/edit.svg" />
+                </button>
             </div>
-            <div class="flex absolute w-[21rem] lg:w-full justify-end">
+            <div class="flex ml-4 mt-3">
+                <button @click="handleDelete" class="flex items-center">
+                    <img src="@/assets/delete.svg" />
+                </button>
+            </div>
+            <div class="flex w-34 ml-14 lg:mt-12 lg:ml-[13rem] h-10 lg:mb-12 items-center">
+                <p class="text-white">{{ $t("feed.view_quote")}}</p>
+            </div>
+            <div class="flex absolute w-[21rem] lg:w-[42rem] justify-end ml-3 lg:ml-10">
                 <router-link :to="{name: 'newsFeed'}">
                     <img class="mr-4" src="@/assets/x-grey.svg" />
                 </router-link>
@@ -24,46 +34,67 @@
         </div>
         
         <div class="flex justify-center w-full mt-8">
-            <Form @submit="handleSubmit" class="flex flex-col w-[20rem] lg:w-[40rem]">
-                <div class="flex items-center h-14 lg:h-20 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="quoteEn" as="textarea" class="text-white w-[17rem] lg:w-[34rem] h-14 overflow-hidden 
-                    resize-none px-3 py-3 border-0 placeholder-[#6C757D] outline-none bg-inherit" 
-                    name="quote_en" placeholder="create new quote" />
-                    <p class="lg:ml-10 text-white">Eng</p>
+            <div class="flex flex-col w-[20rem] lg:w-[40rem]">
+                <div class="flex items-center border-[0.06rem] mt-4 border-[#6C757D] rounded">
+                    <div class="flex text-white w-[17rem] lg:w-[34rem] overflow-hidden break-word
+                    resize-none px-3 py-5 border-0 placeholder-[#6C757D] outline-none bg-inherit">
+                        <p class="break-word">
+                            "{{quoteEn}}"
+                        </p>
+                    </div>
+                    <p class="lg:ml-10 text-[#6C757D]">Eng</p>
                 </div>
-                <div class="flex items-center h-14 lg:h-20 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="quoteKa" as="textarea" class="text-white w-[17rem] lg:w-[34rem] h-14 px-3 py-3 placeholder-[#6C757D] resize-none outline-none bg-inherit" 
-                    name="quote_ka" placeholder="ახალი ციტატა"/>
-                    <p class="lg:ml-10 text-white">ქარ</p>
+                <div class="flex items-center border-[0.06rem] mt-4 border-[#6C757D] rounded">
+                    <div class="flex text-white w-[17rem] lg:w-[34rem] overflow-hidden break-word
+                    resize-none px-3 py-5 border-0 placeholder-[#6C757D] outline-none bg-inherit">
+                        <p class="break-word">
+                            "{{quoteKa}}"
+                        </p>
+                    </div>
+                    <p class="lg:ml-10 text-[#6C757D]">ქარ</p>
                 </div>
                 <div class="flex items-center h-80 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                <img class="object-fill w-[20rem] lg:w-[40rem] h-[19.6rem] lg:h-[20rem]" :src="imgUrl+quoteImg" />
-            <Field name="image" v-slot="{ meta, value }" v-model="fileModel" >
-                    <div
-                        @dragover.prevent 
-                        @drop.prevent="onDrop"
-                        class="absolute mt-4 mr-80 bg-transparent border-1 border-gray-500 placeholder-white w-full lg:w-[40rem] lg:h-[10rem] px-2.5 py-4 rounded lg:py-2 outline-none"
-                    >
-                        <div class="lg:absolute flex ml-20 lg:ml-60">
-                            <div v-if="fileModel" class="text-white bg-[#00000088] px-3 py-3 rounded font-bold text-2xl">
-                                {{ fileModel.name }}
+                    <img class="object-fill w-[20rem] lg:w-[40rem] h-[19.6rem] lg:h-[20rem]" :src="imgUrl+quoteImg" />
+                </div>
+            </div>
+            
+        </div>
+        <div class="flex w-[20rem] lg:w-[40rem] mt-4 xl:mt-7">
+            <p class="text-white">1</p>
+            <img class="ml-3" src="@/assets/comment.svg"/>
+            <p class="text-white ml-4">10</p>
+            <img class="ml-3" src="@/assets/heart.svg" />
+        </div> 
+                <div v-for="comment in comments" v-bind:key="comment.id" class="px-5 w-[22rem] lg:w-[40rem] lg:py-2 rounded">
+                    <div class="flex flex-col w-full mt-5">
+                        <div class="flex flex-col w-full lg:w-[39rem] border-b-2 pb-6 border-[#54535A]">
+                            <div class="flex items-center">
+                                <div class="">
+                                    <img src="@/assets/red-female.svg" />
+                                </div>
+                                <div>
+                                    <p class="text-white ml-4">Nika Tsetskhladze</p>
+                                </div>
                             </div>
-                            <div v-else class="flex flex-col gap-3 bg-[#00000088] px-3 lg:py-3 rounded items-center">
-                                <img class="mt-6 lg:mt-3" src="@/assets/photocamera.svg" />
-                                <span class="mt-1 text-white hidden">Upload image</span>
-                                <label for="movieImage" class="py-1 pb-4 text-white cursor-pointer">Change Photo</label>
-                                <input type="file" class="placeholder-white text-white hidden cursor-pointer" @input="setValue" id="movieImage" placeholder="Choose file" />
+                            <div class="flex ml-14 lg:ml-4 mt-3">
+                                <p class="text-white lg:ml-10">
+                                    {{ comment.comment }}
+                                </p>
                             </div>
                         </div>
-
                     </div>
-                </Field> 
-            </div>
-                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-[#E31221] h-10 items-center justify-center mt-10">
-                    <button type="submit" class="text-white">{{ $t("texts.save_changes") }}</button>
                 </div>
-            </Form>
-        </div>
+
+            <div class="flex items-center px-2 lg:px-0 w-[21rem] h-14 lg:ml-24 lg:w-[46rem] lg:h-20 rounded mt-5 mb-5">
+                <div class="lg:ml-5 w-8">
+                    <img src="@/assets/purple-female.svg" />
+                </div>
+                <Form @submit="handleSubmit">
+                    <div class="bg-[#1C1B27] rounded lg:py-2 py-2 ml-2 lg:ml-15 w-[17rem] lg:w-[36rem]">
+                        <Field class="bg-inherit ml-2 outline-none text-[#CED4DA]" name="comment" :placeholder="$t('feed.write_a_comment')" />
+                    </div>
+                </Form>
+            </div>
     </div>
 </template>
 
@@ -72,6 +103,7 @@ import { onMounted, ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter, useRoute } from 'vue-router'
+import TheComment from '@/components/NewsFeed/TheComment.vue';
 
 const fileModel = ref(null);
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
@@ -91,8 +123,23 @@ const quoteId = useRoute().params.quoteId;
 const quoteEn = ref('');
 const quoteKa = ref('');
 const quoteImg = ref('');
+const comments = ref();
 const image = ref(imgUrl + quoteImg);
 console.log(quoteImg.value)
+
+const handleDelete = () => {
+    axiosInstance
+        .post('delete-quote/'+quoteId)
+        .then((response) => {
+          alert("Quote deleted Successfully!");
+          quoteStore.getQuotes();
+          router.push({name:'currentMovie',params:{movieId:movieId}});
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+}
 
 //drag&&drop
 function onDragEnter(e) {
@@ -114,26 +161,17 @@ onMounted(()=>{
         quoteEn.value = response.data.quote.en
         quoteKa.value = response.data.quote.ka
         quoteImg.value = response.data.image
+        comments.value = response.data.comments
     })
 });
 
-
 const handleSubmit = (values) => {
-    console.log(values)
-
     axiosInstance
-        .post('update-quote/'+quoteId, {
-          quote_en: values.quote_en,
-          quote_ka: values.quote_ka,
-          image: values.image,
-          quote_id: quoteId
-        },{
-            headers: {
-                "content-type": "multipart/form-data",
-            },
+        .post("add-comment", {
+            comment: values.comment,
+            quote_id: quoteId,
         })
         .then((response) => {
-          alert("Quote updated Successfully!");
           router.push({ name: 'newsFeed'});
           console.log(response);
         })
@@ -141,4 +179,5 @@ const handleSubmit = (values) => {
           console.log(error);
         });
 }
+
 </script>

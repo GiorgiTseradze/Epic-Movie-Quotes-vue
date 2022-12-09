@@ -1,12 +1,12 @@
 <template>
     <div @click="$router.push({name: 'newsFeed'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
     <div class="flex flex-col items-center z-50 w-screen h-screen fixed overflow-scroll lg:w-[50rem] lg:h-[60rem] pb-20 bg-inherit">
-        <div class="flex flex-col items-center w-screen fixed  lg:w-[50rem] lg:mt-20 bg-[#11101A] z-50">
+        <div class="flex flex-col items-center w-screen fixed lg:w-[50rem] lg:mt-20 bg-[#11101A] z-50">
             <div class="flex justify-center items-center h-20 w-full border-b-[0.06rem] border-[#40414A]">
                 <div class="flex w-34 items-center">
                     <p class="flex text-white">{{$t("feed.write_new_quote")}}</p>
                 </div>
-                <div class="flex absolute w-full justify-end">
+                <div class="flex absolute w-[22rem] justify-end">
                     <router-link :to="{name: 'newsFeed'}">
                         <img class="mr-10" src="@/assets/x-grey.svg" />
                     </router-link>
@@ -57,8 +57,8 @@
                     <div>
                             <Field v-model="movieId" name="movie_id" class="hidden bg-inherit text-white">
                             </Field>
-                            <div @click="handleChoose" class="flex flex-col w-[40rem] bg-[#000000]  max-h-[14rem] overflow-y-auto overflow-x-hidden rounded" v-if="chooseMovie">
-                                <div v-for="movie in movieStore.movies" :key="movie.id" class="flex items-center border-2 border-[#40414A] overflow-scrollable w-[40rem] rounded bg-[#000000] py-2 px-2">
+                            <div @click="handleChoose" class="flex flex-col w-[20rem] lg:w-[40rem] bg-[#000000]  max-h-[14rem] overflow-y-auto overflow-x-hidden rounded" v-if="chooseMovie">
+                                <div v-for="movie in movieStore.movies" :key="movie.id" class="flex items-center border-2 border-[#40414A] overflow-scrollable w-[20rem] lg:w-[40rem] rounded bg-[#000000] py-2 px-2">
                                     <p @click="setMovie" :id="movie.id" class="pr-[36rem] text-white cursor-pointer" >{{i18n.global.locale === 'en' ? movie?.name.en : movie?.name.ka }}</p>
                                 </div>
                             </div>

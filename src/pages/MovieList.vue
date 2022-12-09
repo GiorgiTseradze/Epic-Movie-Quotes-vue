@@ -4,12 +4,12 @@
             <router-view></router-view>
         </div>
 
-        <div class="flex flex-col items-center w-full h-screen bg-[#181623]">
+        <div class="flex flex-col items-center w-full h-screen pb-10 bg-[#181623]">
             <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
                         <TheBurger />
-                        <TheSearch route="movieList"/>
+                        <MovieSearch />
                         <div class="flex lg:hidden">
                             <div class="flex">
                                 <img src="@/assets/notification.svg" />
@@ -149,7 +149,7 @@ import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useRouter } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
 import TheBurger from '@/components/General/TheBurger.vue';
-import TheSearch from '@/components/Search/TheSearch.vue';
+import MovieSearch from '@/components/Search/MovieSearch.vue';
 
 
 const movieStore = useCrudStore();
