@@ -31,7 +31,7 @@
                             <input type="textarea" v-bind="field" placeholder="Write new quote" 
                                 class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
                                 :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                                : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                                : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
                             />
                         </Field>
                         <p class="ml-[17rem] lg:ml-[36rem] text-white absolute">Eng</p>
@@ -41,7 +41,7 @@
                             <input type="textarea" v-bind="field" placeholder="ახალი ციტატა" 
                                 class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
                                 :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                                : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                                : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
                             />
                         </Field>
                         <p class="ml-[17rem] lg:ml-[36rem] text-white absolute">ქარ</p>
