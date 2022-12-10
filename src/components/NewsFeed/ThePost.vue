@@ -17,7 +17,7 @@
                         <img class="object-fill w-[22rem] h-[16rem] lg:w-full lg:h-full" :src="image" alt="post-photo"/>
                     </div>
                     <div class="flex mt-4 xl:mt-7">
-                        <p class="text-white">1</p>
+                        <p class="text-white">{{comments?.length}}</p>
                         <img class="ml-3" src="@/assets/comment.svg"/>
                         <p class="text-white ml-4">{{quoteObj.likes?.length}}</p>
                         <img v-if="!liked" @click="handleLike" class="ml-3" src="@/assets/heart.svg" />
@@ -98,8 +98,6 @@ onMounted(()=>{
     setTimeout(() => {
         const likes = props.quoteObj.likes;
         for(let i = 0; i < likes?.length; i++){
-            console.log(likes[i].user_id);
-            console.log(useUserStore().user.id);
             if(likes[i].user_id === useUserStore().user.id){
                 liked.value = true;
                 break;

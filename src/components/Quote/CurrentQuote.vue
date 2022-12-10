@@ -60,9 +60,9 @@
             
         </div>
         <div class="flex w-[20rem] lg:w-[40rem] mt-4 xl:mt-7">
-            <p class="text-white">1</p>
+            <p class="text-white">{{comments?.length}}</p>
             <img class="ml-3" src="@/assets/comment.svg"/>
-            <p class="text-white ml-4">10</p>
+            <p class="text-white ml-4">{{likes?.length}}</p>
             <img class="ml-3" src="@/assets/heart.svg" />
         </div> 
                 <div v-for="comment in comments" v-bind:key="comment.id" class="px-5 w-[22rem] lg:w-[40rem] lg:py-2 rounded">
@@ -84,48 +84,28 @@
                         </div>
                     </div>
                 </div>
-
-            <div class="flex items-center px-2 lg:px-0 w-[21rem] h-14 lg:ml-24 lg:w-[46rem] lg:h-20 rounded mt-5 mb-5">
-                <div class="lg:ml-5 w-8">
-                    <img src="@/assets/purple-female.svg" />
-                </div>
-                <Form @submit="handleSubmit">
-                    <div class="bg-[#1C1B27] rounded lg:py-2 py-2 ml-2 lg:ml-15 w-[17rem] lg:w-[36rem]">
-                        <Field class="bg-inherit ml-2 outline-none text-[#CED4DA]" name="comment" :placeholder="$t('feed.write_a_comment')" />
-                    </div>
-                </Form>
-            </div>
     </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter, useRoute } from 'vue-router'
-import TheComment from '@/components/NewsFeed/TheComment.vue';
+import { useUserStore } from "@/stores/userStore.js"
 
+const userStore = useUserStore();
 const fileModel = ref(null);
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
-
-function setValue(e) {
-    fileModel.value = e.target.files[0];
-}
-function onDrop(e) {
-  e.preventDefault();
-  fileModel.value = e.dataTransfer.files[0];
-  console.log(fileModel.value);
-}
 
 const router = useRouter()
 const quoteId = useRoute().params.quoteId;
 
+const likes = ref();
 const quoteEn = ref('');
 const quoteKa = ref('');
 const quoteImg = ref('');
 const comments = ref();
-const image = ref(imgUrl + quoteImg);
-console.log(quoteImg.value)
+
 
 const handleDelete = () => {
     axiosInstance
@@ -141,43 +121,14 @@ const handleDelete = () => {
         });
 }
 
-//drag&&drop
-function onDragEnter(e) {
-  e.preventDefault();
-  dragCount.value++;
-  isDragging.value = true;
-}
-
-function onDragLeave(e) {
-  e.preventDefault();
-  dragCount.value--;
-  if (dragCount.value <= 0) {
-    isDragging.value = false;
-  }
-}
-
 onMounted(()=>{
     axiosInstance.get('quotes/'+quoteId).then((response)=>{
+        likes.value = response.data.likes
         quoteEn.value = response.data.quote.en
         quoteKa.value = response.data.quote.ka
         quoteImg.value = response.data.image
         comments.value = response.data.comments
     })
 });
-
-const handleSubmit = (values) => {
-    axiosInstance
-        .post("add-comment", {
-            comment: values.comment,
-            quote_id: quoteId,
-        })
-        .then((response) => {
-          router.push({ name: 'newsFeed'});
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-}
 
 </script>
