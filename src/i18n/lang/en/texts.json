@@ -10,5 +10,9 @@
   "access_this_page": "access this page",
   "return_home": "Return home",
   "save_changes": "Save Changes",
-  "delete": "Delete"
+  "delete": "Delete",
+  "commented_to_your": "Commented to your",
+  "min_ago": "min ago",
+  "notifications": "Notifications",
+  "mark_all_as_read": "Mark as all read"
 }
