@@ -78,10 +78,10 @@
                 <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/5">
                     <div class="flex mt-8 w-[15rem] ml-3">
                         <div>
-                            <img src="@/assets/movie-female.svg" />
+                            <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                         </div>
                         <div class="md:ml-4 ml-6">
-                            <p class="text-white lg:text-lg xl:text-2xl">Nino Tabagari</p>
+                            <p class="text-white lg:text-lg xl:text-2xl">{{ userStore.user?.name }}</p>
                             <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
                         </div>
                     </div>
@@ -106,12 +106,15 @@
                                 <p class="text-white ml-4 font-medium text-2xl">({{ $t("movie.total") }} 25)</p>
                             </div>
                             
-                            <div class="flex items-center justify-center h-[5rem]">
-                                    <div class="flex lg:ml-36 xl:ml-60 2xl:ml-80">
-                                        <img src="@/assets/search.svg" />
-                                        <input class="w-16 ml-3 outline-none bg-inherit text-[#CED4DA]" placeholder="Search" />
+                            <div class="flex items-center h-[5rem] w-[15.5rem]">
+                                    <div class="flex ">
+                                        <img src="@/assets/search-grey.svg" />
+                                        <Form>
+                                            <Field @keypress="submitSearch" v-model="searchValue" class="w-24 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
+                                            name="search" :placeholder="$t('texts.search')" />
+                                        </Form>
                                     </div>
-                                    <div class="flex items-center justify-center bg-[#E31221] h-10 w-[7rem] rounded">
+                                    <div class="flex ml-2 items-center justify-center bg-[#E31221] h-10 w-[7rem] rounded">
                                     <router-link :to="{name: 'addMovie'}">
                                         <button class="flex items-center justify-center text-white text-sm"><img class="px-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie") }}</button>
                                     </router-link> 
@@ -139,7 +142,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { Field, Form } from 'vee-validate';
 import TheMovie from '@/components/Movie/TheMovie.vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
@@ -149,12 +153,14 @@ import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useRouter } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
 import TheBurger from '@/components/General/TheBurger.vue';
+import { useUserStore } from "@/stores/userStore.js"
 import MovieSearch from '@/components/Search/MovieSearch.vue';
 
-
+const userStore = useUserStore();
 const movieStore = useCrudStore();
 const authStore = useAuthStore();
 const router = useRouter();
+const searchValue = ref(null);
 
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
@@ -185,4 +191,15 @@ const changeLangKa = () => {
     i18n.global.locale = 'ka'
     lang.value = !lang.value
 }
+
+const submitSearch = computed(() => {
+    console.log(searchValue.value)
+    movieStore.movies.filter((item) => {
+        if(item.name.en.includes(searchValue.value)) {
+            return item; 
+        } else if (searchValue.value === "") {
+            return item;
+        }
+    })
+})
 </script>

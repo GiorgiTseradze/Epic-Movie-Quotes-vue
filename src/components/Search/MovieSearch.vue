@@ -12,14 +12,13 @@
                 </div>
                 <div class="flex mt-7 ml-2">
                     <Form>
-                        <Field @keypress="submitSearch" v-model="value" class="w-60 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
+                        <Field @keypress="submitSearch" v-model="searchValue" class="w-60 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
                         name="search" placeholder="Search" />
                     </Form>
                 </div>
             </div>
             <div class="flex flex-col text-[#65646A] ml-16 mt-5">
-                <p>Enter <section class="inline text-white">@</section> to search movies</p>
-                <p class="mt-3">Enter <section class="inline text-white">#</section> to search quotes</p>
+            <p>{{ $t("movie.enter_movie_name") }}</p>
                 <p class="text-white mt-2">{{result}}</p>
             </div>
         </div>
@@ -28,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { Field, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useCrudStore } from "@/stores/crud";
@@ -39,25 +38,21 @@ const handleSearch = () => {
     search.value = !search.value
     result.value = '';
 }
-
+const movieStore = useCrudStore();
+const searchValue = ref(null);
 const result = ref('');
 
-const value = ref('');
-
-const submitSearch = () => {
-        axiosInstance
-        .post("search", {
-            search: value.value
-        })
-        .then((response) => {
-          quoteStore.quotes = [];
-          quoteStore.quotes = response.data
-          result.value = "Content found!"
-        })
-        .catch((error) => {
-          result.value = "Content not found yet!"
-          console.log(error);
-        }); 
-}
+const submitSearch = computed(() => {
+    result.value = "Nothing found yet!"
+    console.log(searchValue.value)
+    movieStore.movies.filter((item) => {
+        if(item.name.en.includes(searchValue.value)) {
+            result.value = "Content found!"
+            return item; 
+        } else if (searchValue.value === "") {
+            return item;
+        }
+    })
+})
 
 </script>
