@@ -6,12 +6,12 @@
         </div>
         
         <div v-if="burger" class="absolute md:mx-auto lg:hidden w-2/3 left-0 top-0 bg-[#11101A] h-[35rem] z-50">
-            <div class="flex flex-col h-full w-full">
-                <div class="flex mt-8 w-[12rem] md:w-[16rem] ml-6">
+            <div class="flex flex-col sm:items-center h-full w-full">
+                <div class="flex mt-8 w-[12rem] sm:w-[16rem] ml-6">
                     <div class="w-[3rem] md:w-[5rem]">
                         <img src="@/assets/movie-female.svg" />
                     </div>
-                    <div class="ml-4 md:ml-2">
+                    <div class="ml-4 md:ml-0">
                         <p class="text-white md:text-lg">Nino Tabagari</p>
                         <p class="lg:text-base md:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                     </div>
