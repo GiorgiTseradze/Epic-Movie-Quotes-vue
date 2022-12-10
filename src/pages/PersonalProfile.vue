@@ -11,7 +11,7 @@
                         <TheBurger />
                         <div class="flex lg:hidden">
                             <div class="flex">
-                                <img src="@/assets/notification.svg" />
+                                <TheNotification />
                             </div>
                         </div>
 
@@ -21,7 +21,7 @@
                             </div>
                             <div class="flex items-center">
                                 <div>
-                                    <img src="@/assets/notification.svg" />
+                                    <TheNotification />
                                 </div>
                                 <div class="flex flex-col px-7">
                                     <div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-white text-2xl">{{userStore.user?.name}}</p>
-                        <p class="text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
+                        <p @click="$router.push({name: 'profile'})" class="text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                     </div>
                 </div>
                 <div @click="$router.push({name: 'newsFeed'})" class="cursor-pointer flex items-center w-[15rem] ml-3 mt-10">
@@ -208,13 +208,15 @@
 import { ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axios from "@/config/axios/index.js";
-import i18n from '@/i18n/index.js'
-import { useRouter } from 'vue-router'
+import i18n from '@/i18n/index.js';
+import { useRouter } from 'vue-router';
 import { useAuthStore } from "@/stores/auth";
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import TheBurger from '@/components/General/TheBurger.vue';
-import { useUserStore } from "@/stores/userStore.js"
+import { useUserStore } from "@/stores/userStore.js";
+import TheNotification from '@/components/General/TheNotification.vue';
+
 
 const userStore = useUserStore();
 const authStore = useAuthStore();

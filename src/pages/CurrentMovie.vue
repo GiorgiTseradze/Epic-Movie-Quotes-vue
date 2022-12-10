@@ -10,7 +10,7 @@
                         <TheBurger />
                         <div class="flex lg:hidden">
                             <div class="flex">
-                                <img src="@/assets/notification.svg" />
+                                <TheNotification />
                             </div>
                         </div>
 
@@ -20,7 +20,7 @@
                             </div>
                             <div class="flex items-center">
                                 <div>
-                                    <img src="@/assets/notification.svg" />
+                                    <TheNotification />
                                 </div>
                                 <div class="flex px-7">
                                     <div>
@@ -110,11 +110,11 @@
                                 <div class="flex relative items-center justify-between text-white mt-5">
                                     <div class="flex">
                                             <div class="flex">
-                                                <p>3</p>
+                                                <p>{{quote.comments?.length}}</p>
                                             <img class="ml-2" src="@/assets/comment.svg" />
                                         </div>
                                         <div class="flex ml-2">
-                                                <p>5</p>
+                                                <p>{{quote.likes?.length}}</p>
                                             <img class="ml-2" src="@/assets/heart.svg" />
                                         </div>
                                     </div>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="md:ml-4 ml-6">
                             <p class="text-white lg:text-lg xl:text-2xl">{{userStore.user?.name}}</p>
-                            <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
+                            <p @click="$router.push({name: 'profile'})" class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
                         </div>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
@@ -240,11 +240,11 @@
                                                 <div class="flex items-center justify-between text-white mt-5">
                                                     <div class="flex">
                                                             <div class="flex">
-                                                                <p>3</p>
+                                                                <p class="text-white">{{quote.comments?.length}}</p>
                                                             <img class="ml-2" src="@/assets/comment.svg" />
                                                         </div>
                                                         <div class="flex ml-2">
-                                                                <p>5</p>
+                                                                <p class="text-white">{{quote.likes?.length}}</p>
                                                             <img class="ml-2" src="@/assets/heart.svg" />
                                                         </div>
                                                     </div>
@@ -267,6 +267,7 @@ import { onBeforeMount, ref, computed } from 'vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import Dots from '@/components/Movie/Dots.vue';
+import TheNotification from '@/components/General/TheNotification.vue';
 import DotsMobile from '@/components/Movie/DotsMobile.vue';
 import i18n from '@/i18n/index.js';
 import { useAuthStore } from "@/stores/auth";
@@ -288,7 +289,6 @@ const movieId = useRoute().params.movieId;
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
 const locale = computed(() => i18n.global.locale)
-
 const handleLogout = () => {
     axiosInstance
         .post("logout")
@@ -335,10 +335,11 @@ const handleDelete = (values) => {
 
 onBeforeMount(()=>{
     axiosInstance.get('movies/'+movieId).then((response)=>{
-        console.log(response.data.quotes);
+        console.log(response);
         movie.value = response.data;
         genres.value = JSON.parse(response.data.genre);
         quotes.value = response.data.quotes;
     })
+
 });
 </script>

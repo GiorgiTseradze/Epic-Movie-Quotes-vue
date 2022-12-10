@@ -12,7 +12,7 @@
                         <TheSearch />
                         <div class="flex lg:hidden">
                             <div class="flex">
-                                <img src="@/assets/notification.svg" />
+                                <TheNotification />
                             </div>
                         </div>
 
@@ -22,7 +22,7 @@
                             </div>
                             <div class="flex items-center">
                                 <div>
-                                    <img src="@/assets/notification.svg" />
+                                    <TheNotification />
                                 </div>
                                 <div class="flex flex-col px-7">
                                     <div>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="md:ml-4 ml-6">
                             <p class="text-white lg:text-lg xl:text-2xl">{{ userStore.user?.name }}</p>
-                            <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
+                            <p @click="$router.push({name: 'profile'})" class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                         </div>
                     </div>
                     <div class="flex items-center w-[15rem] ml-3 mt-10">
@@ -131,6 +131,7 @@ import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useCrudStore } from "@/stores/crud";
 import { useUserStore } from "@/stores/userStore.js"
+import TheNotification from '@/components/General/TheNotification.vue';
 
 const userStore = useUserStore();
 const store = useCrudStore()
