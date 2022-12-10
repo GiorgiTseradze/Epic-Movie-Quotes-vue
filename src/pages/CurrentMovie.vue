@@ -79,7 +79,7 @@
                     </div>
                     <div>
                         <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] mt-5 text-sm rounded">
-                            <router-link :to="{name: 'addQuote'}">
+                            <router-link :to="{name: 'addMovieQuote', params:{movieId:movieId}}">
                                 <button class="flex items-center justify-center text-white">
                                     <img class="mr-2" src="@/assets/add.svg"/>
                                     {{ $t("feed.add_quote")}}
@@ -102,7 +102,7 @@
                         <div class="flex flex-col w-full bg-[#181623]">
                             <div v-for="quote in quotes" :key="quote.id" class="flex flex-col mt-7 rounded">
                                 <div>
-                                    <img :src="imgUrl + quote?.image" />
+                                    <img class="w-[20rem] h-[10rem] object-fill" :src="imgUrl + quote?.image" />
                                 </div>
                                 <div class="mt-5 pb-5 border-b-2 border-[#54535A]">
                                     <p class="flex text-white">{{ locale === 'en' ? quote?.quote.en : quote?.quote.ka }}</p>
@@ -132,10 +132,10 @@
                 <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/5">
                     <div class="flex mt-8 w-[15rem] ml-3">
                         <div>
-                            <img src="@/assets/movie-female.svg" />
+                            <img class="rounded-full w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                         </div>
                         <div class="md:ml-4 ml-6">
-                            <p class="text-white lg:text-lg xl:text-2xl">Nino Tabagari</p>
+                            <p class="text-white lg:text-lg xl:text-2xl">{{userStore.user?.name}}</p>
                             <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
                         </div>
                     </div>
@@ -212,7 +212,7 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] ml-5 text-sm rounded">
-                                        <router-link :to="{name: 'addQuote'}">
+                                        <router-link :to="{name: 'addMovieQuote', params:{movieId:movieId}}">
                                             <button class="flex items-center justify-center text-white">
                                                 <img class="mr-2" src="@/assets/add.svg"/>
                                                 {{ $t("feed.add_quote")}}
@@ -230,7 +230,7 @@
                                             <div class="flex flex-col mt-7 rounded">
                                                 <div class="flex relative w-[28rem] xl:w-[32rem] lg:h-[11rem] border-b-2 border-[#54535A]">
                                                     <div class="w-[12rem] h-[8rem]">
-                                                        <img class="object-fill" :src="imgUrl + quote?.image" />
+                                                        <img class="object-fill w-[12rem] h-[8rem]" :src="imgUrl + quote?.image" />
                                                     </div>
                                                     <div class="w-[17rem] mt-5 ml-3 pb-5">
                                                         <p class="flex text-white">{{ locale === 'en' ? quote?.quote.en : quote?.quote.ka }}</p>
@@ -274,7 +274,9 @@ import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useRoute, useRouter } from 'vue-router';
 import { useCrudStore } from "@/stores/crud";
 import TheBurger from '@/components/General/TheBurger.vue';
+import { useUserStore } from "@/stores/userStore.js"
 
+const userStore = useUserStore();
 const movieStore = useCrudStore();
 const authStore = useAuthStore();
 const router = useRouter();
