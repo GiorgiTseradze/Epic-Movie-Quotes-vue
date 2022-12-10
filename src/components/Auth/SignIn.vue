@@ -31,7 +31,9 @@
 
                     <div class="flex flex-col items-center w-full mt-7">
                         <div class="flex items-center w-[22.5rem]">
-                            <input type="checkbox" />
+                            <Field name="remember" v-slot="{ field }">
+                                <input v-bind="field" type="checkbox" name="remember" true-value="yes" false-value="no" />   
+                            </Field>
                             <p class="text-white ml-1 text-base w-[8.5rem]">{{ $t("auth.remember_me") }}</p>
                             <router-link :to="{name: 'forgotPassword'}">
                                 <p class="text-[#0D6EFD] text-base underline ml-[6rem] w-[8.5rem]">{{ $t("auth.forgot_password") }}</p>
@@ -87,6 +89,7 @@ const handleSubmit = (values) => {
         .post("login", {
           email: values.email,
           password: values.password,
+          remember: values.remember
         })
         .then(() => {
             authStore.authenticated = true;
