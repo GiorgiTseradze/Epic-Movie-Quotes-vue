@@ -1,9 +1,9 @@
 <template>
-    <div v-if="open" @click="handleDots" class="flex justify-center fixed w-screen h-screen z-40"></div>        
-    <div @click="handleDots" class="cursor-pointer z-50">
+    <div v-if="open" @click="handleDots" class="flex justify-center fixed w-screen h-screen z-30"></div>        
+    <div @click="handleDots" class="cursor-pointer z-40">
         <img src="@/assets/dots.svg" />
     </div>
-    <div v-if="open" class="flex flex-col absolute ml-[27rem] xl:ml-[29.5rem] rounded mt-2 bg-[#24222F] w-36 xl:w-40 h-32 z-50">
+    <div v-if="open" class="flex flex-col absolute ml-[27rem] xl:ml-[29.5rem] rounded mt-2 bg-[#24222F] w-36 xl:w-40 h-32 z-40">
         <div class="flex mt-4 ml-4">
             <button @click="$router.push({name:'currentQuote',params:{quoteId:id}})" class="flex items-center">
                 <img src="@/assets/eye.svg" />
