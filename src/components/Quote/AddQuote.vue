@@ -6,7 +6,7 @@
                 <div class="flex w-34 items-center">
                     <p class="flex text-white">{{$t("feed.write_new_quote")}}</p>
                 </div>
-                <div class="flex absolute w-[22rem] justify-end">
+                <div class="flex absolute w-[22rem] lg:w-[40rem] justify-end">
                     <router-link :to="{name: 'newsFeed'}">
                         <img class="mr-10" src="@/assets/x-grey.svg" />
                     </router-link>
@@ -16,10 +16,10 @@
             <div class="flex items-center justify-center mt-8 w-full">
                 <div class="flex items-center w-[20rem] lg:w-[40rem]">
                     <div class="w-10">
-                        <img src="@/assets/movie-female.svg" />
+                        <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                     </div>
                     <div class="ml-4">
-                        <p class="text-white text-lg">Nino Tabagari</p>
+                        <p class="text-white text-lg">{{ userStore.user?.name }}</p>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,9 @@ import { useRouter } from 'vue-router'
 import i18n from '@/i18n/index.js'
 import FileInput from '../form/FileInput.vue';
 import { useCrudStore } from "@/stores/crud";
+import { useUserStore } from "@/stores/userStore.js"
 
+const userStore = useUserStore();
 const movieStore = useCrudStore(); 
 const quoteStore = useCrudStore();
 const router = useRouter()

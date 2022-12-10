@@ -4,8 +4,8 @@
             <div class="flex flex-col items-center cursor-pointer h-[26.5rem] lg:h-[38rem] xl:h-[43rem] 2xl:h-[46rem] px-5 lg:px-10 lg:py-10 w-[22.3rem] lg:ml-[4.8rem] 
             lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] border-b-2 mt-7 border-[#54535A] lg:bg-[#11101A]">
                 <div class="flex items-center w-full">
-                    <img src="@/assets/purple-female.svg" alt="profile-thumbnail" />
-                    <p class="ml-4 text-white">Maia Nakashidze</p>
+                    <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" alt="profile-thumbnail" />
+                    <p class="ml-4 text-white">{{userStore.user.name}}</p>
                 </div>
                 <div class="flex w-full">
                     <div class="mt-4">
@@ -19,8 +19,9 @@
                     <div class="flex mt-4 xl:mt-7">
                         <p class="text-white">1</p>
                         <img class="ml-3" src="@/assets/comment.svg"/>
-                        <p class="text-white ml-4">10</p>
-                        <img class="ml-3" src="@/assets/heart.svg" />
+                        <p class="text-white ml-4">{{quoteObj.likes?.length}}</p>
+                        <img v-if="!liked" @click="handleLike" class="ml-3" src="@/assets/heart.svg" />
+                        <img v-if="liked" @click="handleLike" class="ml-3 w-6" src="@/assets/red-heart.svg" />
                     </div>  
                 </div>
             </div>
@@ -50,13 +51,18 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
 import TheComment from '@/components/NewsFeed/TheComment.vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import { useRouter } from 'vue-router'
 import axiosInstance from "@/config/axios/index.js";
+import { useUserStore } from "@/stores/userStore.js"
 
+const userStore = useUserStore();
 const router = useRouter()
 const quoteId = props.id
+const liked = ref(false);
+
 
 const handleSubmit = (values) => {
     axiosInstance
@@ -73,9 +79,42 @@ const handleSubmit = (values) => {
         });
 }
 
+const handleLike = () => {
+    axiosInstance
+        .post("add-like", {
+            quote_id: quoteId,
+        })
+        .then((response) => {
+          router.push({ name: 'newsFeed'});
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+}
+
+
+onMounted(()=>{
+    setTimeout(() => {
+        const likes = props.quoteObj.likes;
+        for(let i = 0; i < likes?.length; i++){
+            console.log(likes[i].user_id);
+            console.log(useUserStore().user.id);
+            if(likes[i].user_id === useUserStore().user.id){
+                liked.value = true;
+                break;
+            }
+        }
+    }, 100);
+})
+
 const props = defineProps({
     quote: {
         type: String,
+        required: true,
+    },
+    quoteObj: {
+        type: Object,
         required: true,
     },
     image: {

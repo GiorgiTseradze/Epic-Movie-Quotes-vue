@@ -4,10 +4,10 @@
             <div class="flex flex-col w-full lg:w-[33rem] xl:w-[43rem] 2xl:w-[48rem] border-b-2 pb-6 border-[#54535A]">
                 <div class="flex items-center">
                     <div class="">
-                        <img src="@/assets/red-female.svg" />
+                        <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                     </div>
                     <div>
-                        <p class="text-white ml-4">Nika Tsetskhladze</p>
+                        <p class="text-white ml-4">{{ userStore.user?.name }}</p>
                     </div>
                 </div>
                 <div class="flex mt-3">
@@ -21,7 +21,9 @@
 </template>
 
 <script setup>
+import { useUserStore } from "@/stores/userStore.js";
 
+const userStore = useUserStore();
 defineProps({
     comment: {
         required: false

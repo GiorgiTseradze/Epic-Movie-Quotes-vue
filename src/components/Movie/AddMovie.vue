@@ -15,10 +15,10 @@
         <div class="flex items-center justify-center mt-8 w-full">
             <div class="flex items-center w-[20rem] lg:w-[40rem]">
                 <div class="w-10">
-                    <img src="@/assets/movie-female.svg" />
+                    <img class="rounded-full w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                 </div>
                 <div class="ml-4">
-                    <p class="text-white text-lg">Nino Tabagari</p>
+                    <p class="text-white text-lg">{{userStore.user?.name}}</p>
                 </div>
             </div>
         </div>
@@ -52,8 +52,8 @@
                             <button class="ml-[0.3rem] w-2" @click="removeTag"><img src="@/assets/x-grey.svg" /> </button>
                         </div>
                     </div>
-                        <div class="flex">
-                            <Field v-model="tags" v-slot="{ field, meta }" name="genre" >
+                        <div class="flex flex-col">
+                            <Field v-model="tags" name="genre" >
                                 <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
                             </Field>
                         </div>
@@ -114,7 +114,9 @@ import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
 import FileInput from '@/components/form/FileInput.vue';
+import { useUserStore } from "@/stores/userStore.js"
 
+const userStore = useUserStore();
 
 const movieStore = useCrudStore();
 const router = useRouter()
@@ -185,7 +187,10 @@ const handleSubmit = (values) => {
         })
         .catch((error) => {
           console.log(error);
-
+          const errors = error.response.data.errors;
+            for(const key in errors){
+            actions.setFieldError(key,errors[key]);
+            } 
         });
 }
 </script>

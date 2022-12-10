@@ -70,10 +70,10 @@
                         <div class="flex flex-col w-full lg:w-[39rem] border-b-2 pb-6 border-[#54535A]">
                             <div class="flex items-center">
                                 <div class="">
-                                    <img src="@/assets/red-female.svg" />
+                                    <img class="rounded-full w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                                 </div>
                                 <div>
-                                    <p class="text-white ml-4">Nika Tsetskhladze</p>
+                                    <p class="text-white ml-4">{{userStore.user?.name}}</p>
                                 </div>
                             </div>
                             <div class="flex ml-14 lg:ml-4 mt-3">

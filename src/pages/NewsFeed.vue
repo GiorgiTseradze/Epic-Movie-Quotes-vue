@@ -58,10 +58,10 @@
                 <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/4">
                     <div class="flex mt-8 w-[15rem] ml-3">
                         <div>
-                            <img src="@/assets/movie-female.svg" />
+                            <img class="rounded-full w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                         </div>
                         <div class="md:ml-4 ml-6">
-                            <p class="text-white lg:text-lg xl:text-2xl">Nino Tabagari</p>
+                            <p class="text-white lg:text-lg xl:text-2xl">{{ userStore.user?.name }}</p>
                             <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                         </div>
                     </div>
@@ -88,10 +88,13 @@
                             </router-link> 
                         </div>
                         <div class="hidden lg:flex items-center mt-8 ml-4">
-                            <button class="flex">
+                            <div class="flex">
                                 <img src="@/assets/search-grey.svg" />
-                                <p class="ml-2 text-[#CED4DA]">{{ $t("texts.search") }}</p>
-                            </button>
+                                <Form>
+                                    <Field @keypress="submitSearch" v-model="searchValue" class="w-60 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
+                                    name="search" :placeholder="$t('texts.search')" />
+                                </Form>
+                            </div>
                         </div>
                     </div>
 
@@ -100,6 +103,7 @@
                         v-for="quote in quoteStore.quotes"
                         v-bind:key="quote.quote"
                         :key="quote.id"
+                        :quoteObj="quote"
                         :quote="i18n.global.locale === 'en' ? quote.quote.en : quote.quote.ka"
                         :id="quote.id"
                         :image="imgUrl + quote.image"
@@ -114,8 +118,8 @@
 </template>
 
 <script setup>
-
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { Field, Form } from 'vee-validate';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import TheBurger from '@/components/General/TheBurger.vue';
@@ -126,12 +130,14 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useCrudStore } from "@/stores/crud";
+import { useUserStore } from "@/stores/userStore.js"
 
+const userStore = useUserStore();
 const store = useCrudStore()
 const authStore = useAuthStore();
 const router = useRouter();
 const quoteStore = useCrudStore();
-
+const searchValue = ref('');
 const lang = ref(false);
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
@@ -146,6 +152,7 @@ const handleLogout = () => {
           console.log(error)    
         });
 }
+
 
 const handleLang = () => {
     return lang.value = !lang.value
@@ -167,5 +174,32 @@ window.Echo.channel("add-comment").listen('.new-comment', (e) => {
     console.log(e)
     quoteStore.getQuotes();
 })
+
+window.Echo.channel("add-like").listen('.new-like', (e) => {
+
+//fetch posts again
+console.log(e)
+quoteStore.getQuotes();
+})
+
+onMounted(()=>{
+    useUserStore().getUser();
+})
+
+const submitSearch = () => {
+        axiosInstance
+        .post("search", {
+            search: searchValue.value
+        })
+        .then((response) => {
+          quoteStore.quotes = [];
+          quoteStore.quotes = response.data
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+}
+
 
 </script>
