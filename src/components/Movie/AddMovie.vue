@@ -29,7 +29,7 @@
                     <Field v-slot="{ field, meta }" name="name_en" rules="required|en" >
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="Movie name" v-bind="field" />
                         <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                     </Field>
@@ -39,7 +39,7 @@
                     <Field v-slot="{ field, meta }" name="name_ka" rules="required|ge">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="ფილმის სახელი" v-bind="field" />
                         <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                     </Field>
@@ -62,7 +62,7 @@
                     <Field v-slot="{ field, meta }" name="director_en" rules="required|en">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="Director" v-bind="field" />
                         <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                     </Field>
@@ -71,7 +71,7 @@
                     <Field v-slot="{ field, meta }" name="director_ka" rules="required|ge">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="რეჟისორი" v-bind="field" />
                         <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                     </Field>
@@ -81,7 +81,7 @@
                         <input placeholder="Movie description" type="textarea" v-bind="field"
                         class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']" />
+                        : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
                     <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                 </div>
@@ -90,7 +90,7 @@
                         <input placeholder="ფილმის აღწერა" type="textarea" v-bind="field"
                         class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']" />
+                        : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
                     <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                 </div>

@@ -70,7 +70,7 @@ defineRule('max', (value, [limit]) => {
 })
 
 defineRule('en', (value) => {
-    const regexAlpha = /^[a-zA-Z0-9]+$/
+    const regexAlpha = /^[a-zA-Z0-9?!:,.IXV]+$/
     if(value.match(regexAlpha)) {
         return true;
     } else {
@@ -79,7 +79,7 @@ defineRule('en', (value) => {
 })
 
 defineRule('ge', (value) => {
-    const regexAlpha = /^[ა-ჰ0-9]+$/
+    const regexAlpha = /^[ა-ჰ0-9?!:,.IXV]+$/
     if(value.match(regexAlpha)) {
         return true;
     } else {
