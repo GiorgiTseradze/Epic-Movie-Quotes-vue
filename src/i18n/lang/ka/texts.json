@@ -1,5 +1,6 @@
 {
   "search": "ძებნა",
+  "feed_search": "გამოიყენე @ ფილმების მოსაძებნად, # ციტატების მოსაძებნად",
   "edit_your_profile": "პროფილის რედაქტირება",
   "news_feed": "ნიუს ფიდი",
   "list_of_movies": "ჩემი ფილმები",
@@ -11,8 +12,10 @@
   "return_home": "ლენდინგზე დაბრუნება",
   "save_changes": "ცვლილებების შენახვა",
   "delete": "წაშლა",
-  "commented_to_your": "დააკომენტარა თქვენ",
+  "commented_to_your_movie_quote": "დააკომენტარა ციტატაზე",
+  "reacted_to_your_quote": "დაალაიქა ციტატა",
+  "new": "ახალი",
   "min_ago": "წუთის წინ",
   "notifications": "შეტყობინებები",
-  "mark_all_as_read": "მონიშნე ყველა წაკითხულად"
+  "mark_all_as_read": "მონიშნე წაკითხულად"
 }
