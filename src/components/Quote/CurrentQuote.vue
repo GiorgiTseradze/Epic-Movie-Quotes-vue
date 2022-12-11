@@ -38,7 +38,7 @@
                 <div class="flex items-center border-[0.06rem] mt-4 border-[#6C757D] rounded">
                     <div class="flex text-white w-[17rem] lg:w-[34rem] overflow-hidden break-word
                     resize-none px-3 py-5 border-0 placeholder-[#6C757D] outline-none bg-inherit">
-                        <p class="break-word">
+                        <p class="break-all">
                             "{{quoteEn}}"
                         </p>
                     </div>
@@ -47,7 +47,7 @@
                 <div class="flex items-center border-[0.06rem] mt-4 border-[#6C757D] rounded">
                     <div class="flex text-white w-[17rem] lg:w-[34rem] overflow-hidden break-word
                     resize-none px-3 py-5 border-0 placeholder-[#6C757D] outline-none bg-inherit">
-                        <p class="break-word">
+                        <p class="break-all">
                             "{{quoteKa}}"
                         </p>
                     </div>

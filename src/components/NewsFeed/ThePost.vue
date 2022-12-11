@@ -1,22 +1,22 @@
 <template>
     <div>
         <div class="flex flex-col">
-            <div class="flex flex-col items-center cursor-pointer h-[26.5rem] lg:h-[38rem] xl:h-[43rem] 2xl:h-[46rem] px-5 lg:px-10 lg:py-10 w-[22.3rem] lg:ml-[4.8rem] 
-            lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] border-b-2 mt-7 border-[#54535A] lg:bg-[#11101A]">
+            <div class="flex flex-col items-center cursor-pointer  px-[2%] lg:ml-[4.8rem] 
+            lg:w-[64%] border-b-2 mt-7 border-[#54535A] lg:bg-[#11101A]">
                 <div class="flex items-center w-full">
-                    <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" alt="profile-thumbnail" />
-                    <p class="ml-4 text-white">{{userStore.user.name}}</p>
+                    <img class="rounded-3xl w-12 h-12 object-fill " :src="quoteObj.user?.thumbnail" alt="profile-thumbnail" />
+                    <p class="ml-4 text-white">{{quoteObj.user?.name}}</p>
                 </div>
                 <div class="flex w-full">
                     <div class="mt-4">
-                        <p class="text-sm text-white">{{ quote }}</p>
+                        <p class="text-sm text-white break-all">{{ quote }}</p>
                     </div>
                 </div>
-                <div class="flex flex-col w-full h-full">
-                    <div class="flex w-full mt-4 lg:h-[25rem] xl:h-[30rem] 2xl:h-[33rem]">
-                        <img class="object-fill w-[22rem] h-[16rem] lg:w-full lg:h-full" :src="image" alt="post-photo"/>
+                <div class="flex flex-col w-full h-full pb-10 border-b border-gray-600 ">
+                    <div class="flex w-full mt-4 lg:h-[50%]">
+                        <img class="w-full object-fill min-h-[25rem] rounded-lg lg:w-full lg:h-full pb-2" :src="image" alt="post-photo"/>
                     </div>
-                    <div class="flex mt-4 xl:mt-7">
+                    <div class="flex mt-4 xl:mt-7 pb lg:pb-0">
                         <p class="text-white">{{comments?.length}}</p>
                         <img class="ml-3" src="@/assets/comment.svg"/>
                         <p class="text-white ml-4">{{quoteObj.likes?.length}}</p>
@@ -24,28 +24,30 @@
                         <img v-if="liked" @click="handleLike" class="ml-3 w-6" src="@/assets/red-heart.svg" />
                     </div>  
                 </div>
-            </div>
-                
-            <div class="flex flex-col lg:mt-0 lg:ml-20 lg:w-[30rem]">
+                <div class="flex flex-col w-full  overflow-auto max-h-[20rem]">
                 <TheComment
                 v-for="comment in comments"
                         v-bind:key="comment.id"
                         :key="comment.id"
                         :id="comment.id"
-                        :comment="comment.comment"
+                        :comment="comment"
                 />
             </div>
-
-            <div class="flex items-center px-2 lg:px-0  w-[22.3rem] h-14 lg:ml-20 lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] lg:h-20 rounded bg-[#11101A]">
-                <div class="lg:ml-5 w-8">
+            <div class="flex items-center gap-4 w-full px-2 lg:px-0  h-14 lg:h-20 rounded bg-[#11101A]">
+                <div class=" w-8">
                     <img src="@/assets/purple-female.svg" />
                 </div>
-                <Form @submit="handleSubmit">
-                    <div class="bg-[#1C1B27] rounded lg:py-2 py-2 ml-2 lg:ml-15 w-[18rem] lg:w-[30rem] xl:w-[40rem] 2xl:w-[45rem]">
-                        <Field class="bg-inherit ml-2 outline-none text-[#CED4DA]" name="comment" :placeholder="$t('feed.write_a_comment')" />
+                <Form @submit="handleSubmit" class="w-full">
+                    <div class="bg-[#1C1B27] rounded py-2  w-full">
+                        <Field class="bg-inherit  outline-none text-[#CED4DA]" name="comment" :placeholder="$t('feed.write_a_comment')" />
                     </div>
                 </Form>
             </div>
+            </div>
+                
+
+
+
         </div>
     </div>
 </template>
@@ -69,6 +71,7 @@ const handleSubmit = (values) => {
         .post("add-comment", {
             comment: values.comment,
             quote_id: quoteId,
+            to_id: props.quoteObj.user.id
         })
         .then((response) => {
           router.push({ name: 'newsFeed'});
@@ -83,6 +86,7 @@ const handleLike = () => {
     axiosInstance
         .post("add-like", {
             quote_id: quoteId,
+            to_id: props.quoteObj.user.id
         })
         .then((response) => {
           router.push({ name: 'newsFeed'});
@@ -92,6 +96,7 @@ const handleLike = () => {
           console.log(error);
         });
 }
+
 
 
 onMounted(()=>{

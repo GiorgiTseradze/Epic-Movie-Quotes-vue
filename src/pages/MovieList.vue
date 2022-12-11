@@ -68,7 +68,7 @@
                     </div>
                     <div>
                         <p class="text-white">
-                            ({{ $t("movie.total")}} 25)
+                            ({{ $t("movie.total")}} {{movieStore.movies?.length}})
                         </p>
                     </div>
                 </div>
@@ -103,14 +103,14 @@
                         <div class="flex items-center justify-between w-full">
                             <div class="flex h-full">
                                 <p class="text-white font-medium text-2xl">{{ $t("movie.my_list_of_movies") }}</p>
-                                <p class="text-white ml-4 font-medium text-2xl">({{ $t("movie.total") }} 25)</p>
+                                <p class="text-white ml-4 font-medium text-2xl">({{ $t("movie.total") }} {{movieStore.movies?.length}})</p>
                             </div>
                             
                             <div class="flex items-center h-[5rem] w-[15.5rem]">
                                     <div class="flex ">
                                         <img src="@/assets/search-grey.svg" />
                                         <Form>
-                                            <Field @keypress="submitSearch" v-model="searchValue" class="w-24 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
+                                            <Field v-model="searchValue" class="w-24 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
                                             name="search" :placeholder="$t('texts.search')" />
                                         </Form>
                                     </div>
@@ -125,7 +125,7 @@
                     </div>
                     <div class="flex flex-col lg:grid lg:grid-cols-3 w-full lg:w-full">
                         <TheMovie 
-                        v-for="movie in movieStore.movies"
+                        v-for="movie in movies"
                         :key="movie.id"
                         v-bind:key="movie.name"
                         :name="i18n.global.locale === 'en' ? movie.name.en : movie.name.ka"
@@ -136,7 +136,6 @@
                 </div>
 
             </div>
-
         </div>
     </div>
 </template>
@@ -161,7 +160,7 @@ const userStore = useUserStore();
 const movieStore = useCrudStore();
 const authStore = useAuthStore();
 const router = useRouter();
-const searchValue = ref(null);
+const searchValue = ref('');
 
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
@@ -193,13 +192,15 @@ const changeLangKa = () => {
     lang.value = !lang.value
 }
 
-const submitSearch = computed(() => {
-    movieStore.movies.filter((item) => {
-        if(item.name.en.includes(searchValue.value)) {
+const movies = computed(() => {
+    return movieStore.movies.filter((item) => {
+        if(item.name.en.includes(searchValue.value) || item.name.ka.includes(searchValue.value)) {
+            console.log(item.name.en)
             return item; 
         } else if (searchValue.value === "") {
             return item;
         }
-    })
+    })    
 })
+
 </script>

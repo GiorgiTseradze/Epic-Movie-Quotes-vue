@@ -1,18 +1,18 @@
 <template>
-    <div class="px-5 w-[22rem] lg:w-[35rem] xl:w-[45rem] 2xl:w-[50rem] lg:py-5 rounded lg:bg-[#11101A]">
+    <div class=" w-full lg:py-5 rounded lg:bg-[#11101A]">
         <div class="flex flex-col w-full mt-5 lg:bg-[#11101A]">
-            <div class="flex flex-col w-full lg:w-[33rem] xl:w-[43rem] 2xl:w-[48rem] border-b-2 pb-6 border-[#54535A]">
+            <div class="flex flex-col w-full border-b-2 pb-6 border-[#54535A]">
                 <div class="flex items-center">
                     <div class="">
-                        <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
+                        <img class="rounded-3xl w-12 h-12 object-cover" :src="comment.user?.thumbnail" />
                     </div>
                     <div>
-                        <p class="text-white ml-4">{{ userStore.user?.name }}</p>
+                        <p class="text-white ml-4">{{ comment?.user?.name }}</p>
                     </div>
                 </div>
-                <div class="flex mt-3">
-                    <p class="text-white">
-                        {{ comment }}
+                <div class="flex mt-3 w-full">
+                    <p class="text-white break-all">
+                        {{ comment.comment }}
                     </p>
                 </div>
             </div>

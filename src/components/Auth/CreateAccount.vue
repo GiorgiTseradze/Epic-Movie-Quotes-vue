@@ -56,10 +56,12 @@
         
                 <div class="flex flex-col items-center w-full mt-3">
                     <div class="flex items-center justify-center bg-black border rounded border-white h-10 w-[22.5rem]">
-                        <button class="flex items-center text-white">
-                            <img class="mr-2" src="@/assets/gmail.svg" /> 
-                            {{ $t("auth.sign_in_with_google") }}
-                        </button>
+                        <form :url="url">
+                            <button class="flex items-center text-white">
+                                <img class="mr-2" src="@/assets/gmail.svg" /> 
+                                {{ $t("auth.sign_in_with_google") }}
+                            </button>
+                        </form>
                     </div>
                 </div>
 
@@ -79,6 +81,7 @@ import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const url = `${import.meta.env.VITE_API_BASE_URL}/google/login`;
 
 const handleSubmit = (values, actions) => {
     console.log(values)

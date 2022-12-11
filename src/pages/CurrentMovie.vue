@@ -207,7 +207,7 @@
                                                 {{ $t("movie.quotes") }}
                                             </p>
                                             <p class="ml-2">
-                                                ({{ $t("movie.total") }} 7)
+                                                ({{ $t("movie.total") }} {{movie?.quotes?.length}})
                                             </p>
                                         </div>
                                     </div>
