@@ -24,17 +24,26 @@
         </div>
         
         <div class="flex justify-center w-full mt-8">
-            <Form @submit="handleSubmit" class="flex flex-col w-[20rem] lg:w-[40rem]">
-                <div class="flex items-center h-14 lg:h-20 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="quoteEn" as="textarea" class="text-white w-[17rem] lg:w-[34rem] h-14 overflow-hidden 
-                    resize-none px-3 py-3 border-0 placeholder-[#6C757D] outline-none bg-inherit" 
-                    name="quote_en" placeholder="create new quote" />
-                    <p class="lg:ml-10 text-white">Eng</p>
+            <Form @submit="handleSubmit" v-slot="{ field, meta }" class="flex flex-col w-[20rem] lg:w-[40rem]">
+                <div class="flex items-center h-14 lg:h-20 mt-4 rounded">
+                    <Field v-model="quoteEn" v-slot="{ field, meta }" rules="required|en" name="quote_en">
+                        <input type="textarea" v-bind="field"
+                        class="text-white w-[20rem] lg:w-[40rem] h-14 overflow-hidden 
+                        resize-none px-3 py-3 border-[0.06rem] border-[#6C757D] placeholder-[#6C757D] outline-none bg-inherit" 
+                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']" />
+                    </Field>
+                    <p class="ml-[17rem] lg:ml-[36.5rem] text-white absolute">Eng</p>
                 </div>
-                <div class="flex items-center h-14 lg:h-20 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <Field v-model="quoteKa" as="textarea" class="text-white w-[17rem] lg:w-[34rem] h-14 px-3 py-3 placeholder-[#6C757D] resize-none outline-none bg-inherit" 
-                    name="quote_ka" placeholder="ახალი ციტატა"/>
-                    <p class="lg:ml-10 text-white">ქარ</p>
+                <div class="flex items-center h-14 lg:h-20 mt-4 rounded">
+                    <Field v-model="quoteKa" v-slot="{ field, meta }" rules="required|ge" name="quote_ka">
+                        <input type="textarea" v-bind="field"
+                        class="text-white w-[20rem] lg:w-[40rem] h-14 overflow-hidden 
+                        resize-none px-3 py-3 border-[0.06rem] border-[#6C757D] placeholder-[#6C757D] outline-none bg-inherit" 
+                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']" />
+                    </Field>
+                    <p class="ml-[17rem] lg:ml-[36.5rem] text-white absolute">ქარ</p>
                 </div>
                 <div class="flex items-center h-80 border-[0.06rem] mt-4 border-[#6C757D] rounded">
                 <img class="object-fill w-[20rem] lg:w-[40rem] h-[19.6rem] lg:h-[20rem]" :src="imgUrl+quoteImg" />

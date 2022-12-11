@@ -26,7 +26,7 @@
         <div class="flex justify-center w-full mt-8">
             <Form @submit="handleSubmit" v-slot="{ field, meta }" class="flex flex-col w-[20rem] lg:w-[40rem]">
                 <div class="flex items-center w-full">
-                    <Field v-slot="{ field, meta }" name="name_en"  rules="required" >
+                    <Field v-slot="{ field, meta }" name="name_en" rules="required|en" >
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="flex items-center h-10 mt-4">
-                    <Field v-slot="{ field, meta }" name="name_ka" rules="required">
+                    <Field v-slot="{ field, meta }" name="name_ka" rules="required|ge">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
@@ -59,7 +59,7 @@
                         </div>
                 </div>
                 <div class="flex items-center h-10 mt-4">
-                    <Field v-slot="{ field, meta }" name="director_en" rules="required">
+                    <Field v-slot="{ field, meta }" name="director_en" rules="required|en">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
@@ -68,7 +68,7 @@
                     </Field>
                 </div>
                 <div class="flex items-center h-10 mt-4">
-                    <Field v-slot="{ field, meta }" name="director_ka" rules="required">
+                    <Field v-slot="{ field, meta }" name="director_ka" rules="required|ge">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
@@ -77,7 +77,7 @@
                     </Field>
                 </div>
                 <div class="flex items-center h-16 mt-4 ">
-                    <Field v-slot="{ field, meta }" name="description_en" rules="required">
+                    <Field v-slot="{ field, meta }" name="description_en" rules="required|en">
                         <input placeholder="Movie description" type="textarea" v-bind="field"
                         class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
@@ -86,7 +86,7 @@
                     <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                 </div>
                 <div class="flex items-center h-16 mt-4 ">
-                    <Field v-slot="{ field, meta }" name="description_ka" rules="required">
+                    <Field v-slot="{ field, meta }" name="description_ka" rules="required|ge">
                         <input placeholder="ფილმის აღწერა" type="textarea" v-bind="field"
                         class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
