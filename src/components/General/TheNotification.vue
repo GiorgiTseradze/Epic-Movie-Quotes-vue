@@ -25,7 +25,7 @@
                     <div class="flex flex-col ml-4 lg:text-xl w-full justify-center">
                         <div class="hidden lg:flex items-center justify-between">
                             <p class="text-white">{{notif.sender.name}}</p>
-                            <p class="text-[#CED4DA]">{{time_ago(notif.created_at)}}</p>
+                            <p class="text-[#CED4DA]">{{timeAgo(notif.created_at)}}</p>
                         </div>
                         <div class="lg:flex items-center hidden py-1">
                             <img v-if="notif.type == 'comment'" class="w-5 lg:w-6" src="@/assets/thought.svg" />
@@ -49,7 +49,7 @@
                                 <img v-if="notif.type == 'comment'" class="w-5 lg:w-7" src="@/assets/thought.svg" />
                                 <p v-if="notif.type == 'comment'" class="ml-2 lg:text-xl text-[#CED4DA]">{{$t("texts.commented_to_your_movie_quote")}}</p>
                             </div>
-                            <p class="lg:hidden text-[#CED4DA]">{{time_ago(notif.created_at)}}</p>
+                            <p class="lg:hidden text-[#CED4DA]">{{timeAgo(notif.created_at)}}</p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@ const handleNotification = () => {
     notification.value = !notification.value
 }
 
-function time_ago(time) {
+function timeAgo(time) {
 switch (typeof time) {
   case 'number':
     break;
@@ -169,7 +169,7 @@ let time_formats = i18n.global.locale === 'en' ? [
   [5806080000, 'წინა საუკუნე', 'Next century'], // 60*60*24*7*4*12*100*2
   [58060800000, 'საუკუნეები', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
 ];
-var seconds = (+new Date() - time) / 1000,
+let seconds = (+new Date() - time) / 1000,
   token = i18n.global.locale === 'en' ? 'ago' : 'წინ',
   list_choice = 1;
 
@@ -181,7 +181,7 @@ if (seconds < 0) {
   token = 'from now';
   list_choice = 2;
 }
-var i = 0,
+let i = 0,
   format;
 while (format = time_formats[i++])
   if (seconds < format[0]) {
