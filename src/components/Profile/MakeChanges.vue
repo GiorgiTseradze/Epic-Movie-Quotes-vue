@@ -3,9 +3,6 @@
         <div class="flex justify-center items-center px-9 h-20 bg-[#24222F]">
             <div class="flex justify-between items-center w-[20rem]">
                 <TheBurger />
-                <div>
-                <img class="text-gray-600" src="@/assets/bell.svg" />
-                </div>
             </div>
 
         </div>
@@ -23,7 +20,7 @@
                         </div>
 
                         <div class="flex items-center mt-12 border-t-2 border-gray-600">
-                            <div class="ml-6 text-[1.1rem] mt-4">
+                            <div @click="$router.push({name: 'profile'})" class="ml-6 text-[1.1rem] mt-4">
                                 <p class="text-white">{{$t("profile.cancel")}}</p>
                             </div>
                             <div class="flex items-center justify-center mt-4 ml-[9rem] bg-[#E31221] h-10 w-[6rem] rounded">
@@ -32,7 +29,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 

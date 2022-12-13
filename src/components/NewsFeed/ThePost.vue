@@ -3,7 +3,7 @@
         <div class="flex flex-col">
             <div class="flex flex-col items-center cursor-pointer  px-[2%] lg:ml-[4.8rem] 
             lg:w-[64%] border-b-2 mt-7 border-[#54535A] lg:bg-[#11101A]">
-                <div class="flex items-center w-full">
+                <div class="flex items-center w-full py-3">
                     <img class="rounded-3xl w-12 h-12 object-fill " :src="quoteObj.user?.thumbnail" alt="profile-thumbnail" />
                     <p class="ml-4 text-white">{{quoteObj.user?.name}}</p>
                 </div>
@@ -35,7 +35,7 @@
             </div>
             <div class="flex items-center gap-4 w-full px-2 lg:px-0  h-14 lg:h-20 rounded bg-[#11101A]">
                 <div class=" w-8">
-                    <img src="@/assets/purple-female.svg" />
+                    <img :src="userStore?.user?.thumbnail" />
                 </div>
                 <Form @submit="handleSubmit" class="w-full">
                     <div class="bg-[#1C1B27] rounded py-2  w-full">
@@ -44,9 +44,6 @@
                 </Form>
             </div>
             </div>
-                
-
-
 
         </div>
     </div>

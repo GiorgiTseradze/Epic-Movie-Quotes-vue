@@ -2,7 +2,7 @@
     <div v-if="search" @click="handleSearch" class="lg:hidden flex justify-center fixed w-screen h-[100rem] z-40"></div>        
     <div class="z-41 lg:hidden">
         <div @click="handleSearch" class="flex lg:hidden ml-64 z-50">
-            <img src="@/assets/search.svg" />
+            <img class="w-6" src="@/assets/search.svg" />
         </div>
         
         <div v-if="search" class="absolute flex flex-col md:mx-auto lg:hidden w-full left-0 top-0 bg-[#11101A] h-[35rem] z-50">

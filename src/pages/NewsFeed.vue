@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="flex flex-col px-7">
                                     <div>
-                                        <button @click="handleLang" class="flex items-center">
+                                        <button @click="handleLang" class="flex items-center cursor-pointer">
                                             <p class="text-white">{{i18n.global.locale === 'en' ? "ENG" : "KA"}}</p>
                                             <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
                                         </button>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="md:ml-4 ml-6">
                             <p class="text-white lg:text-lg xl:text-2xl">{{ userStore.user?.name }}</p>
-                            <p @click="$router.push({name: 'profile'})" class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
+                            <p @click="$router.push({name: 'profile'})" class="cursor-pointer lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                         </div>
                     </div>
                     <div class="flex items-center w-[15rem] ml-3 mt-10">
@@ -81,7 +81,7 @@
 
                 <div class="w-full">
                     <div class="flex items-center w-full">
-                        <div class="flex items-center lg:ml-20 w-[22.3rem] md:w-[25%] h-24 lg:h-[3.2rem] lg:mt-8 lg:bg-[#24222F] border-0 rounded">
+                        <div class="flex items-center lg:ml-20 w-[22.3rem] lg:w-[20rem] h-24 lg:h-[3.2rem] lg:mt-8 lg:bg-[#24222F] border-0 rounded">
                             <img class="ml-4" src="@/assets/type.svg" />
                             <router-link :to="{name: 'addQuote'}">
                                 <p class="ml-2 text-white">{{ $t("feed.write_new_quote") }}</p>
@@ -91,7 +91,8 @@
                             <div class="flex w-full">
                                 <img src="@/assets/search-grey.svg" />
                                 <Form>
-                                    <Field @keypress="submitSearch" v-model="searchValue" class="lg:w-60 xl:w-[24rem] 2xl:w-[31.5rem] ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
+                                    <Field @keyup="submitSearch" v-model="searchValue" 
+                                    class="lg:w-54 xl:w-80 2xl:w-96 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
                                     name="search" :placeholder="$t('texts.feed_search')" />
                                 </Form>
                             </div>
@@ -104,7 +105,7 @@
                         v-bind:key="quote.quote"
                         :key="quote.id"
                         :quoteObj="quote"
-                        :quote="i18n.global.locale === 'en' ? quote.quote.en : quote.quote.ka"
+                        :quote="i18n.global.locale === 'en' ? quote?.quote.en : quote?.quote.ka"
                         :id="quote.id"
                         :image="imgUrl + quote.image"
                         :comments="quote.comments"
@@ -118,7 +119,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref,watch} from 'vue';
 import { Field, Form } from 'vee-validate';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
@@ -154,7 +155,6 @@ const handleLogout = () => {
         });
 }
 
-
 const handleLang = () => {
     return lang.value = !lang.value
 }
@@ -169,17 +169,24 @@ const changeLangKa = () => {
     lang.value = !lang.value
 }
 
+
+window.addEventListener('scroll', () => {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        quoteStore.getQuotes();
+    }
+})
+
 window.Echo.channel("add-comment").listen('.new-comment', (e) => {
 
     //fetch posts again
     console.log(e)
-    quoteStore.getQuotes();
+    quoteStore.quotesRefresh();
 })
 
 window.Echo.channel("add-like").listen('.new-like', (e) => {
     //fetch posts again
 console.log(e)
-quoteStore.getQuotes();
+quoteStore.quotesRefresh();
 })
 
 onMounted(()=>{
@@ -199,6 +206,13 @@ const submitSearch = () => {
           console.log(error);
         }); 
 }
+watch(searchValue,(newval)=>{
+    if(newval.length === 0){
+        console.log(quoteStore.savedQuotes);
+        quoteStore.quotes = quoteStore.savedQuotes;
+    }
+})
+
 
 
 </script>

@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="flex px-7">
                                     <div>
-                                        <button @click="handleLang" class="flex items-center">
+                                        <button @click="handleLang" class="flex items-center cursor-pointer">
                                             <p class="text-white">{{i18n.global.locale === 'en' ? "ENG" : "KA"}}</p>
                                             <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
                                         </button>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="md:ml-4 ml-6">
                             <p class="text-white lg:text-lg xl:text-2xl">{{ userStore.user?.name }}</p>
-                            <p @click="$router.push({name: 'profile'})" class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
+                            <p @click="$router.push({name: 'profile'})" class="cursor-pointer lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
                         </div>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
@@ -98,7 +98,7 @@
                         </router-link>
                     </div>
                 </div>
-                <div>
+                <div class="w-full">
                     <div class="hidden lg:block w-full px-7 bg-[#181623] h-[5rem]">
                         <div class="flex items-center justify-between w-full">
                             <div class="flex h-full">
@@ -106,15 +106,15 @@
                                 <p class="text-white ml-4 font-medium text-2xl">({{ $t("movie.total") }} {{movieStore.movies?.length}})</p>
                             </div>
                             
-                            <div class="flex items-center h-[5rem] w-[15.5rem]">
-                                    <div class="flex ">
+                            <div class="flex items-center h-[5rem] w-[35%]">
+                                    <div class="flex">
                                         <img src="@/assets/search-grey.svg" />
                                         <Form>
                                             <Field v-model="searchValue" class="w-24 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
                                             name="search" :placeholder="$t('texts.search')" />
                                         </Form>
                                     </div>
-                                    <div class="flex ml-2 items-center justify-center bg-[#E31221] h-10 w-[7rem] rounded">
+                                    <div class="flex ml-2 items-center justify-center px-1 bg-[#E31221] h-10 rounded">
                                     <router-link :to="{name: 'addMovie'}">
                                         <button class="flex items-center justify-center text-white text-sm"><img class="px-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie") }}</button>
                                     </router-link> 
