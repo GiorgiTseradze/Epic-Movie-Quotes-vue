@@ -1,10 +1,10 @@
 import { useAuthStore } from "@/stores/auth";
 
-const isAuthenticated = () => {
+export const isAuthenticated = () => {
   const authStore = useAuthStore();
   if (!authStore.authenticated) {
-    return "/";
-  }
+    return "/forbidden";
+  } 
 };
 
 export default isAuthenticated;
