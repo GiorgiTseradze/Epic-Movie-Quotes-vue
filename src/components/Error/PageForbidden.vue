@@ -12,7 +12,7 @@
                 <p class="flex justify-center ml-2 text-white text-base font-medium">{{ $t("texts.access_this_page") }}</p>
             </div>
             <div class="flex flex-col items-center w-full mt-5">
-                    <div class="flex items-center justify-center bg-[#E31221] h-[3.1rem] w-[10rem] rounded">
+                    <div @click="$router.push({name: 'landing'})" class="flex items-center justify-center bg-[#E31221] h-[3.1rem] w-[10rem] rounded">
                         <button class="flex text-white">{{ $t("texts.return_home") }}</button>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 {
   "search": "Search",
+  "feed_search": "Enter @ to search movies, Enter # to search quotes",
   "news_feed": "News Feed",
   "list_of_movies": "List of movies",
   "edit_your_profile": "Edit your profile",
@@ -10,5 +11,11 @@
   "access_this_page": "access this page",
   "return_home": "Return home",
   "save_changes": "Save Changes",
-  "delete": "Delete"
+  "delete": "Delete",
+  "commented_to_your_movie_quote": "Commented to your quote",
+  "reacted_to_your_quote": "Reacted to your quote",
+  "new": "New",
+  "min_ago": "min ago",
+  "notifications": "Notifications",
+  "mark_all_as_read": "Mark as all read"
 }

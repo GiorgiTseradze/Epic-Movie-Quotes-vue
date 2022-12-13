@@ -9,17 +9,8 @@ export const useCrudStore = defineStore("crud", () => {
   const getMovies = async () => {
     try {
       const response = await axiosInstance.get("/movies/show");
-        response.data.forEach((movie) => {
-          movies.value.push({
-            id: movie.id,
-            name: movie.name,
-            genre: movie.genre,
-            director: movie.director,
-            description: movie.description,
-            image: movie.image,
-          });
-        });
-        console.log(response)
+          movies.value = response.data;
+          console.log(response)
     } catch(error) {
       console.log(error);
     }
@@ -28,10 +19,8 @@ export const useCrudStore = defineStore("crud", () => {
   const getQuotes = async () => {
     try {
       const response = await axiosInstance.get("/quotes/show");
-        response.data.forEach((quote) => {
           quotes.value = response.data;
-        });
-        console.log(response)
+          console.log(response)
     } catch(error) {
       console.log(error);
     }

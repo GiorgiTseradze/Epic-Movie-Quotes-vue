@@ -1,11 +1,11 @@
 <template>
     <div @click="$router.push({name: 'movieList'})" class="flex justify-center fixed w-screen h-screen backdrop-blur-sm z-40"></div>        
     <div class="flex flex-col items-center w-screen h-screen fixed overflow-scroll lg:overflow-hidden lg:w-[50rem] lg:h-[50rem] lg:mt-20 bg-black z-50">
-        <div class="flex justify-center items-center h-20 w-full border-b-[0.06rem] border-[#40414A]">
-            <div class="flex w-28">
+        <div class="flex justify-center items-center h-20 lg:h-16 w-full border-b-[0.06rem] border-[#40414A]">
+            <div class="flex w-28 h-14 items-center">
                 <p class="text-white">Add Movie</p>
             </div>
-            <div class="flex absolute w-full justify-end">
+            <div class="flex absolute w-[22rem] lg:w-[45rem] justify-end">
                 <router-link :to="{name: 'movieList'}">
                     <img class="mr-10" src="@/assets/x-grey.svg" />
                 </router-link>
@@ -15,10 +15,10 @@
         <div class="flex items-center justify-center mt-8 w-full">
             <div class="flex items-center w-[20rem] lg:w-[40rem]">
                 <div class="w-10">
-                    <img src="@/assets/movie-female.svg" />
+                    <img class="rounded-full w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                 </div>
                 <div class="ml-4">
-                    <p class="text-white text-lg">Nino Tabagari</p>
+                    <p class="text-white text-lg">{{userStore.user?.name}}</p>
                 </div>
             </div>
         </div>
@@ -26,22 +26,22 @@
         <div class="flex justify-center w-full mt-8">
             <Form @submit="handleSubmit" v-slot="{ field, meta }" class="flex flex-col w-[20rem] lg:w-[40rem]">
                 <div class="flex items-center w-full">
-                    <Field v-slot="{ field, meta }" name="name_en"  rules="required" >
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit lg:w-[36rem]"
+                    <Field v-slot="{ field, meta }" name="name_en" rules="required|en" >
+                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="Movie name" v-bind="field" />
-                        <p class="text-[#6C757D] absolute ml-[17rem]">Eng</p>
+                        <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                     </Field>
                 </div>
 
                 <div class="flex items-center h-10 mt-4">
-                    <Field v-slot="{ field, meta }" name="name_ka" rules="required">
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit lg:w-[36rem]"
+                    <Field v-slot="{ field, meta }" name="name_ka" rules="required|ge">
+                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="ფილმის სახელი" v-bind="field" />
-                        <p class="text-[#6C757D] absolute ml-[17rem]">ქარ</p>
+                        <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                     </Field>
                 </div>
 
@@ -52,47 +52,47 @@
                             <button class="ml-[0.3rem] w-2" @click="removeTag"><img src="@/assets/x-grey.svg" /> </button>
                         </div>
                     </div>
-                        <div class="flex">
-                            <Field v-model="tags" v-slot="{ field, meta }" name="genre" >
+                        <div class="flex flex-col">
+                            <Field v-model="tags" name="genre" >
                                 <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
                             </Field>
                         </div>
                 </div>
                 <div class="flex items-center h-10 mt-4">
-                    <Field v-slot="{ field, meta }" name="director_en" rules="required">
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit lg:w-[36rem]"
+                    <Field v-slot="{ field, meta }" name="director_en" rules="required|en">
+                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="Director" v-bind="field" />
-                        <p class="text-[#6C757D] absolute ml-[17rem]">Eng</p>
+                        <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                     </Field>
                 </div>
                 <div class="flex items-center h-10 mt-4">
-                    <Field v-slot="{ field, meta }" name="director_ka" rules="required">
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit lg:w-[36rem]"
+                    <Field v-slot="{ field, meta }" name="director_ka" rules="required|ge">
+                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="რეჟისორი" v-bind="field" />
-                        <p class="text-[#6C757D] absolute ml-[17rem]">ქარ</p>
+                        <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                     </Field>
                 </div>
                 <div class="flex items-center h-16 mt-4 ">
-                    <Field v-slot="{ field, meta }" name="description_en" rules="required">
+                    <Field v-slot="{ field, meta }" name="description_en" rules="required|en">
                         <input placeholder="Movie description" type="textarea" v-bind="field"
-                        class="text-white h-14 overflow-hidden w-full lg:w-[36rem] border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
+                        class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
-                    <p class="text-[#6C757D] absolute ml-[17rem]">Eng</p>
+                    <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                 </div>
                 <div class="flex items-center h-16 mt-4 ">
-                    <Field v-slot="{ field, meta }" name="description_ka" rules="required">
+                    <Field v-slot="{ field, meta }" name="description_ka" rules="required|ge">
                         <input placeholder="ფილმის აღწერა" type="textarea" v-bind="field"
-                        class="text-white h-14 overflow-hidden w-full lg:w-[36rem] border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
+                        class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
-                    <p class="text-[#6C757D] absolute ml-[17rem]">ქარ</p>
+                    <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
                 </div>
                 <FileInput />
                 <div class="flex w-[20rem] lg:w-[40rem] rounded bg-red-500 h-10 items-center justify-center mt-10">
@@ -114,7 +114,9 @@ import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
 import FileInput from '@/components/form/FileInput.vue';
+import { useUserStore } from "@/stores/userStore.js"
 
+const userStore = useUserStore();
 
 const movieStore = useCrudStore();
 const router = useRouter()
@@ -185,7 +187,10 @@ const handleSubmit = (values) => {
         })
         .catch((error) => {
           console.log(error);
-
+          const errors = error.response.data.errors;
+            for(const key in errors){
+            actions.setFieldError(key,errors[key]);
+            } 
         });
 }
 </script>

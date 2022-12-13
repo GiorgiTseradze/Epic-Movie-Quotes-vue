@@ -22,6 +22,7 @@ import ProfileEmail from '@/components/Profile/ProfileEmail.vue';
 import NewEmail from '@/components/Profile/NewEmail.vue';
 import EmailSuccessfull from '@/components/Profile/EmailSuccessfull.vue';
 import AddMovie from '@/components/Movie/AddMovie.vue';
+import AddMovieQuote from '@/components/Movie/AddMovieQuote.vue';
 import UpdateMovie from '@/components/Movie/UpdateMovie.vue';
 import AddQuote from '@/components/Quote/AddQuote.vue';
 import UpdateQuote from '@/components/Quote/UpdateQuote.vue';
@@ -29,6 +30,7 @@ import CurrentQuote from '@/components/Quote/CurrentQuote.vue';
 import isAuthenticated from "./guards";
 import { useAuthStore } from "@/stores/auth";
 import axios from "@/config/axios/jwt-axios.js";
+import { useUserStore } from "../stores/userStore";
 
 // axios.defaults.withCredentials = true;
 
@@ -179,6 +181,11 @@ const router = createRouter({
           name: 'updateMovie',
           component: UpdateMovie
         },
+        {
+          path: '/add-movie-quote/:movieId',
+          name: 'addMovieQuote',
+          component: AddMovieQuote
+        },
       ]
     },
   ],
@@ -186,13 +193,16 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore();
+  const userStore = useUserStore();
 
   if (authStore.authenticated === null) {
     try {axios
       await axios.get(`${import.meta.env.VITE_API_BASE_URL}/me`);
       authStore.authenticated = true;
+      userStore.getUser();
     } catch (err) {
       authStore.authenticated = false;
+      router.push({name: 'landing'});
     } finally {
       return next();
     }

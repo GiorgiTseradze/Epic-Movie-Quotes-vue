@@ -9,11 +9,11 @@
             <div v-if="fileModel" class="flex text-white items-center">
                 {{ fileModel.name }}
             </div>
-            <div v-else class="flex gap-3 items-center">
+            <div v-else class="flex items-center">
                 <img src="@/assets/photocamera.svg" />
-                <span class="mt-1 text-white lg:hidden">Upload image</span>
-                <span class="mt-1 lg:hidden text-white invisible">Drag and Drop</span>
-                <span class="mt-1 hidden lg:block text-white invisible lg:visible">Drag & drop your image here or</span>
+                <span class="mt-1 ml-2 text-sm w-40 text-white lg:hidden">Upload image</span>
+                <span class="mt-1 lg:hidden text-white invisible absolute w-full">Drag and Drop</span>
+                <span class="mt-1 lg:ml-2 hidden lg:block text-white invisible lg:visible">Drag & drop your image here or</span>
             </div>
 
             <label for="movieImage" class="flex justify-center h-10 w-36 mt-1 bg-[#462676] text-white px-2 py-2">{{$t("feed.choose_file")}}</label

@@ -16,7 +16,7 @@ watchEffect(() => {
     };
      
     window.Echo = new Echo({
-        authEndpoint: `${import.meta.env.VITE_API_BASE_URL}broadcasting/auth`,
+        authEndpoint: `${import.meta.env.VITE_API_BASE_URL}/broadcasting/auth`,
         broadcaster: "pusher",
         key: import.meta.env.VITE_PUSHER_APP_KEY,
         cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,

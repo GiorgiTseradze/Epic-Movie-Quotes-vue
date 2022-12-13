@@ -11,7 +11,7 @@
                         <TheBurger />
                         <div class="flex lg:hidden">
                             <div class="flex">
-                                <img src="@/assets/notification.svg" />
+                                <TheNotification />
                             </div>
                         </div>
 
@@ -21,7 +21,7 @@
                             </div>
                             <div class="flex items-center">
                                 <div>
-                                    <img src="@/assets/notification.svg" />
+                                    <TheNotification />
                                 </div>
                                 <div class="flex flex-col px-7">
                                     <div>
@@ -57,18 +57,18 @@
             <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/4">
                 <div class="flex mt-8 w-[15rem] ml-3">
                     <div>
-                        <img src="@/assets/movie-female.svg" />
+                        <img class="rounded-full w-20 object-cover" :src="userStore.user?.thumbnail" />
                     </div>
-                    <div class="ml-6">
-                        <p class="text-white text-2xl">Nino Tabagari</p>
-                        <p class="text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
+                    <div class="ml-4">
+                        <p class="text-white text-2xl">{{userStore.user?.name}}</p>
+                        <p @click="$router.push({name: 'profile'})" class="text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                     </div>
                 </div>
-                <div class="flex items-center w-[15rem] ml-3 mt-10">
+                <div @click="$router.push({name: 'newsFeed'})" class="cursor-pointer flex items-center w-[15rem] ml-3 mt-10">
                     <HomeIcon />
                     <p class="ml-4 text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
                 </div>
-                <div class="flex items-center w-[15rem] ml-3 mt-10">
+                <div @click="$router.push({name: 'movieList'})" class="cursor-pointer flex items-center w-[15rem] ml-3 mt-10">
                     <CameraIcon />
                     <p class="ml-4 text-white">{{ $t("texts.list_of_movies") }}</p>
                 </div>
@@ -84,13 +84,13 @@
                             <p class="text-white font-medium">My Profile</p>
                         </div>
                         <div class="hidden lg:flex lg:w-[15rem] xl:w-[25rem] 2xl:w-[40rem] justify-center mt-48 mr-20 xl:mr-32">
-                            <img class="w-40" src="@/assets/profpic.svg" />
+                            <img class="rounded-full w-40 object-cover" :src="userStore.user?.thumbnail" />
                         </div>
                     </div>
 
                 <div class="flex flex-col lg:w-[35rem] xl:w-[45rem] 2xl:w-[60rem] bg-[#24222F] lg:bg-[#11101A] h-max py-10 lg:ml-20 xl:ml-10 lg:mt-20">
                     <div class="lg:hidden flex justify-center mt-8">
-                        <img src="@/assets/profpic.svg" />
+                        <img class="rounded-full w-40 object-cover" :src="userStore.user?.thumbnail" />
                     </div>
                     <div class="flex justify-center lg:mt-20">
                         <p class="text-white text-xl mt-2">{{ $t("profile.upload_new_photo")}}</p>
@@ -104,7 +104,8 @@
                                 </div>
                                 <div class="flex w-full">
                                     <div class="border-b-2 pb-10 border-[#40414A]">
-                                        <Field name="name" class="bg-[#CED4DA] lg:w-[15rem] xl:w-[20rem] 2xl:w-[30rem] h-[2.3rem] rounded px-3 mt-2 outline-none placeholder-black" :placeholder="$t('profile.dummy_name')" />
+                                        <Field name="name" class="bg-[#CED4DA] lg:w-[15rem] xl:w-[20rem] 2xl:w-[30rem] h-[2.3rem] rounded px-3 mt-2 outline-none placeholder-black" 
+                                        :placeholder="$t('profile.dummy_name')" />
                                     </div>
                                     <div class="ml-6 py-3">
                                         <button class="text-[#CED4DA]">{{ $t("profile.edit") }}</button>
@@ -196,7 +197,6 @@
                         </Form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -208,13 +208,17 @@
 import { ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axios from "@/config/axios/index.js";
-import i18n from '@/i18n/index.js'
-import { useRouter } from 'vue-router'
+import i18n from '@/i18n/index.js';
+import { useRouter } from 'vue-router';
 import { useAuthStore } from "@/stores/auth";
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import TheBurger from '@/components/General/TheBurger.vue';
+import { useUserStore } from "@/stores/userStore.js";
+import TheNotification from '@/components/General/TheNotification.vue';
 
+
+const userStore = useUserStore();
 const authStore = useAuthStore();
 const router = useRouter();
 

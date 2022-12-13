@@ -4,14 +4,15 @@
             <router-view></router-view>
         </div>
 
-        <div class="flex flex-col items-center w-full h-screen bg-[#181623]">
+        <div class="flex flex-col items-center w-full h-screen pb-10 bg-[#181623]">
             <div class="flex justify-center items-center h-20 w-full bg-[#24222F]">
                 <div class="flex items-center w-[22.3rem] lg:w-full">
                     <div class="flex justify-between items-center h-12 lg:h-[5.3rem] w-full ">
                         <TheBurger />
+                        <MovieSearch />
                         <div class="flex lg:hidden">
                             <div class="flex">
-                                <img src="@/assets/notification.svg" />
+                                <TheNotification />
                             </div>
                         </div>
 
@@ -21,7 +22,7 @@
                             </div>
                             <div class="flex items-center">
                                 <div>
-                                    <img src="@/assets/notification.svg" />
+                                    <TheNotification />
                                 </div>
                                 <div class="flex px-7">
                                     <div>
@@ -67,7 +68,7 @@
                     </div>
                     <div>
                         <p class="text-white">
-                            ({{ $t("movie.total")}} 25)
+                            ({{ $t("movie.total")}} {{movieStore.movies?.length}})
                         </p>
                     </div>
                 </div>
@@ -77,11 +78,11 @@
                 <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/5">
                     <div class="flex mt-8 w-[15rem] ml-3">
                         <div>
-                            <img src="@/assets/movie-female.svg" />
+                            <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
                         </div>
                         <div class="md:ml-4 ml-6">
-                            <p class="text-white lg:text-lg xl:text-2xl">Nino Tabagari</p>
-                            <p class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
+                            <p class="text-white lg:text-lg xl:text-2xl">{{ userStore.user?.name }}</p>
+                            <p @click="$router.push({name: 'profile'})" class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
                         </div>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
@@ -102,15 +103,18 @@
                         <div class="flex items-center justify-between w-full">
                             <div class="flex h-full">
                                 <p class="text-white font-medium text-2xl">{{ $t("movie.my_list_of_movies") }}</p>
-                                <p class="text-white ml-4 font-medium text-2xl">({{ $t("movie.total") }} 25)</p>
+                                <p class="text-white ml-4 font-medium text-2xl">({{ $t("movie.total") }} {{movieStore.movies?.length}})</p>
                             </div>
                             
-                            <div class="flex items-center justify-center h-[5rem]">
-                                    <div class="flex lg:ml-36 xl:ml-60 2xl:ml-80">
-                                        <img src="@/assets/search.svg" />
-                                        <input class="w-16 ml-3 outline-none bg-inherit text-[#CED4DA]" placeholder="Search" />
+                            <div class="flex items-center h-[5rem] w-[15.5rem]">
+                                    <div class="flex ">
+                                        <img src="@/assets/search-grey.svg" />
+                                        <Form>
+                                            <Field v-model="searchValue" class="w-24 ml-3 outline-none bg-inherit text-[#CED4DA] placeholder-white" 
+                                            name="search" :placeholder="$t('texts.search')" />
+                                        </Form>
                                     </div>
-                                    <div class="flex items-center justify-center bg-[#E31221] h-10 w-[7rem] rounded">
+                                    <div class="flex ml-2 items-center justify-center bg-[#E31221] h-10 w-[7rem] rounded">
                                     <router-link :to="{name: 'addMovie'}">
                                         <button class="flex items-center justify-center text-white text-sm"><img class="px-2" src="@/assets/add.svg"/>{{ $t("movie.add_movie") }}</button>
                                     </router-link> 
@@ -121,7 +125,7 @@
                     </div>
                     <div class="flex flex-col lg:grid lg:grid-cols-3 w-full lg:w-full">
                         <TheMovie 
-                        v-for="movie in movieStore.movies"
+                        v-for="movie in movies"
                         :key="movie.id"
                         v-bind:key="movie.name"
                         :name="i18n.global.locale === 'en' ? movie.name.en : movie.name.ka"
@@ -132,14 +136,15 @@
                 </div>
 
             </div>
-
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { Field, Form } from 'vee-validate';
 import TheMovie from '@/components/Movie/TheMovie.vue';
+import TheNotification from '@/components/General/TheNotification.vue';
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import i18n from '@/i18n/index.js'
@@ -148,10 +153,14 @@ import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useRouter } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
 import TheBurger from '@/components/General/TheBurger.vue';
+import { useUserStore } from "@/stores/userStore.js"
+import MovieSearch from '@/components/Search/MovieSearch.vue';
 
+const userStore = useUserStore();
 const movieStore = useCrudStore();
 const authStore = useAuthStore();
 const router = useRouter();
+const searchValue = ref('');
 
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
@@ -182,4 +191,16 @@ const changeLangKa = () => {
     i18n.global.locale = 'ka'
     lang.value = !lang.value
 }
+
+const movies = computed(() => {
+    return movieStore.movies.filter((item) => {
+        if(item.name.en.includes(searchValue.value) || item.name.ka.includes(searchValue.value)) {
+            console.log(item.name.en)
+            return item; 
+        } else if (searchValue.value === "") {
+            return item;
+        }
+    })    
+})
+
 </script>
