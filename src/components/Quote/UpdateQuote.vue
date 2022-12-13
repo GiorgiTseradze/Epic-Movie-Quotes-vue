@@ -31,7 +31,7 @@
                         class="text-white w-[20rem] lg:w-[40rem] h-14 overflow-hidden 
                         resize-none px-3 py-3 border-[0.06rem] border-[#6C757D] placeholder-[#6C757D] outline-none bg-inherit" 
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']" />
+                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']" />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-white absolute">Eng</p>
                 </div>
@@ -41,7 +41,7 @@
                         class="text-white w-[20rem] lg:w-[40rem] h-14 overflow-hidden 
                         resize-none px-3 py-3 border-[0.06rem] border-[#6C757D] placeholder-[#6C757D] outline-none bg-inherit" 
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']" />
+                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']" />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-white absolute">ქარ</p>
                 </div>
@@ -65,11 +65,10 @@
                                 <input type="file" class="placeholder-white text-white hidden cursor-pointer" @input="setValue" id="movieImage" placeholder="Choose file" />
                             </div>
                         </div>
-
                     </div>
                 </Field> 
             </div>
-                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-[#E31221] h-10 items-center justify-center mt-10">
+                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-[#E31221] hover:bg-[#CC0E10] active:bg-[#B80D0F] h-10 items-center justify-center mt-10">
                     <button type="submit" class="text-white">{{ $t("texts.save_changes") }}</button>
                 </div>
             </Form>
@@ -84,9 +83,10 @@ import axiosInstance from "@/config/axios/index.js";
 import { useRouter, useRoute } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
 
-const fileModel = ref(null);
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 const quoteStore = useCrudStore();
+
+const fileModel = ref(null);
 
 function setValue(e) {
     fileModel.value = e.target.files[0];
@@ -104,21 +104,6 @@ const quoteEn = ref('');
 const quoteKa = ref('');
 const quoteImg = ref('');
 console.log(quoteImg.value)
-
-//drag&&drop
-function onDragEnter(e) {
-  e.preventDefault();
-  dragCount.value++;
-  isDragging.value = true;
-}
-
-function onDragLeave(e) {
-  e.preventDefault();
-  dragCount.value--;
-  if (dragCount.value <= 0) {
-    isDragging.value = false;
-  }
-}
 
 onMounted(()=>{
     axiosInstance.get('quotes/'+quoteId).then((response)=>{

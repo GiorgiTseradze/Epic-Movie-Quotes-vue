@@ -50,7 +50,7 @@
             <div class="flex justify-center w-full pb-10">
                 <Form @submit="handleSubmit" class="flex flex-col w-[20rem] lg:w-[40rem]">
                     <div class="flex items-center h-16 lg:h-20 mt-4">
-                        <Field v-slot="{ field, meta }" rules="required" name="quote_en" >
+                        <Field v-slot="{ field, meta }" rules="required|en" name="quote_en" >
                             <input type="textarea" v-bind="field" placeholder="Write new quote" 
                                 class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
                                 :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
@@ -60,7 +60,7 @@
                         <p class="ml-[17rem] lg:ml-[36rem] text-white absolute">Eng</p>
                     </div>
                     <div class="flex items-center h-16 lg:h-20 mt-4">
-                        <Field v-slot="{ field, meta }" rules="required" name="quote_ka" >
+                        <Field v-slot="{ field, meta }" rules="required|ge" name="quote_ka" >
                             <input type="textarea" v-bind="field" placeholder="ახალი ციტატა" 
                                 class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
                                 :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 

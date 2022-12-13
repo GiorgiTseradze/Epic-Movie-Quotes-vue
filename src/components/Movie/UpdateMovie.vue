@@ -30,7 +30,7 @@
                         <input v-bind="field" placeholder="Movie name" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 py-1 rounded placeholder-white outline-none bg-inherit w-full"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">Eng</p>
@@ -41,13 +41,14 @@
                         <input v-bind="field" placeholder="ფილმის სახელი" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">ქარ</p>
                 </div>
 
-                <div class="flex flex-wrap items-center h-max py-3 border-[0.06rem] mt-4 border-[#6C757D] rounded">
+                <div class="flex flex-wrap items-center h-max py-3 border-[0.06rem] mt-4 border-[#6C757D] rounded"
+                :class="genres[0] ? 'border-green-500 active:border-green-500' : ''">
                     <div class="flex text-white" v-for="(tag, index) in genres" :key="'tag'+index">
                         <div class="flex w-max px-2 bg-gray-500 rounded ml-2">
                             <p>{{ tag }}</p>
@@ -55,8 +56,8 @@
                         </div>
                     </div>
                         <div class="flex">
-                            <Field v-model="genres" name="genre" >
-                            <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
+                            <Field v-model="genres" name="genre" rules="genre">
+                                <input v-model="tagValue" @keydown.enter="addTag" class="flex text-white placeholder-white outline-none bg-inherit w-20 h-5 ml-3" placeholder="genre..."/>
                             </Field>
                         </div>
                 </div>
@@ -65,7 +66,7 @@
                         <input v-bind="field" placeholder="Director" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">Eng</p>
@@ -75,7 +76,7 @@
                         <input v-bind="field" placeholder="Director" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">ქარ</p>
@@ -85,7 +86,7 @@
                         <input v-bind="field" placeholder="Description" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">Eng</p>
@@ -95,14 +96,16 @@
                         <input v-bind="field" placeholder="აღწერა" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
                         :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#198754]' : '']"
+                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">ქარ</p>
                 </div>
-                <FileInput />
-
-                <div class="flex w-full rounded bg-[#E31221] h-10 items-center justify-center mt-10">
+                <FileInput class="relative" />
+                <div class="flex flex-col pb-5">
+                    <ErrorMessage name="genre" class="absolute py-2 mt-4 text-sm text-[#F15524]" />
+                </div>
+                <div class="flex w-full rounded bg-[#E31221] hover:bg-[#CC0E10] active:bg-[#B80D0F] h-10 items-center justify-center mt-10">
                     <button type="submit" class="text-white">{{ $t("texts.save_changes") }}</button>
                 </div>
             </Form>
@@ -123,7 +126,7 @@ const movieId = useRoute().params.movieId;
 const movie = ref();
 const nameEn = ref('');
 const nameKa = ref('');
-const genres = ref();
+const genres = ref([]);
 const dir = ref('');
 const dirKa = ref('');
 const desc = ref('');
