@@ -5,6 +5,8 @@ import axiosInstance from "@/config/axios/index.js";
 export const useCrudStore = defineStore("crud", () => {
   const movies = ref([]);
   const quotes = ref([]);
+  const savedQuotes = ref([]);
+  const page = ref(1);
   
   const getMovies = async () => {
     try {
@@ -16,10 +18,23 @@ export const useCrudStore = defineStore("crud", () => {
     }
   }
 
+  const quotesRefresh = async () => {
+    try {
+      const response = await axiosInstance.post("/refresh",{
+        number:quotes.value.length
+      });
+          quotes.value = response.data;
+          console.log(response)
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   const getQuotes = async () => {
     try {
-      const response = await axiosInstance.get("/quotes/show");
-          quotes.value = response.data;
+      const response = await axiosInstance.get("/quotes/show?page="+page.value++);
+          quotes.value.push(...response.data.data);
+          savedQuotes.value.push(...response.data.data);
           console.log(response)
     } catch(error) {
       console.log(error);
@@ -32,5 +47,5 @@ export const useCrudStore = defineStore("crud", () => {
   });
 
 
-  return { movies, quotes, getMovies, getQuotes };
+  return { movies, quotes, getMovies, getQuotes,savedQuotes,quotesRefresh };
 });
