@@ -168,8 +168,8 @@ const handleLogout = () => {
     axiosInstance
         .post("logout")
         .then(() => {
-            setTimeout(()=> {authStore.authenticated = false}, 200) 
-            router.push({name: "landing"})
+            authStore.authenticated = false
+            setTimeout(()=> {router.push({name: "landing"})}, 200) 
         })
         .catch((error) => {
           console.log(error)    

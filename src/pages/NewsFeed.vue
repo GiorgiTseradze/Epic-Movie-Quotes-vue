@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="flex w-[90%] lg:w-full h-full lg:bg-[#181624]" :class="!quoteStore.quotes[1] ? 'h-screen' : 'h-full'">
+            <div class="flex w-[90%] lg:w-full h-full lg:bg-[#181624] min-h-[70rem]" :class="!quoteStore.quotes[1] ? 'h-screen' : 'h-full'">
                 <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/4">
                     <div class="flex mt-8 w-[15rem] ml-3">
                         <div>
@@ -147,8 +147,8 @@ const handleLogout = () => {
     axiosInstance
         .post("logout")
         .then(() => {
-            setTimeout(()=> {authStore.authenticated = false}, 200) 
-            router.push({name: "landing"})
+            authStore.authenticated = false
+            setTimeout(()=> {router.push({name: "landing"})}, 200) 
         })
         .catch((error) => {
           console.log(error)    
