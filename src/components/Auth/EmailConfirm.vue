@@ -24,9 +24,11 @@ import { onMounted, onBeforeMount, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import router from "@/router";
 import axiosInstance from "@/config/axios/index.js";
+import { useAuthStore } from "@/stores/auth";
 
 const token = ref();
 const email = ref('');
+const authStore = useAuthStore();
 
 onBeforeMount(()=>{
     if(useRoute().query.verify_user_token){
@@ -39,6 +41,7 @@ onBeforeMount(()=>{
 });
 
 onMounted(() => {
+    authStore.authenticated = true
     axiosInstance
         .post("verify-user", {
             email: email.value,
