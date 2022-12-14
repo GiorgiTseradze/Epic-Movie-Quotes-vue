@@ -25,8 +25,8 @@
                         <Field name="name" rules="required|min:3|max:15|lowalphanumeric" v-slot="{ field, meta }"
                          :placeholder="$t('auth.enter_your_name')">
                             <input class="bg-[#CED4DA] relative w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field"
-                            :class="[!meta.valid && meta.touched ? 'border-red-400 border-2' 
-                            : '', meta.valid && meta.touched ? 'border-green-300 border-2' : '']" />
+                            :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
+                            : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
                         </Field>
                         <ErrorMessage class="absolute mt-[3rem] text-sm text-[#F15524]" name="name" />
@@ -41,8 +41,8 @@
                         <Field name="email" rules="required|email"
                         :placeholder="$t('auth.enter_your_email')" v-slot="{ field, meta }" >
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" 
-                            :class="[!meta.valid && meta.touched ? 'border-red-400 border-2' 
-                            : '', meta.valid && meta.touched ? 'border-green-300 border-2' : '']" />
+                            :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
+                            : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
                         </Field>
                         <ErrorMessage class="absolute mt-[3rem] text-sm text-[#F15524]" name="email" />
@@ -56,8 +56,8 @@
                         <Field name="password" rules="required|min:8|max:15|lowalphanumeric" v-slot="{ field, meta }"
                          :placeholder="$t('auth.password')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPassword ? 'text' : 'password'"
-                                :class="[!meta.valid && meta.touched ? 'border-red-400 border-2' 
-                                : '', meta.valid && meta.touched ? 'border-green-300 border-2' : '']" />
+                                :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
+                                : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
                         </Field>
                         <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/eye.svg" />
@@ -74,8 +74,8 @@
                         <Field name="password_confirmation" rules="required|min:8|max:15|lowalphanumeric" v-slot="{ field, meta }"
                         :placeholder="$t('auth.password_confirm')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPasswordConfirm ? 'text' : 'password'"
-                                :class="[!meta.valid && meta.touched ? 'border-red-400 border-2' 
-                                : '', meta.valid && meta.touched ? 'border-green-300 border-2' : '']" />
+                                :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
+                                : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
                         </Field>
                         <img v-if="showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/eye.svg" />

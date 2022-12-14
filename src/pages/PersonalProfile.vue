@@ -54,7 +54,7 @@
         <div class="flex lg:w-full lg:bg-[#181624]">
             <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/4">
                 <div class="flex mt-8 w-[16rem] ml-3">
-                    <div :class="routeName == 'profile' ? 'border-2 border-red-400 w-[4.2rem] h-[4.2rem] rounded-full' : ''">
+                    <div :class="routeName == 'profile' ? 'border-2 border-red-300 w-[4.2rem] h-[4.2rem] rounded-full' : ''">
                         <img class="rounded-full w-16 h-16 object-cover" :src="userStore.user?.thumbnail" />
                     </div>
                     <div class="ml-4">
@@ -82,7 +82,7 @@
                             <p class="text-white font-medium">My Profile</p>
                         </div>
                         <div class="hidden lg:flex lg:w-[15rem] xl:w-[25rem] 2xl:w-[40rem] justify-center mt-48 mr-20 xl:mr-32">
-                            <div class="w-[10.2rem] h-[10.2rem] border-2 border-red-400 rounded-full">
+                            <div class="w-[10.2rem] h-[10.2rem] border-2 border-red-300 rounded-full">
                                 <img class="rounded-full w-40 h-40 object-cover" id="output" :src="userImage" />
                             </div>
                             <div v-if="profileStore.success">
@@ -260,7 +260,7 @@
         <div v-if="profileStore?.emailSuccess">
             <EmailSuccess />
         </div>
-        <div :class="routeName == 'profile' ? 'border-2 border-red-400 w-28 h-28 rounded-full mt-5' : ''">
+        <div :class="routeName == 'profile' ? 'border-2 border-red-300 w-28 h-28 rounded-full mt-5' : ''">
             <img class="object-cover w-[6.8rem] h-[6.8rem] rounded-full" id="output-2" :src="userImage" />
         </div>
         <div class="flex justify-center lg:mt-8 w-full">
