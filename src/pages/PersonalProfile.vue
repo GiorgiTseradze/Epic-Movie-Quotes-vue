@@ -327,11 +327,11 @@ import { useAuthStore } from "@/stores/auth";
 import HomeIcon from '@/components/Icons/HomeIcon.vue';
 import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import TheBurger from '@/components/General/TheBurger.vue';
-import { useUserStore } from "@/stores/userStore.js";
 import TheNotification from '@/components/General/TheNotification.vue';
 import { useProfileStore } from "@/stores/profile";
 import UpdatedSuccess from '@/components/Profile/ChangeSuccessfull.vue'
 import EmailSuccess from '@/components/Profile/EmailSuccessfull.vue'
+import { useUserStore } from "@/stores/userStore.js";
 
 
 const profileStore = useProfileStore();
@@ -381,7 +381,6 @@ const handleDelete = (e) => {
     axiosInstance
         .post('delete-email/'+e.target.value)
         .then((response) => {
-          alert("Email deleted Successfully!");
           userStore.getUser();
           console.log(response);
         })
@@ -402,9 +401,8 @@ const handleEditPassword = () => {
     passwordEditOn.value = true;
 }
 const handleLogout = () => {
+    setTimeout(()=> {authStore.authenticated = false}, 200) 
     router.push({name: "landing"})
-    authStore.authenticated = false;
-    console.log(authStore.authenticated)
 }
 
 const handleLang = () => {
@@ -429,7 +427,6 @@ const handlePrimary = (e) => {
             email: e.target.value
         })
         .then((response) => {
-          alert("Email changed successfully!");
           userStore.getUser();
           console.log(response);
         })
@@ -465,7 +462,6 @@ const handleSubmit = (values, actions) => {
             },
         })
         .then((response) => {
-          alert("Profile changed successfully!");
           profileStore.success = true;
           userStore.getUser();
           removeEdit()

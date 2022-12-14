@@ -27,9 +27,9 @@
             <Form @submit="handleSubmit" v-slot="{ field, meta }" class="flex flex-col w-[20rem] lg:w-[40rem]">
                 <div class="flex items-center w-full">
                     <Field v-slot="{ field, meta }" name="name_en" rules="required|en" >
-                        <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
-                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                        <input :class="[!meta.valid && meta.touched ? 'border-red-600' 
+                        : '', meta.valid && meta.touched ? 'border-green-600' : '']"
+                        class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         placeholder="Movie name" v-bind="field" />
                         <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
                     </Field>
@@ -38,7 +38,7 @@
                 <div class="flex items-center h-10 mt-4">
                     <Field v-slot="{ field, meta }" name="name_ka" rules="required|ge">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
-                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="ფილმის სახელი" v-bind="field" />
                         <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
@@ -62,7 +62,7 @@
                 <div class="flex items-center h-10 mt-4">
                     <Field v-slot="{ field, meta }" name="director_en" rules="required|en">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
-                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="Director" v-bind="field" />
                         <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
@@ -71,7 +71,7 @@
                 <div class="flex items-center h-10 mt-4">
                     <Field v-slot="{ field, meta }" name="director_ka" rules="required|ge">
                         <input class="h-10 border-[0.06rem] border-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
-                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                         placeholder="რეჟისორი" v-bind="field" />
                         <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
@@ -81,7 +81,7 @@
                     <Field v-slot="{ field, meta }" name="description_en" rules="required|en">
                         <input placeholder="Movie description" type="textarea" v-bind="field"
                         class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
-                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
                     <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">Eng</p>
@@ -90,7 +90,7 @@
                     <Field v-slot="{ field, meta }" name="description_ka" rules="required|ge">
                         <input placeholder="ფილმის აღწერა" type="textarea" v-bind="field"
                         class="text-white h-14 overflow-hidden w-full border-[0.06rem] border-[#6C757D] rounded resize-none px-3 py-3 placeholder-white outline-none bg-inherit"
-                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
                         : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
                     <p class="text-[#6C757D] absolute ml-[17rem] lg:ml-[36rem]">ქარ</p>
@@ -99,7 +99,7 @@
                 <div class="flex flex-col pb-5">
                     <ErrorMessage name="genre" class="absolute py-2 mt-4 text-sm text-[#F15524]" />
                 </div>
-                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-[#E31221] hover:bg-[#CC0E10] active:bg-[#B80D0F] items-center justify-center mt-10">
+                <div class="flex w-[20rem] lg:w-[40rem] rounded bg-red-600 hover:bg-[#CC0E10] active:bg-[#B80D0F] items-center justify-center mt-10">
                     <button type="submit" class="outline-none text-white px-20 py-2 lg:px-60">
                         <p class="">{{ $t("movie.add_movie") }}</p>
                     </button>
@@ -118,10 +118,11 @@ import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
 import FileInput from '@/components/form/FileInput.vue';
-import { useUserStore } from "@/stores/userStore.js"
+import { useUserStore } from "@/stores/userStore"
+import { useGeneralStore } from "@/stores/general"
 
+const generalStore = useGeneralStore();
 const userStore = useUserStore();
-
 const movieStore = useCrudStore();
 const router = useRouter()
 
@@ -161,9 +162,9 @@ const handleSubmit = (values, actions) => {
             },
         })
         .then((response) => {
-          alert("Movie added Successfully!");
           movieStore.getMovies();
           router.push({ name: 'movieList'});
+          setTimeout(()=>generalStore.fileModel = null, 200)
           console.log(response);
         })
         .catch((error) => {

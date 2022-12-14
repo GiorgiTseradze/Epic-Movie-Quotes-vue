@@ -34,6 +34,7 @@ import axiosInstance from "@/config/axios/index.js";
 import { useCrudStore } from "@/stores/crud";
 
 const quoteStore = useCrudStore();
+const movieStore = useCrudStore();
 const open = ref(false)
 
 const id = props.id
@@ -46,9 +47,10 @@ const handleDelete = () => {
     axiosInstance
         .post('delete-quote/'+id)
         .then((response) => {
-          alert("Quote deleted Successfully!");
+          movieStore.getMovies();
+          quoteStore.quotesRefresh();
           quoteStore.getQuotes();
-          router.push({name:'currentMovie',params:{movieId:movieId}});
+          router.push({name: 'newsFeed'});
           console.log(response);
         })
         .catch((error) => {

@@ -30,8 +30,8 @@
                         <input type="textarea" v-bind="field"
                         class="text-white w-[20rem] lg:w-[40rem] h-14 overflow-hidden 
                         resize-none px-3 py-3 border-[0.06rem] border-[#6C757D] placeholder-[#6C757D] outline-none bg-inherit" 
-                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']" />
+                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
+                        : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-white absolute">Eng</p>
                 </div>
@@ -40,8 +40,8 @@
                         <input type="textarea" v-bind="field"
                         class="text-white w-[20rem] lg:w-[40rem] h-14 overflow-hidden 
                         resize-none px-3 py-3 border-[0.06rem] border-[#6C757D] placeholder-[#6C757D] outline-none bg-inherit" 
-                        :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
-                        : '', meta.valid && meta.touched ? 'border-[#179315ed]' : '']" />
+                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
+                        : '', meta.valid && meta.touched ? 'border-green-500' : '']" />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-white absolute">ქარ</p>
                 </div>
@@ -103,7 +103,6 @@ const quoteId = useRoute().params.quoteId;
 const quoteEn = ref('');
 const quoteKa = ref('');
 const quoteImg = ref('');
-console.log(quoteImg.value)
 
 onMounted(()=>{
     axiosInstance.get('quotes/'+quoteId).then((response)=>{
@@ -129,7 +128,7 @@ const handleSubmit = (values) => {
             },
         })
         .then((response) => {
-          alert("Quote updated Successfully!");
+          quoteStore.quotesRefresh();
           quoteStore.getQuotes();
           router.push({ name: 'newsFeed'});
           console.log(response);

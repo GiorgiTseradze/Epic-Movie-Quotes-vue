@@ -53,7 +53,7 @@
                         <Field v-slot="{ field, meta }" rules="required|en" name="quote_en" >
                             <input type="textarea" v-bind="field" placeholder="Write new quote" 
                                 class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
-                                :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                                :class="[!meta.valid && meta.touched ? 'border-red-400' 
                                 : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                             />
                         </Field>
@@ -63,7 +63,7 @@
                         <Field v-slot="{ field, meta }" rules="required|ge" name="quote_ka" >
                             <input type="textarea" v-bind="field" placeholder="ახალი ციტატა" 
                                 class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
-                                :class="[!meta.valid && meta.touched ? 'border-[#E31221]' 
+                                :class="[!meta.valid && meta.touched ? 'border-red-600' 
                                 : '', meta.valid && meta.touched ? 'border-green-500' : '']"
                             />
                         </Field>
@@ -90,7 +90,9 @@ import i18n from '@/i18n/index.js'
 import FileInput from '../form/FileInput.vue';
 import { useCrudStore } from "@/stores/crud";
 import { useUserStore } from "@/stores/userStore.js"
+import { useGeneralStore } from "@/stores/general"
 
+const generalStore = useGeneralStore();
 const movie = ref();
 const quotes = ref();
 const genres = ref();
@@ -129,9 +131,11 @@ const handleSubmit = (values) => {
             },
         })
         .then((response) => {
-          alert("Quote added Successfully!");
-          quoteStore.getQuotes();
+            quoteStore.getQuotes(true);
+
           router.push({ name: 'newsFeed'});
+
+          setTimeout(()=>generalStore.fileModel = null, 200)
           console.log(response);
         })
         .catch((error) => {

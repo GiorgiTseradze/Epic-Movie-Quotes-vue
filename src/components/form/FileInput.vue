@@ -17,7 +17,7 @@
                 <span class="mt-1 lg:ml-2 hidden lg:block text-white invisible lg:visible">Drag & drop your image here or</span>
             </div>
 
-            <label for="movieImage" class="flex justify-center h-10 w-36 mt-1 bg-[#462676] text-white px-2 py-2">{{$t("feed.choose_file")}}</label
+            <label for="movieImage" class="flex justify-center h-10 w-36 mt-1 bg-[#462676] cursor-pointer text-white px-2 py-2">{{$t("feed.choose_file")}}</label
             >
             </div>
 
