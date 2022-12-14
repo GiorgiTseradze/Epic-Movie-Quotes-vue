@@ -293,7 +293,7 @@ const handleLogout = () => {
     axiosInstance
         .post("logout")
         .then(() => {
-            authStore.authenticated = false;
+            setTimeout(()=> {authStore.authenticated = false}, 200) 
             router.push({name: "landing"})
         })
         .catch((error) => {
@@ -323,7 +323,6 @@ const handleDelete = (values) => {
     axiosInstance
         .post('delete-movie/'+movieId)
         .then((response) => {
-          alert("Movie deleted Successfully!");
           movieStore.getMovies();
           router.push({ name: 'movieList'});
           console.log(response);
