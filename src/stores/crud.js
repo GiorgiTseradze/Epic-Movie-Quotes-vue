@@ -30,7 +30,11 @@ export const useCrudStore = defineStore("crud", () => {
     }
   }
 
-  const getQuotes = async () => {
+  const getQuotes = async (isRefresh=false) => {
+    if(isRefresh){
+      quotes.value = [];
+      page.value = 1;
+    }
     try {
       const response = await axiosInstance.get("/quotes/show?page="+page.value++);
           quotes.value.push(...response.data.data);
@@ -41,11 +45,20 @@ export const useCrudStore = defineStore("crud", () => {
     }
   }
 
+  const getMovie=(movieId)=>{
+    axiosInstance.get('movies/'+movieId).then((response)=>{
+      console.log(response);
+      movie.value = response.data;
+      genres.value = JSON.parse(response.data.genre);
+      quotes.value = response.data.quotes;
+  })
+  }
+
   onMounted(() => {
     getQuotes();
     getMovies();
   });
 
 
-  return { movies, quotes, getMovies, getQuotes,savedQuotes,quotesRefresh };
+  return { movies, quotes, getMovies, getQuotes,savedQuotes,quotesRefresh ,getMovie};
 });

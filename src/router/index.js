@@ -217,7 +217,6 @@ router.beforeEach(async (to, from, next) => {
       userStore.getUser();
     } catch (err) {
       authStore.authenticated = false;
-      router.push({name: 'landing'});
     } finally {
       return next();
     }
