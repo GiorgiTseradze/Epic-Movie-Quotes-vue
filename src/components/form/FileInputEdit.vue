@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded"
     :class="generalStore.fileModel ? 'border-green-500' : ''">
-    <Field name="image" v-slot="{ meta, value }" v-model="generalStore.fileModel" rules="image">
+    <Field name="image" v-slot="{ meta, value }" v-model="generalStore.fileModel">
         <div
             @dragover.prevent 
             @drop.prevent="onDrop"

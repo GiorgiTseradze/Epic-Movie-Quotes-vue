@@ -1,6 +1,6 @@
 {
   "search": "Search",
-  "feed_search": "Enter @ to search movies, Enter # to search quotes",
+  "feed_search": "Enter {'@'} to search movies, Enter # to search quotes",
   "news_feed": "News Feed",
   "list_of_movies": "List of movies",
   "edit_your_profile": "Edit your profile",
@@ -17,5 +17,23 @@
   "new": "New",
   "min_ago": "min ago",
   "notifications": "Notifications",
-  "mark_all_as_read": "Mark as all read"
+  "mark_all_as_read": "Mark as all read",
+  "close": "Close",
+  "seconds": "seconds",
+  "minute": "minute",
+  "1_minute_ago": "1 minute ago",
+  "minutes": "minutes",
+  "1_hour_ago": "1 hour ago",
+  "hours": "hours",
+  "yesterday": "Yesterday",
+  "days": "Days",
+  "last_week": "Last week",
+  "weeks": "weeks",
+  "last_month": "Last month",
+  "months": "months",
+  "last_year": "Last year",
+  "years": "years",
+  "last_century": "Last century",
+  "centuries": "centuries",
+  "wrong_email_or_password": "Wrong email or password"
 }

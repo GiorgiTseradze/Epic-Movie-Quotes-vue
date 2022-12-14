@@ -5,6 +5,8 @@ import axiosInstance from "@/config/axios/index.js";
 export const useCrudStore = defineStore("crud", () => {
   const movies = ref([]);
   const quotes = ref([]);
+  const savedQuotes = ref([]);
+  const page = ref(1);
   
   const getMovies = async () => {
     try {
@@ -16,14 +18,40 @@ export const useCrudStore = defineStore("crud", () => {
     }
   }
 
-  const getQuotes = async () => {
+  const quotesRefresh = async () => {
     try {
-      const response = await axiosInstance.get("/quotes/show");
+      const response = await axiosInstance.post("/refresh",{
+        number:quotes.value.length
+      });
           quotes.value = response.data;
           console.log(response)
     } catch(error) {
       console.log(error);
     }
+  }
+
+  const getQuotes = async (isRefresh=false) => {
+    if(isRefresh){
+      quotes.value = [];
+      page.value = 1;
+    }
+    try {
+      const response = await axiosInstance.get("/quotes/show?page="+page.value++);
+          quotes.value.push(...response.data.data);
+          savedQuotes.value.push(...response.data.data);
+          console.log(response)
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  const getMovie=(movieId)=>{
+    axiosInstance.get('movies/'+movieId).then((response)=>{
+      console.log(response);
+      movie.value = response.data;
+      genres.value = JSON.parse(response.data.genre);
+      quotes.value = response.data.quotes;
+  })
   }
 
   onMounted(() => {
@@ -32,5 +60,5 @@ export const useCrudStore = defineStore("crud", () => {
   });
 
 
-  return { movies, quotes, getMovies, getQuotes };
+  return { movies, quotes, getMovies, getQuotes,savedQuotes,quotesRefresh ,getMovie};
 });

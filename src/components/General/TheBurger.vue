@@ -1,19 +1,19 @@
 <template>
     <div v-if="burger" @click="handleBurger" class="lg:hidden flex justify-center fixed w-screen h-[100rem] backdrop-blur-sm z-40"></div>        
     <div class="z-41">
-        <div @click="handleBurger" class="flex lg:hidden z-41">
+        <div @click="handleBurger" class="cursor-pointer flex lg:hidden z-41">
             <img src="@/assets/list.svg" />
         </div>
         
         <div v-if="burger" class="absolute md:mx-auto lg:hidden w-2/3 left-0 top-0 bg-[#11101A] h-[35rem] z-50">
             <div class="flex flex-col sm:items-center h-full w-full">
                 <div class="flex mt-8 w-[12rem] sm:w-[16rem] ml-6">
-                    <div class="w-[3rem] md:w-[5rem]">
-                        <img src="@/assets/movie-female.svg" />
+                    <div class="w-[3.5rem] md:w-[4rem] rounded-full">
+                        <img class="w-[3.5rem] rounded-full" :src="userStore?.user?.thumbnail" />
                     </div>
                     <div class="ml-4 md:ml-0">
-                        <p class="text-white md:text-lg">Nino Tabagari</p>
-                        <p class="lg:text-base md:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
+                        <p class="text-white md:text-lg">{{ userStore?.user?.name }}</p>
+                        <p @click="$router.push({name: 'profile'})" class="cursor-pointer lg:text-base md:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile")}}</p>
                     </div>
                 </div>
                 <div class="flex items-center w-[15rem] ml-6 mt-10">
@@ -46,7 +46,9 @@ import CameraIcon from '@/components/Icons/CameraIcon.vue';
 import { useRouter } from 'vue-router'
 import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
+import { useUserStore } from "@/stores/userStore.js";
 
+const userStore = useUserStore();
 const authStore = useAuthStore();
 const router = useRouter();
 const burger = ref(false);
@@ -59,7 +61,7 @@ const handleLogout = () => {
     axiosInstance
         .post("logout")
         .then(() => {
-            authStore.authenticated = false;
+            setTimeout(()=> {authStore.authenticated = false}, 200) 
             router.push({name: "landing"})
         })
         .catch((error) => {

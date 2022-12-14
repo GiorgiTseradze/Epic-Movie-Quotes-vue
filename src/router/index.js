@@ -19,6 +19,8 @@ import MakeChanges from '@/components/Profile/MakeChanges.vue';
 import ChangeSuccessfull from '@/components/Profile/ChangeSuccessfull.vue';
 import ProfileNewPassword from '@/components/Profile/ProfileNewPassword.vue';
 import ProfileEmail from '@/components/Profile/ProfileEmail.vue';
+import NewEmailDesktop from '@/components/Profile/NewEmailDesktop.vue';
+import NewEmailConfirm from '@/components/Profile/NewEmailConfirm.vue';
 import NewEmail from '@/components/Profile/NewEmail.vue';
 import EmailSuccessfull from '@/components/Profile/EmailSuccessfull.vue';
 import AddMovie from '@/components/Movie/AddMovie.vue';
@@ -88,6 +90,7 @@ const router = createRouter({
       path: "/profile",
       name: "profile",
       component: PersonalProfile,
+      beforeEnter: isAuthenticated,
       children: [
         {
           path: '/new-username',
@@ -124,15 +127,25 @@ const router = createRouter({
           name: 'emailSuccessfull',
           component: EmailSuccessfull
         },
+        {
+          path: '/new-email-desktop',
+          name: 'newEmailDesktop',
+          component: NewEmailDesktop
+        },
+        {
+          path: '/new-email-confirm',
+          name: 'newEmailConfirm',
+          component: NewEmailConfirm
+        }
       ]
     },
     {
-      path: "/not-found",
+      path: "/:pathMatch(.*)",
       name: "notFound",
       component: NotFound,
     },
     {
-      path: "/page-forbidden",
+      path: "/forbidden",
       name: "pageForbidden",
       component: PageForbidden,
     },
@@ -163,6 +176,7 @@ const router = createRouter({
       path: "/movie-list",
       name: "movieList",
       component: MovieList,
+      beforeEnter: isAuthenticated,
       children: [
         {
           path: '/add-movie',
@@ -175,6 +189,7 @@ const router = createRouter({
       path: "/current-movie/:movieId",
       name: "currentMovie",
       component: CurrentMovie,
+      beforeEnter: isAuthenticated,
       children: [
         {
           path: '/update-movie/:movieId',
@@ -202,7 +217,6 @@ router.beforeEach(async (to, from, next) => {
       userStore.getUser();
     } catch (err) {
       authStore.authenticated = false;
-      router.push({name: 'landing'});
     } finally {
       return next();
     }

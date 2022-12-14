@@ -11,7 +11,7 @@
                 <div class="flex">
                     <div class="flex flex-col h-10 justify-center mr-4">
                         <div>
-                            <button @click="handleLang" class="flex items-center">
+                            <button @click="handleLang" class="flex items-center cursor-pointer">
                                 <p class="text-white">{{i18n.global.locale === 'en' ? "ENG" : "KA"}}</p>
                                 <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
                             </button>

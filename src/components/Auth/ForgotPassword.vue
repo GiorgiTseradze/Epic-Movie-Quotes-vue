@@ -52,11 +52,9 @@ const handleSubmit = (values) => {
           email: values.email,
         })
         .then(() => {
-          alert("Registration Successful!");
           router.push({ name: "checkEmail" });
         })
         .catch((error) => {
-          alert(error);
           console.log(error);
         });
 }

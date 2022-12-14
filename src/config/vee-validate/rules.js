@@ -6,13 +6,35 @@ defineRule('required', required);
 defineRule('email', email);
 defineRule('min', min);
 
-defineRule('required', value => {
+defineRule('required', (value) => {
     if(i18n.global.locale === 'en' && !value) {
         return 'Field is required';
     }
 
     if(i18n.global.locale === 'ka' && !value) {
         return 'ველის შევსება სავალდებულოა';
+    }
+    return true;
+});
+
+defineRule('genre', (value) => {
+    if(i18n.global.locale === 'en' && !value[0]) {
+        return 'Genre field is required';
+    }
+
+    if(i18n.global.locale === 'ka' && !value[0]) {
+        return 'ჟანრის ველის შევსება სავალდებულოა';
+    }
+    return true;
+});
+
+defineRule('image', (value) => {
+    if(i18n.global.locale === 'en' && !value) {
+        return 'Image field is required';
+    }
+
+    if(i18n.global.locale === 'ka' && !value[0]) {
+        return 'ფოტოს ველის შევსება სავალდებულოა';
     }
     return true;
 });
@@ -31,8 +53,8 @@ defineRule('lowalphanumeric', (value) => {
     }
 })
 
-defineRule('email', value => {
-    const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+defineRule('email', (value) => {
+    const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if(value.match(regexEmail)) {
         return true;
     } 
@@ -70,7 +92,7 @@ defineRule('max', (value, [limit]) => {
 })
 
 defineRule('en', (value) => {
-    const regexAlpha = /^[a-zA-Z0-9?!:,.IXV]+$/
+    const regexAlpha = /^[a-zA-Z0-9\s?!:,.IXV]+$/
     if(value.match(regexAlpha)) {
         return true;
     } else {
@@ -79,7 +101,7 @@ defineRule('en', (value) => {
 })
 
 defineRule('ge', (value) => {
-    const regexAlpha = /^[ა-ჰ0-9?!:,.IXV]+$/
+    const regexAlpha = /^[ა-ჰ0-9\s?!:,.IXV_]+$/
     if(value.match(regexAlpha)) {
         return true;
     } else {

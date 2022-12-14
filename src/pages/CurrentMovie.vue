@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="flex px-7">
                                     <div>
-                                        <button @click="handleLang" class="flex items-center">
+                                        <button @click="handleLang" class="flex items-center cursor-pointer">
                                             <p class="text-white">{{locale === 'en' ? "ENG" : "KA"}}</p>
                                             <img class="w-3 ml-2" src="@/assets/down-arrow.svg" />
                                         </button>
@@ -53,7 +53,7 @@
             <div class="flex flex-col items-center justify-center lg:hidden w-full bg-[#181623]">
                 <div class="flex flex-col w-[20rem] border-b-2 pb-10 border-[#54535A]">
                     <div class="flex flex-col justify-center h-40 mt-10">
-                        <img class="w-[20rem]  h-[18rem] rounded" :src="imgUrl + movie?.image" />
+                        <img class="w-[20rem]  h-[18rem] object-fill rounded" :src="imgUrl + movie?.image" />
                     </div>
                     <div>
                         <p class="flex items-center text-[#DDCCAA] text-2xl font-bold mt-7">
@@ -79,11 +79,11 @@
                     </div>
                     <div>
                         <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] mt-5 text-sm rounded">
-                            <router-link :to="{name: 'addMovieQuote', params:{movieId:movieId}}">
-                                <button class="flex items-center justify-center text-white">
-                                    <img class="mr-2" src="@/assets/add.svg"/>
+                            <router-link :to="{name: 'addMovieQuote', params:{movieId:movieId}}" class="cursor-pointer">
+                                <div class="flex items-center justify-center text-white">
+                                    <img class="mr-2 p-1" src="@/assets/add.svg"/>
                                     {{ $t("feed.add_quote")}}
-                                </button>
+                                </div>
                             </router-link>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="md:ml-4 ml-6">
                             <p class="text-white lg:text-lg xl:text-2xl">{{userStore.user?.name}}</p>
-                            <p @click="$router.push({name: 'profile'})" class="lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
+                            <p @click="$router.push({name: 'profile'})" class="cursor-pointer lg:text-base 2xl:text-lg text-[#CED4DA]">{{ $t("texts.edit_your_profile") }}</p>
                         </div>
                     </div>
                     <div class="flex w-[15rem] ml-3 mt-10">
@@ -158,8 +158,8 @@
                         <div class="flex flex-col items-center justify-between w-full">
                             <div class="flex flex-col lg:w-[40rem] xl:w-[55rem] 2xl:w-[60rem] border-b-2 pb-10 border-[#54535A]">
                                 <div class="flex">
-                                    <div class="flex flex-col lg:w-[20rem] xl:w-[30rem] lg:h-[15rem] xl:h-[20rem] mt-10">
-                                        <img class="w-max h-max rounded" :src="imgUrl + movie?.image" />
+                                    <div class="flex flex-col lg:w-[20rem] xl:w-[30rem] lg:h-[15rem] xl:h-[20rem] mt-10 rounded">
+                                        <img class="w-[100%] h-[70%] rounded object-fill" :src="imgUrl + movie?.image" />
                                     </div>
                                     <div class="flex flex-col lg:w-[20rem] xl:w-[25rem] 2xl:w-[30rem] ml-4">
                                         <div class="flex items-center justify-between">
@@ -212,9 +212,9 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-center bg-[rgb(227,18,33)] h-10 w-[7.9rem] ml-5 text-sm rounded">
-                                        <router-link :to="{name: 'addMovieQuote', params:{movieId:movieId}}">
+                                        <router-link :to="{name: 'addMovieQuote', params:{movieId:movieId}}" class="cursor-pointer">
                                             <button class="flex items-center justify-center text-white">
-                                                <img class="mr-2" src="@/assets/add.svg"/>
+                                                <img class="mr-2 p-1" src="@/assets/add.svg"/>
                                                 {{ $t("feed.add_quote")}}
                                             </button>
                                         </router-link>
@@ -293,7 +293,7 @@ const handleLogout = () => {
     axiosInstance
         .post("logout")
         .then(() => {
-            authStore.authenticated = false;
+            setTimeout(()=> {authStore.authenticated = false}, 200) 
             router.push({name: "landing"})
         })
         .catch((error) => {
@@ -323,7 +323,6 @@ const handleDelete = (values) => {
     axiosInstance
         .post('delete-movie/'+movieId)
         .then((response) => {
-          alert("Movie deleted Successfully!");
           movieStore.getMovies();
           router.push({ name: 'movieList'});
           console.log(response);

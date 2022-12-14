@@ -2,7 +2,8 @@
     <div class="flex justify-center w-full h-screen fixed bg-[#181623]">
         <div class="bg-[#181623] w-4/5 h-3/5 mt-20 rounded">
             <div class="flex justify-center">
-                <img class="mt-16 gendulf" src="@/assets/gendulf.svg" />
+                <img class="absolute" src="@/assets/gandalf.svg" />
+                <img class="mt-16" src="@/assets/union.svg" />
             </div>
             <div class="flex justify-center mt-8">
                 <p class="text-white text-2xl font-medium">You shall not pass!</p>

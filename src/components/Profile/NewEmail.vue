@@ -15,7 +15,6 @@
         </div>
 
         <div class="flex flex-col h-[12rem]">
-
             <div>
                 <Form @submit="handleSubmit" class="flex flex-col items-center mt-[3rem] w-full">
                     <div class="flex flex-col w-[23rem] h-[10rem] py-15 bg-[#24222F] rounded">
@@ -30,15 +29,11 @@
 
         <div class="flex justify-center items-center mt-20">
             <div class=" text-[1.1rem]">
-                <p class="text-gray-300">{{ $t("profile.cancel") }}</p>
+                <p class="text-[#5B5C67] hover:text-[#525356] active:text-[#909092]">{{ $t("profile.cancel") }}</p>
             </div>
-            <div class="flex items-center justify-center ml-[11rem] bg-[#E31221] h-10 w-[5rem] rounded">
+            <div class="flex items-center justify-center ml-[11rem] bg-[#E31221] hover:bg-[#CC0E10] active:bg-[#B80D0F] h-10 w-[5rem] rounded">
                 <button class="flex text-white">{{ $t("profile.add") }}</button>
             </div>
-        </div>
-
-        <div>
-
         </div>
     </div>
 </template>
@@ -56,11 +51,10 @@ const handleSubmit = (values) => {
           password: values.password,
         })
         .then(() => {
-          alert("Login Successful!");
           this.$router.push({ name: "login" });
         })
         .catch((error) => {
-          alert(error.response.data.message);
+          console.log(error);
         });
 }
 
