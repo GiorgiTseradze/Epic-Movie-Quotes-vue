@@ -170,7 +170,6 @@ const handlePrimary = (e) => {
             email: e.target.value
         })
         .then((response) => {
-          alert("Email changed successfully!");
           userStore.getUser();
           console.log(response);
         })
@@ -185,7 +184,6 @@ const handleDelete = (e) => {
     axiosInstance
         .post('delete-email/'+e.target.value)
         .then((response) => {
-          alert("Email deleted Successfully!");
           userStore.getUser();
           console.log(response);
         })

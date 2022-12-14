@@ -45,7 +45,6 @@ onMounted(() => {
             token: token.value,
         })
         .then(() => {
-          alert("Verification Successful!");
         })
         .catch((error) => {
             console.log(error);

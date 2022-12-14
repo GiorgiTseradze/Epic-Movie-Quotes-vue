@@ -111,7 +111,7 @@ const handleDelete = () => {
     axiosInstance
         .post('delete-quote/'+quoteId)
         .then((response) => {
-          alert("Quote deleted Successfully!");
+          quoteStore.quotesRefresh();
           quoteStore.getQuotes();
           router.push({name:'currentMovie',params:{movieId:movieId}});
           console.log(response);

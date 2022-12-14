@@ -51,11 +51,10 @@ const handleSubmit = (values) => {
           password: values.password,
         })
         .then(() => {
-          alert("Login Successful!");
           this.$router.push({ name: "login" });
         })
         .catch((error) => {
-          alert(error.response.data.message);
+          console.log(error);
         });
 }
 

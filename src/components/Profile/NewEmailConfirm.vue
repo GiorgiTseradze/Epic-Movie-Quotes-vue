@@ -49,7 +49,6 @@ onMounted(() => {
         })
         .then((response) => {
             console.log(response)
-          alert("Verification Successful!");
           userStore.getUser();
         })
         .catch((error) => {

@@ -66,9 +66,6 @@ onBeforeMount(()=>{
         router.push({name:'landing'});
     }
 })
-setTimeout(() => {
-    console.log(token.value);
-}, 200);
 
 
 const handleSubmit = (values) => {
@@ -80,11 +77,10 @@ const handleSubmit = (values) => {
             password_confirmation: values.password_confirmation,
         })
         .then(() => {
-          alert("reset Successful!");
           router.push({ name: "login" });
         })
         .catch((error) => {
-          alert(error);
+          console.log(error);
         });
 }
 </script>

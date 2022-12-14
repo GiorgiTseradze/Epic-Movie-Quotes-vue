@@ -67,7 +67,6 @@ const handleSubmit = (values, actions) => {
             email: values.email
         })
         .then((response) => {
-          alert("Email added successfully!");
           loading.value = false;
           profileStore.emailSuccess = true;
           console.log(response);
