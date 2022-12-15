@@ -15,10 +15,10 @@
         <div class="flex items-center justify-center mt-8 w-full">
             <div class="flex items-center w-[20rem] lg:w-[40rem]">
                 <div class="w-10">
-                    <img src="@/assets/movie-female.svg" />
+                    <img class="w-14 h-12 rounded-full" :src="userStore.user?.thumbnail" alt="profile-image" />
                 </div>
                 <div class="ml-4">
-                    <p class="text-white text-lg">Nino Tabagari</p>
+                    <p class="text-white text-lg">{{ userStore.user?.name }}</p>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-white absolute">ქარ</p>
                 </div>
                 <div class="flex items-center h-80 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                <img class="object-fill w-[20rem] lg:w-[40rem] h-[19.6rem] lg:h-[20rem]" :src="imgUrl+quoteImg" />
+                <img class="object-fill w-[20rem] lg:w-[40rem] h-[19.6rem] lg:h-[20rem]" :src="imgUrl+quoteImg" alt="quote-image" />
             <Field name="image" v-slot="{ meta, value }" v-model="fileModel" >
                     <div
                         @dragover.prevent 
@@ -58,10 +58,10 @@
                                 {{ fileModel.name }}
                             </div>
                             <div v-else class="flex flex-col gap-3 bg-[#00000088] px-3 lg:py-3 rounded items-center">
-                                <img class="mt-10 lg:mt-3" src="@/assets/photocamera.svg" />
-                                <span class="mt-1 text-white lg:hidden">Upload image</span>
-                                <span class="mt-1 lg:hidden text-white invisible absolute w-full">Drag and Drop</span>
-                                <label for="movieImage" class="py-1 text-white invisible lg:visible cursor-pointer">Change Photo</label>
+                                <img class="mt-10 lg:mt-3" src="@/assets/photocamera.svg" alt="camera-icon" />
+                                <span class="mt-1 text-white lg:hidden">{{$t('texts.upload_photo')}}</span>
+                                <span class="mt-1 lg:hidden text-white invisible absolute w-full">{{$t('texts.drag_drop')}}</span>
+                                <label for="movieImage" class="py-1 text-white invisible lg:visible cursor-pointer">{{$t('texts.change_photo')}}</label>
                                 <input type="file" class="placeholder-white text-white hidden cursor-pointer" @input="setValue" id="movieImage" placeholder="Choose file" />
                             </div>
                         </div>
@@ -82,7 +82,9 @@ import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter, useRoute } from 'vue-router'
 import { useCrudStore } from "@/stores/crud";
+import { useUserStore } from "@/stores/userStore.js"
 
+const userStore = useUserStore();
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 const quoteStore = useCrudStore();
 
@@ -94,7 +96,6 @@ function setValue(e) {
 function onDrop(e) {
   e.preventDefault();
   fileModel.value = e.dataTransfer.files[0];
-  console.log(fileModel.value);
 }
 
 const router = useRouter()
@@ -114,7 +115,6 @@ onMounted(()=>{
 
 
 const handleSubmit = (values) => {
-    console.log(values)
 
     axiosInstance
         .post('update-quote/'+quoteId, {
@@ -131,10 +131,8 @@ const handleSubmit = (values) => {
           quoteStore.quotesRefresh();
           quoteStore.getQuotes();
           router.push({ name: 'newsFeed'});
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
         });
 }
 </script>

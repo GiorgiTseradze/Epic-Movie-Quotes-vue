@@ -12,9 +12,9 @@
             </div>
             <div v-else class="flex items-center">
                 <img src="@/assets/photocamera.svg" alt="camera" />
-                <span class="mt-1 ml-2 text-sm w-40 text-white lg:hidden">Upload image</span>
-                <span class="mt-1 lg:hidden text-white invisible absolute w-full">Drag and Drop</span>
-                <span class="mt-1 lg:ml-2 hidden lg:block text-white invisible lg:visible">Drag & drop your image here or</span>
+                <span class="mt-1 ml-2 text-sm w-40 text-white lg:hidden">{{$t("texts.upload_photo")}}</span>
+                <span class="mt-1 lg:hidden text-white invisible absolute w-full">{{$t('texts.drag_drop')}}</span>
+                <span class="mt-1 lg:ml-2 hidden lg:block text-white invisible lg:visible">{{$t('texts.drag_drop_or')}}</span>
             </div>
 
             <label for="movieImage" class="flex justify-center h-10 w-36 mt-1 bg-[#462676] cursor-pointer text-white px-2 py-2">{{$t("feed.choose_file")}}</label
@@ -40,6 +40,5 @@ function setValue(e) {
 function onDrop(e) {
   e.preventDefault();
   generalStore.fileModel = e.dataTransfer.files[0];
-  console.log(generalStore.fileModel);
 }
 </script>

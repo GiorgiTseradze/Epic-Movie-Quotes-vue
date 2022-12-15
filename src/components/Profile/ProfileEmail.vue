@@ -8,7 +8,7 @@
 
         <div class="flex items-center justify-center py-2">
             <div @click="handleBack" class="cursor-pointer w-[20rem] py-5">
-                <img src="@/assets/back.svg" class="w-5" />
+                <img src="@/assets/back.svg" class="w-5" alt="back-svg" />
             </div>
         </div>
 
@@ -21,7 +21,7 @@
                             <p class="text-white ml-4 py-1">
                                 {{userStore?.user?.email}}
                             </p>
-                            <img class="flex absolute ml-[16.3rem] mt-[0.5rem] justify-end w-4" src="@/assets/greentick.svg" />
+                            <img class="flex absolute ml-[16.3rem] mt-[0.5rem] justify-end w-4" src="@/assets/greentick.svg" alt="green-tick" />
                         </div>
                         <div class="w-[20rem] mt-5 border-b-[0.1rem] border-gray-500"></div>
                     </div>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="flex mt-3 w-full">
                                 <div v-if="!email.email_verified_at" class="flex w-40">
-                                    <img src="@/assets/unverified.svg"/>
+                                    <img src="@/assets/unverified.svg" alt="unverified-icon"/>
                                     <p class="py-1 px-2 text-white">{{ $t("profile.unverified") }}</p>
                                 </div>
                                 <div v-if="email.email_verified_at" class="border-[0.1rem] border-white rounded">
@@ -61,7 +61,7 @@
                         <p class="pt-2 text-white text-sm">{{ $t("profile.add_new_email") }}</p>
                     </div>
                     <div @click="handleNewEmail" class="flex justify-center cursor-pointer items-center mt-4 border-[0.1rem] h-8 w-80 rounded">
-                        <img src="@/assets/add.svg" />
+                        <img src="@/assets/add.svg" alt="add-icon" />
                         <p class="text-white ml-2">{{ $t("profile.add") }}</p>
                     </div>
                 </div>
@@ -163,7 +163,6 @@ const handleCancel = () => {
 }
 
 const handlePrimary = (e) => {
-    console.log(e.target.value)
 
     axiosInstance
         .post("update-profile", {
@@ -171,24 +170,18 @@ const handlePrimary = (e) => {
         })
         .then((response) => {
           userStore.getUser();
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error.response.data);
-          console.log(error);
 });
 }
 
 const handleDelete = (e) => {
-    console.log(e.target.value)
     axiosInstance
         .post('delete-email/'+e.target.value)
         .then((response) => {
           userStore.getUser();
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
         });
 }
 
@@ -208,11 +201,9 @@ const handleSubmit = () => {
           profileStore.newEmail = false;
           profileStore.emailSuccess = true;
           router.push({name: 'profile'});
-          console.log(response);
         })
         .catch((error) => {
-            console.log(error);
-            loading.value = false;
+              loading.value = false;
             profileStore.emailSuccess = false;
             errorValue.value = error.response.data.message
             makeChanges.value = false;

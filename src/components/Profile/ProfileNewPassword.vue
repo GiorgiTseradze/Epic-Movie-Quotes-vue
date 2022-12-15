@@ -15,13 +15,13 @@
                                         <p class="text-white">{{$t("profile.passwords_should_contain")}}:</p>
                                     </div>
                                     <div class="flex mt-4 ml-6">
-                                        <img v-if="passwordValue?.length < 8" src="@/assets/greycirc.svg"/>
-                                        <img v-if="passwordValue?.length >= 8" src="@/assets/greencirc.svg"/>
+                                        <img v-if="passwordValue?.length < 8" src="@/assets/greycirc.svg" alt="grey-circ" />
+                                        <img v-if="passwordValue?.length >= 8" src="@/assets/greencirc.svg" alt="green-circ" />
                                         <p :class="passwordValue?.length >= 8 ? 'text-white' : ''" class="ml-2 text-gray-500">{{ $t("profile.8_or_more_characters") }}</p>
                                     </div>
                                     <div class="flex mt-1 ml-6 pb-4">
-                                        <img v-if="passwordValue?.length < 8 || passwordValue?.length > 15" src="@/assets/greycirc.svg"/>
-                                        <img v-if="passwordValue?.length <= 15 && passwordValue?.length >=8" src="@/assets/greencirc.svg"/>
+                                        <img v-if="passwordValue?.length < 8 || passwordValue?.length > 15" src="@/assets/greycirc.svg" alt="grey-circ" />
+                                        <img v-if="passwordValue?.length <= 15 && passwordValue?.length >=8" src="@/assets/greencirc.svg" alt="green-circ" />
                                         <p :class="passwordValue?.length <= 15 && passwordValue?.length >=8 ? 'text-white' : ''" class="ml-2 text-gray-500">{{ $t("profile.15_lowercase_characters") }}</p>
                                     </div>
                                 </div>
@@ -123,10 +123,8 @@ const handleSubmit = (values, actions) => {
           profileStore.newPassword = false;
           profileStore.success = true;
           router.push({name: 'profile'});
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
           profileStore.success = false;
           const errors = error.response.data.errors;
           for(const key in errors){

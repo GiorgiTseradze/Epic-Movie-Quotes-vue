@@ -126,7 +126,6 @@ const handleSubmit = (values, actions) => {
             inputError.value = 0;
         })
         .catch((error) => {
-            console.log(error)
             inputError.value = 1;
             const errors = error.response.data.errors;
             for(const err in errors){

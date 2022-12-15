@@ -8,7 +8,7 @@
                 </div>
                 <div class="flex absolute w-[22rem] lg:w-[40rem] justify-end">
                     <router-link :to="{name: 'newsFeed'}">
-                        <img class="mr-10" src="@/assets/x-grey.svg" />
+                        <img class="mr-10" src="@/assets/x-grey.svg" alt="close-icon" />
                     </router-link>
                 </div>
             </div>
@@ -16,7 +16,7 @@
             <div class="flex items-center justify-center mt-8 w-full">
                 <div class="flex items-center w-[20rem] lg:w-[40rem]">
                     <div class="w-10">
-                        <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
+                        <img class="rounded-3xl w-12 h-12 object-cover" :src="userStore.user?.thumbnail" alt="profile-image" />
                     </div>
                     <div class="ml-4">
                         <p class="text-white text-lg">{{ userStore.user?.name }}</p>
@@ -48,11 +48,12 @@
                     </div>
                     <FileInput/>
                         <div @click="handleChoose" class="flex cursor-pointer items-center h-16 mt-4 rounded bg-[#000000]">
-                            <img class="absolute ml-4 w-6" src="@/assets/camera-white.svg" />
+                            <img class="absolute ml-4 w-6" src="@/assets/camera-white.svg" alt="camera-icon" />
                             <div class="flex items-center text-white w-[17rem] h-14 px-14 py-3 placeholder-white resize-none outline-none bg-inherit">
                                 <p>{{selected?selected:$t('feed.choose_movie')}}</p>
                             </div>
-                            <img :class="chooseMovie ? 'rotate-180' : 'rotate-0'" class="transition-all ease-linear ml-6 lg:ml-80 w-4" src="@/assets/down-arrow.svg" />
+                            <img :class="chooseMovie ? 'rotate-180' : 'rotate-0'" class="transition-all ease-linear ml-6 lg:ml-80 w-4" 
+                            src="@/assets/down-arrow.svg" alt="down-arrow" />
                         </div>
                     <div>
                             <Field v-model="movieId" name="movie_id" class="hidden bg-inherit text-white">
@@ -103,7 +104,6 @@ const setMovie = (e) => {
 }
 
 const handleSubmit = (values) => {
-    console.log(values)
 
     axiosInstance
         .post("add-quote", {
@@ -120,10 +120,8 @@ const handleSubmit = (values) => {
           quoteStore.getQuotes(true);
           router.push({ name: 'newsFeed'});
           setTimeout(()=>generalStore.fileModel = null, 200)
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
         });
 }
 </script>

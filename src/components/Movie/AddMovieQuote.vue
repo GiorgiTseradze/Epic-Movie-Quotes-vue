@@ -109,7 +109,6 @@ const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
 onBeforeMount(()=>{
     axiosInstance.get('movies/'+movieId).then((response)=>{
-        console.log(response.data.quotes);
         movie.value = response.data;
         genres.value = JSON.parse(response.data.genre);
         quotes.value = response.data.quotes;
@@ -117,7 +116,6 @@ onBeforeMount(()=>{
 });
 
 const handleSubmit = (values) => {
-    console.log(values)
 
     axiosInstance
         .post("add-quote", {
@@ -136,10 +134,8 @@ const handleSubmit = (values) => {
           router.push({ name: 'newsFeed'});
 
           setTimeout(()=>generalStore.fileModel = null, 200)
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
         });
 }
 </script>

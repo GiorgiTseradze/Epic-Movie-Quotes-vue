@@ -35,5 +35,9 @@
   "years": "years",
   "last_century": "Last century",
   "centuries": "centuries",
-  "wrong_email_or_password": "Wrong email or password"
+  "wrong_email_or_password": "Wrong email or password",
+  "change_image": "Change Photo",
+  "upload_image": "Upload image",
+  "drag_drop_or": "Drag & drop your image here or",
+  "drag_drop": "Drag & Drop"
 }

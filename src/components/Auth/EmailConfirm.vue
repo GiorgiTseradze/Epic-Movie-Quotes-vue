@@ -50,7 +50,6 @@ onMounted(() => {
         .then(() => {
         })
         .catch((error) => {
-            console.log(error);
         });
 });
 

@@ -56,7 +56,6 @@ const submitSearch = () => {
         })
         .catch((error) => {
           result.value = "Content not found yet!"
-          console.log(error);
         }); 
 }
 

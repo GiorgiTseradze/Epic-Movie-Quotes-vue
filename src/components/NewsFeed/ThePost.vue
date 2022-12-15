@@ -14,7 +14,7 @@
                 </div>
                 <div class="flex flex-col w-full h-full pb-10 border-b border-gray-600 ">
                     <div class="flex w-full mt-4 lg:h-[50%]">
-                        <img class="w-full object-fill min-h-[25rem] rounded-lg lg:w-full lg:h-full pb-2" :src="image" alt="post-photo"/>
+                        <img class="w-full object-fill min-h-[15rem] lg:min-h-[25rem] rounded-lg lg:w-full max-h-[25rem] lg:max-h-[40rem] pb-2" :src="image" alt="post-photo"/>
                     </div>
                     <div class="flex mt-4 xl:mt-7 pb lg:pb-0">
                         <p class="text-white">{{comments?.length}}</p>
@@ -72,10 +72,8 @@ const handleSubmit = (values) => {
         })
         .then((response) => {
           router.push({ name: 'newsFeed'});
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
         });
 }
 
@@ -87,10 +85,8 @@ const handleLike = () => {
         })
         .then((response) => {
           router.push({ name: 'newsFeed'});
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
         });
 }
 

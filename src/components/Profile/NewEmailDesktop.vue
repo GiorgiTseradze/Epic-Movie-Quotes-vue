@@ -59,7 +59,6 @@ const userStore = useUserStore();
 const router = useRouter()
 
 const handleSubmit = (values, actions) => {
-    console.log(values.email)
     loading.value = true;
 
     axiosInstance
@@ -69,12 +68,10 @@ const handleSubmit = (values, actions) => {
         .then((response) => {
           loading.value = false;
           profileStore.emailSuccess = true;
-          console.log(response);
           userStore.getUser();
           router.push({name: 'profile'})
         })
         .catch((error) => {
-          console.log(error);
           loading.value = false;
           profileStore.emailSuccess = false;
           const errors = error.response.data.errors;

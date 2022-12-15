@@ -96,7 +96,6 @@ const handleBack = () => {
 }
 
 const handleSubmit = (values, actions) => {
-    console.log(values)
     const data = {};
     if(nameValue.value !== userStore.user.name){
         data['name'] = nameValue.value;
@@ -105,7 +104,6 @@ const handleSubmit = (values, actions) => {
         makeChanges.value = false;
     }
 
-    console.log(data)
     axiosInstance
         .post("update-profile", data)
         .then((response) => {
@@ -114,11 +112,8 @@ const handleSubmit = (values, actions) => {
           profileStore.newUsername = false;
           profileStore.success = true;
           router.push({name: 'profile'});
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error.response.data);
-          console.log(error);
           profileStore.success = false;
           const errors = error.response.data.errors;
           for(const key in errors){
