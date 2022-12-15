@@ -25,8 +25,8 @@
                         <Field name="name" rules="required|min:3|max:15|lowalphanumeric" v-slot="{ field, meta }"
                          :placeholder="$t('auth.enter_your_name')">
                             <input class="bg-[#CED4DA] relative w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field"
-                            :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
-                            : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
+                            :class="[!meta.valid && meta.touched ? 'border-red-500 border-2' 
+                            : '', meta.valid && meta.touched ? 'border-green-500 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
                             src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
@@ -42,8 +42,8 @@
                         <Field name="email" rules="required|email"
                         :placeholder="$t('auth.enter_your_email')" v-slot="{ field, meta }" >
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" 
-                            :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
-                            : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
+                            :class="[!meta.valid && meta.touched ? 'border-red-500 border-2' 
+                            : '', meta.valid && meta.touched ? 'border-green-500 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
                             src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
@@ -55,11 +55,11 @@
                         <section class="flex text-white">{{ $t("auth.password") }}<p class="text-red-500 ml-1"> *</p></section>
                     </div>
                     <div class="flex w-[22.5rem]">
-                        <Field name="password" rules="required|min:8|max:15" v-slot="{ field, meta }"
+                        <Field name="password" rules="required|min:8|max:15|confirmed:@password" v-slot="{ field, meta }"
                          :placeholder="$t('auth.password')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPassword ? 'text' : 'password'"
-                                :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
-                                : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
+                                :class="[!meta.valid && meta.touched ? 'border-red-500 border-2' 
+                                : '', meta.valid && meta.touched ? 'border-green-500 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
                             src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
@@ -79,8 +79,8 @@
                         <Field name="password_confirmation" rules="required|min:8|max:15" v-slot="{ field, meta }"
                         :placeholder="$t('auth.password_confirmation')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPasswordConfirm ? 'text' : 'password'"
-                                :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
-                                : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
+                                :class="[!meta.valid && meta.touched ? 'border-red-500 border-2' 
+                                : '', meta.valid && meta.touched ? 'border-green-500 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
                         </Field>
                         <img v-if="showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
@@ -130,7 +130,6 @@ const router = useRouter()
 const url = `${import.meta.env.VITE_API_BASE_URL}/google/login`;
 const showPassword = ref(false);
 const showPasswordConfirm = ref(false);
-const inputError = ref(0);
 const loading = ref(false);
 
 const handleShow = () => {
@@ -154,7 +153,6 @@ const handleSubmit = (values, actions) => {
         .then((response) => {
           router.push({ name: 'emailSent'});
           console.log(response);
-          inputError.value = 0;
           loading.value = false;
         })
         .catch((error) => {

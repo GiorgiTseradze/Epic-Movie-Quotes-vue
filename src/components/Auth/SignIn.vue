@@ -17,8 +17,8 @@
                             <Field name="email" rules="required"
                                 :placeholder="$t('auth.enter_your_email')" v-slot="{ field, meta }" >
                                 <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" 
-                                :class="[!meta.valid && meta.touched || inputError === 1 ? 'border-red-300 border-2' 
-                                : '', meta.valid && meta.touched && inputError === 0 ? 'border-green-400 border-2' : '']" />
+                                :class="[!meta.valid && meta.touched || inputError === 1 ? 'border-red-500 border-2' 
+                                : '', meta.valid && meta.touched && inputError === 0 ? 'border-green-500 border-2' : '']" />
                                 <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
                                 src="@/assets/valid.svg" alt="valid-icon" />
                                 <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
