@@ -2,7 +2,7 @@
     <div class="flex justify-center md:w-[26.7rem] md:h-[42rem] md:mt-20 w-full h-screen fixed bg-[#181623] md:bg-inherit">
         <div class="bg-[#24222F] w-[22.5rem] h-[25.8rem] mt-20 rounded">
             <div class="flex justify-center">
-                <img class="mt-16" src="@/assets/tick.svg" />
+                <img class="mt-16" src="@/assets/tick.svg" alt="tick-icon" />
             </div>
             <div class="flex justify-center mt-4">
                 <p class="text-white text-2xl font-medium">{{ $t("auth.thank_you") }}</p>

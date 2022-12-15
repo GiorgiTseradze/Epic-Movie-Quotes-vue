@@ -7,7 +7,7 @@
             </div>
             <div class="flex absolute w-[22rem] lg:w-[45rem] justify-end">
                 <router-link :to="{name: 'movieList'}">
-                    <img class="mr-10" src="@/assets/x-grey.svg" />
+                    <img class="mr-10" src="@/assets/x-grey.svg" alt="close-icon" />
                 </router-link>
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="flex items-center justify-center mt-8 w-full">
             <div class="flex items-center w-[20rem] lg:w-[40rem]">
                 <div class="w-10">
-                    <img class="w-10 h-10 object-cover rounded-full" :src="userStore?.user.thumbnail" />
+                    <img class="w-10 h-10 object-cover rounded-full" :src="userStore?.user.thumbnail" alt="user-image" />
                 </div>
                 <div class="ml-4">
                     <p class="text-white text-lg">{{userStore?.user.name}}</p>
@@ -52,7 +52,7 @@
                     <div class="flex text-white" v-for="(tag, index) in genres" :key="'tag'+index">
                         <div class="flex w-max px-2 bg-gray-500 rounded ml-2">
                             <p>{{ tag }}</p>
-                            <button class="ml-[0.3rem] w-2" @click="removeTag"><img src="@/assets/x-grey.svg" /> </button>
+                            <button class="ml-[0.3rem] w-2" @click="removeTag"><img src="@/assets/x-grey.svg" alt="close-icon" /> </button>
                         </div>
                     </div>
                         <div class="flex">

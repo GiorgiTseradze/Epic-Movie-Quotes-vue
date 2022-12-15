@@ -18,10 +18,10 @@
                     </div>
                     <div class="flex mt-4 xl:mt-7 pb lg:pb-0">
                         <p class="text-white">{{comments?.length}}</p>
-                        <img class="ml-3" src="@/assets/comment.svg"/>
+                        <img class="ml-3" src="@/assets/comment.svg" alt="comment-icon"/>
                         <p class="text-white ml-4">{{quoteObj.likes?.length}}</p>
-                        <img v-if="!liked" @click="handleLike" class="ml-3 cursor-pointer" src="@/assets/heart.svg" />
-                        <img v-if="liked" @click="handleLike" class="ml-3 w-6 cursor-pointer" src="@/assets/red-heart.svg" />
+                        <img v-if="!liked" @click="handleLike" class="ml-3 cursor-pointer" src="@/assets/heart.svg" alt="heart-icon" />
+                        <img v-if="liked" @click="handleLike" class="ml-3 w-6 cursor-pointer" src="@/assets/red-heart.svg" alt="red-heart-icon" />
                     </div>  
                 </div>
                 <div class="flex flex-col w-full  overflow-auto max-h-[20rem]">
@@ -35,7 +35,7 @@
             </div>
             <div class="flex items-center gap-4 w-full px-2 lg:px-0  h-14 lg:h-20 rounded bg-[#11101A]">
                 <div class=" w-8">
-                    <img :src="userStore?.user?.thumbnail" />
+                    <img :src="userStore?.user?.thumbnail" alt="user-image" />
                 </div>
                 <Form @submit="handleSubmit" class="w-full">
                     <div class="bg-[#1C1B27] rounded py-2  w-full">

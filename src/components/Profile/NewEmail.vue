@@ -4,13 +4,13 @@
             <div class="flex justify-between w-[20rem]">
                 <TheBurger />
                 <div>
-                    <img src="@/assets/bell.svg" />
+                    <img src="@/assets/bell.svg" alt="bell-icon" />
                 </div>
             </div>
         </div>
         <div class="flex items-center justify-center h-[4rem]">
             <div class="w-[20rem]">
-                <img src="@/assets/back.svg" class="w-5" />
+                <img src="@/assets/back.svg" class="w-5" alt="back-icon" />
             </div>
         </div>
 

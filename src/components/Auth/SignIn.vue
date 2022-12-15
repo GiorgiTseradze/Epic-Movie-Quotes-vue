@@ -19,8 +19,10 @@
                                 <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" 
                                 :class="[!meta.valid && meta.touched || inputError === 1 ? 'border-red-300 border-2' 
                                 : '', meta.valid && meta.touched && inputError === 0 ? 'border-green-400 border-2' : '']" />
-                                <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
-                                <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/error.svg" />
+                                <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                                src="@/assets/valid.svg" alt="valid-icon" />
+                                <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                                src="@/assets/error.svg" alt="error-icon" />
                             </Field>
                             <ErrorMessage name="email" class="absolute mt-[3rem] text-sm text-[#F15524]" />
                         </div>
@@ -36,12 +38,14 @@
                                 <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none"  v-bind="field" 
                                 :class="[!meta.valid && meta.touched || inputError === 1 ? 'border-[#E31221] border-2' 
                                 : '', meta.valid && meta.touched && inputError === 0 ? 'border-green-400 border-2' : '']"  :type="showPassword ? 'text' : 'password'" />
-                                <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
-                                <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/error.svg" />
+                                <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" alt="valid-icon" />
+                                <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/error.svg" alt="error-icon" />
                             </Field> 
                             <ErrorMessage name="password" class="absolute mt-[3rem] text-sm text-[#F15524]" />
-                            <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer p-1" src="@/assets/eye.svg" />
-                            <img v-if="!showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer p-1" src="@/assets/closed-eye.svg" />
+                            <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer p-1" 
+                            src="@/assets/eye.svg" alt="eye-icon" />
+                            <img v-if="!showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer p-1" 
+                            src="@/assets/closed-eye.svg" alt="closed-eye-icon" />
                         </div>
                     </div>
 
@@ -68,7 +72,7 @@
                     <div class="flex items-center justify-center bg-black border rounded border-white h-10 w-[22.5rem]">
                         <form :action="url">
                             <button class="flex items-center text-white">
-                            <img class="mr-2" src="@/assets/gmail.svg" /> 
+                            <img class="mr-2" src="@/assets/gmail.svg" alt="gmail-icon" /> 
                             {{ $t("auth.sign_in_with_google") }}
                             </button>
                         </form>

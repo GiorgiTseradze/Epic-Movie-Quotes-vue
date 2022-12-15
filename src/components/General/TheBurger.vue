@@ -9,7 +9,7 @@
             <div class="flex flex-col sm:items-center h-full w-full">
                 <div class="flex mt-8 w-[12rem] sm:w-[16rem] ml-6">
                     <div class="w-[3.5rem] md:w-[4rem] rounded-full">
-                        <img class="w-[3.5rem] rounded-full" :src="userStore?.user?.thumbnail" />
+                        <img class="w-[3.5rem] rounded-full" :src="userStore?.user?.thumbnail" alt="profile-image" />
                     </div>
                     <div class="ml-4 md:ml-0">
                         <p class="text-white md:text-lg">{{ userStore?.user?.name }}</p>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="flex items-center w-[15rem] ml-6 mt-10">
                     <router-link class="flex" :to="{name: 'newsFeed'}">
-                        <img src="@/assets/home.svg" />
+                        <img src="@/assets/home.svg" alt="home-icon" />
                         <p class="ml-4 md:text-lg text-white fill-red-500">{{ $t("texts.news_feed") }}</p>
                     </router-link>
                 </div>

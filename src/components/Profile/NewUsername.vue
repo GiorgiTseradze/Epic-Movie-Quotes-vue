@@ -10,7 +10,7 @@
 
         <div class="flex items-center justify-center h-[4rem]">
             <div @click="handleBack" class="cursor-pointer w-[20rem]">
-                <img src="@/assets/back.svg" class="w-5" />
+                <img src="@/assets/back.svg" class="w-5" alt="back-icon" />
             </div>
         </div>
         <Form v-if="!makeChanges" @submit="handleChanges">

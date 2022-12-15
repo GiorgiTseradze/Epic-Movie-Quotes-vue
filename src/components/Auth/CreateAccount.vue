@@ -27,7 +27,8 @@
                             <input class="bg-[#CED4DA] relative w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field"
                             :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
                             : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
-                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
+                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                            src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
                         <ErrorMessage class="absolute mt-[3rem] text-sm text-[#F15524]" name="name" />
                     </div>
@@ -43,7 +44,8 @@
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" 
                             :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
                             : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
-                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
+                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                            src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
                         <ErrorMessage class="absolute mt-[3rem] text-sm text-[#F15524]" name="email" />
                     </div>
@@ -58,10 +60,13 @@
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPassword ? 'text' : 'password'"
                                 :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
                                 : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
-                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
+                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                            src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
-                        <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/eye.svg" />
-                        <img v-if="!showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/closed-eye.svg" />
+                        <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
+                        src="@/assets/eye.svg" alt="eye-icon" />
+                        <img v-if="!showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
+                        src="@/assets/closed-eye.svg" alt="closed-eye-icon" />
                         <ErrorMessage class="absolute mt-[2.8rem] py-1 text-sm text-[#F15524]" name="password" />
                     </div>
                 </div>
@@ -78,8 +83,10 @@
                                 : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
                         </Field>
-                        <img v-if="showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/eye.svg" />
-                        <img v-if="!showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/closed-eye.svg" />
+                        <img v-if="showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
+                        src="@/assets/eye.svg" alt="eye-icon" />
+                        <img v-if="!showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
+                        src="@/assets/closed-eye.svg" alt="closed-eye-icon" />
                         <ErrorMessage class="absolute mt-[3rem] py-1 text-sm text-[#F15524]" name="password_confirmation" />
                     </div>
                 </div>
@@ -95,7 +102,7 @@
                     <div class="flex items-center justify-center bg-black border rounded border-white h-10 w-[22.5rem]">
                         <form :action="url">
                             <button class="flex items-center text-white">
-                                <img class="mr-2" src="@/assets/gmail.svg" /> 
+                                <img class="mr-2" src="@/assets/gmail.svg" alt="gmail-icon" /> 
                                 {{ $t("auth.sign_in_with_google") }}
                             </button>
                         </form>

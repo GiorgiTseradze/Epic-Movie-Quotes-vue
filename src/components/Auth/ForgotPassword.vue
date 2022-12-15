@@ -32,7 +32,7 @@
 
                     <div @click="$router.push({name: 'login'})" class="flex justify-center w-full mt-5">
                         <button>
-                            <p class="flex text-[#6C757D]"><img class="mr-1" src="@/assets/back.svg" />{{ $t("auth.back_to_log_in") }}</p>
+                            <p class="flex text-[#6C757D]"><img class="mr-1" src="@/assets/back.svg" alt="back-icon" />{{ $t("auth.back_to_log_in") }}</p>
                         </button>
                     </div>
                 

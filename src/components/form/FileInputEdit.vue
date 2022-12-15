@@ -11,7 +11,7 @@
                 {{ generalStore.fileModel.name }}
             </div>
             <div v-else class="flex items-center">
-                <img src="@/assets/photocamera.svg" />
+                <img src="@/assets/photocamera.svg" alt="camera" />
                 <span class="mt-1 ml-2 text-sm w-40 text-white lg:hidden">Upload image</span>
                 <span class="mt-1 lg:hidden text-white invisible absolute w-full">Drag and Drop</span>
                 <span class="mt-1 lg:ml-2 hidden lg:block text-white invisible lg:visible">Drag & drop your image here or</span>
