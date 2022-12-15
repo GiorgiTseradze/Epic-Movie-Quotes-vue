@@ -116,7 +116,7 @@
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import i18n from '@/i18n/index.js'
 
 const router = useRouter()

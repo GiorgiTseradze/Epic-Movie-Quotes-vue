@@ -49,12 +49,12 @@
 </template>
 
 <script setup>
-import { Field, ErrorMessage, Form } from 'vee-validate';
+import { Field, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
-import { useRoute } from 'vue-router';
-import { computed, onBeforeMount, ref } from 'vue';
-import router from "@/router";
+import { useRoute, useRouter } from 'vue-router';
+import { onBeforeMount, ref } from 'vue';
 
+const router = useRouter()
 const token = ref();
 const email = ref('');
 onBeforeMount(()=>{
