@@ -27,7 +27,7 @@
             <Form @submit="handleSubmit" v-slot="{ field, meta }" class="flex flex-col w-[20rem] lg:w-[40rem]">
                 <div class="flex items-center w-full">
                     <Field v-slot="{ field, meta }" name="name_en" rules="required|en" >
-                        <input :class="[!meta.valid && meta.touched ? 'border-1 border-1 border-red-500 outline-red-500 outline-red-500' 
+                        <input :class="[!meta.valid && meta.touched ? 'border-1 border-1 border-red-500 outline-red-500' 
                         : '', meta.valid && meta.touched ? 'border-1 border-green-500 outline-green-500' : '']"
                         class="h-10 outline-[0.06rem] outline-[#6C757D] rounded px-3 text-white w-full placeholder-white outline-none bg-inherit"
                         placeholder="Movie name" v-bind="field" />
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="flex flex-wrap items-center h-max py-3 mt-4 outline outline-[0.06rem] rounded outline-[#6C757D]" 
-                :class="tags[0] ? 'border-1 border-green-500 outline-green-500 active:border-1 border-green-500 outline-green-500' : ''">
+                :class="tags[0] ? 'border-1 border-green-500 outline-green-500 active:border-1' : ''">
                     <div class="flex text-white" v-for="(tag, index) in tags" :key="'tag'+index">
                         <div class="flex w-max px-2 bg-gray-400 rounded ml-2">
                             <p>{{ tag }}</p>

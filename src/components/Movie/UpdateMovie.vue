@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="flex flex-wrap items-center h-max py-3 border-[0.06rem] mt-4 border-[#6C757D] rounded"
-                :class="genres[0] ? 'border-1 border-green-500 outline-green-500 active:border-1 border-green-500 outline-green-500' : ''">
+                :class="genres[0] ? 'border-1 active:border-1 border-green-500' : ''">
                     <div class="flex text-white" v-for="(tag, index) in genres" :key="'tag'+index">
                         <div class="flex w-max px-2 bg-gray-500 rounded ml-2">
                             <p>{{ tag }}</p>
