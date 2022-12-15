@@ -23,10 +23,10 @@
 
                     <div class="flex flex-col items-center w-full mt-6">
                         <div class="w-[22.5rem]">
-                            <section class="flex text-white">{{ $t("auth.confirm_password") }}<p class="text-red-500 ml-1"> *</p></section>
+                            <section class="flex text-white">{{ $t("auth.password_confirmation") }}<p class="text-red-500 ml-1"> *</p></section>
                         </div>
                         <div class="flex w-[22.5rem] justify-center">
-                            <Field name="password_confirmation" class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" :placeholder="$t('auth.confirm_password')" />
+                            <Field name="password_confirmation" class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" :placeholder="$t('auth.password_confirmation')" />
                         </div>
                     </div>
         
