@@ -4,12 +4,12 @@
         <div class="flex items-center py-5 lg:py-0 w-[22rem] lg:w-full lg:h-16 border-b-[0.06rem] bg-inherit border-[#40414A]">
             <div class="flex mt-3 ml-2 lg:ml-16 px-3 h-5 border-r-[0.06rem] border-[#40414A]">
                 <button @click="$router.push({name:'updateQuote',params:{quoteId}})" class="flex items-center">
-                    <img src="@/assets/edit.svg" />
+                    <img src="@/assets/edit.svg" alt="edit-icon" />
                 </button>
             </div>
             <div class="flex ml-4 mt-3">
                 <button @click="handleDelete" class="flex items-center">
-                    <img src="@/assets/delete.svg" />
+                    <img src="@/assets/delete.svg" alt="delete-icon" />
                 </button>
             </div>
             <div class="flex w-34 ml-14 lg:mt-12 lg:ml-[13rem] h-10 lg:mb-12 items-center">
@@ -17,7 +17,7 @@
             </div>
             <div class="flex absolute w-[21rem] lg:w-[42rem] justify-end ml-3 lg:ml-10">
                 <router-link :to="{name: 'newsFeed'}">
-                    <img class="mr-4" src="@/assets/x-grey.svg" />
+                    <img class="mr-4" src="@/assets/x-grey.svg" alt="close-icon"/>
                 </router-link>
             </div>
         </div>
@@ -25,10 +25,10 @@
         <div class="flex items-center justify-center mt-8 w-full">
             <div class="flex items-center w-[20rem] lg:w-[40rem]">
                 <div class="w-10">
-                    <img src="@/assets/movie-female.svg" />
+                    <img :src="userStore.user?.thumbnail" class="w-14 h-12 rounded-full" alt="profile-image" />
                 </div>
                 <div class="ml-4">
-                    <p class="text-white text-lg">Nino Tabagari</p>
+                    <p class="text-white text-lg">{{ userStore.user?.name }}</p>
                 </div>
             </div>
         </div>
@@ -54,23 +54,23 @@
                     <p class="lg:ml-10 text-[#6C757D]">ქარ</p>
                 </div>
                 <div class="flex items-center h-80 border-[0.06rem] mt-4 border-[#6C757D] rounded">
-                    <img class="object-fill w-[20rem] lg:w-[40rem] h-[19.6rem] lg:h-[20rem]" :src="imgUrl+quoteImg" />
+                    <img class="object-fill w-[20rem] lg:w-[40rem] h-[19.6rem] lg:h-[20rem]" :src="imgUrl+quoteImg" alt="quote-image" />
                 </div>
             </div>
             
         </div>
         <div class="flex w-[20rem] lg:w-[40rem] mt-4 xl:mt-7">
             <p class="text-white">{{comments?.length}}</p>
-            <img class="ml-3" src="@/assets/comment.svg"/>
+            <img class="ml-3" src="@/assets/comment.svg" alt="comment-icon"/>
             <p class="text-white ml-4">{{likes?.length}}</p>
-            <img class="ml-3" src="@/assets/heart.svg" />
+            <img class="ml-3" src="@/assets/heart.svg" alt="heart-icon" />
         </div> 
                 <div v-for="comment in comments" v-bind:key="comment.id" class="px-5 w-[22rem] lg:w-[40rem] lg:py-2 rounded">
                     <div class="flex flex-col w-full mt-5">
                         <div class="flex flex-col w-full lg:w-[39rem] border-b-2 pb-6 border-[#54535A]">
                             <div class="flex items-center">
                                 <div class="">
-                                    <img class="rounded-full w-12 h-12 object-cover" :src="userStore.user?.thumbnail" />
+                                    <img class="rounded-full w-12 h-12 object-cover" :src="userStore.user?.thumbnail" alt="profile-image" />
                                 </div>
                                 <div>
                                     <p class="text-white ml-4">{{userStore.user?.name}}</p>
@@ -114,10 +114,8 @@ const handleDelete = () => {
           quoteStore.quotesRefresh();
           quoteStore.getQuotes();
           router.push({name:'currentMovie',params:{movieId:movieId}});
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
         });
 }
 

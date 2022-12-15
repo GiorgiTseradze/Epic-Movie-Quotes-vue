@@ -156,7 +156,6 @@ const removeTag = (index) => {
 //get movie data
 onMounted(() => {
     axiosInstance.get('movies/'+movieId).then((response)=>{
-        console.log(response.data);
         movie.value = response.data;
         nameEn.value = response.data.name.en;
         nameKa.value = response.data.name.ka;
@@ -170,7 +169,6 @@ onMounted(() => {
 
 //post updated movie data to back-end
 const handleSubmit = (values) => {
-    console.log(values)
 
     axiosInstance
         .post("update-movie/"+movieId, {
@@ -192,10 +190,8 @@ const handleSubmit = (values) => {
           movieStore.getMovies();
           router.push({ name: 'movieList'});
           setTimeout(()=>generalStore.fileModel = null, 200)
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
 
         });
 }

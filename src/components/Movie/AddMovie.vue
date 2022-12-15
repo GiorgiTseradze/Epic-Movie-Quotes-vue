@@ -144,8 +144,6 @@ const removeTag = (index) => {
 }
 
 const handleSubmit = (values, actions) => {
-    console.log(values)
-
     axiosInstance
         .post("add-movie", {
           name_en: values.name_en,
@@ -165,10 +163,8 @@ const handleSubmit = (values, actions) => {
           movieStore.getMovies();
           router.push({ name: 'movieList'});
           setTimeout(()=>generalStore.fileModel = null, 200)
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
           const errors = error.response.data.errors;
             for(const key in errors){
             actions.setFieldError(key,errors[key]);

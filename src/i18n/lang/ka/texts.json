@@ -35,5 +35,9 @@
   "years": "წლის",
   "last_century": "წინა საუკუნე",
   "centuries": "საუკუნის",
-  "wrong_email_or_password": "არასწორი ელ-ფოსტა ან პაროლი"
+  "wrong_email_or_password": "არასწორი ელ-ფოსტა ან პაროლი",
+  "change_image": "შეცვალე",
+  "upload_image": "ფოტოს ატვირთვა",
+  "drag_drop_or": "ჩააგდე ფოტო ან",
+  "drag_drop": "ჩააგდე ფოტო"
 }

@@ -18,10 +18,10 @@
                         </div>
 
                         <div v-if="lang" class="text-white bg-[#24222F] fixed mt-[6.5rem] rounded">
-                            <div class="pr-5 pb-2 border-b-[0.06rem] border-[#CED4DA]">
+                            <div class="pr-5 pb-2 border-b-[0.06rem] cursor-pointer border-[#CED4DA]">
                                 <button @click="changeLangEn">ENG</button>
                             </div>
-                            <div class="py-2">
+                            <div class="py-2 cursor-pointer">
                                 <button @click="changeLangKa">KA</button>
                             </div>
                         </div>

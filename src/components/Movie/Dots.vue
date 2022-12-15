@@ -50,10 +50,8 @@ const handleDelete = () => {
           quoteStore.quotesRefresh();
           quoteStore.getQuotes();
           router.push({name:'newsFeed'});
-          console.log(response);
         })
         .catch((error) => {
-          console.log(error);
         });
 }
 

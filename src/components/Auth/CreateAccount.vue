@@ -141,7 +141,6 @@ const handleShowConfirm = () => {
 }
 
 const handleSubmit = (values, actions) => {
-    console.log(values)
     loading.value = true;
     axiosInstance
         .post("register", {
@@ -152,12 +151,10 @@ const handleSubmit = (values, actions) => {
         })
         .then((response) => {
           router.push({ name: 'emailSent'});
-          console.log(response);
           loading.value = false;
         })
         .catch((error) => {
           loading.value = false;
-          console.log(error)
           const errors = error.response.data.errors;
           for(const err in errors){
             if (i18n.global.locale == "en") {

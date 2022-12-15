@@ -48,11 +48,9 @@ onMounted(() => {
             token: token.value,
         })
         .then((response) => {
-            console.log(response)
           userStore.getUser();
         })
         .catch((error) => {
-            console.log(error);
         });
 });
 

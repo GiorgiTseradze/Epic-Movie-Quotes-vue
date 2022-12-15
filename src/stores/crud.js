@@ -12,9 +12,7 @@ export const useCrudStore = defineStore("crud", () => {
     try {
       const response = await axiosInstance.get("/movies/show");
           movies.value = response.data;
-          console.log(response)
     } catch(error) {
-      console.log(error);
     }
   }
 
@@ -24,9 +22,7 @@ export const useCrudStore = defineStore("crud", () => {
         number:quotes.value.length
       });
           quotes.value = response.data;
-          console.log(response)
     } catch(error) {
-      console.log(error);
     }
   }
 
@@ -39,15 +35,12 @@ export const useCrudStore = defineStore("crud", () => {
       const response = await axiosInstance.get("/quotes/show?page="+page.value++);
           quotes.value.push(...response.data.data);
           savedQuotes.value.push(...response.data.data);
-          console.log(response)
     } catch(error) {
-      console.log(error);
     }
   }
 
   const getMovie=(movieId)=>{
     axiosInstance.get('movies/'+movieId).then((response)=>{
-      console.log(response);
       movie.value = response.data;
       genres.value = JSON.parse(response.data.genre);
       quotes.value = response.data.quotes;

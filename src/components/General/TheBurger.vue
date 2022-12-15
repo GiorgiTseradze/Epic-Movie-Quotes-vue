@@ -65,7 +65,6 @@ const handleLogout = () => {
             router.push({name: "landing"})
         })
         .catch((error) => {
-          console.log(error)    
         });
 }
 

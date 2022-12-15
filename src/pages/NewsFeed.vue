@@ -33,10 +33,10 @@
                                     </div>
 
                                     <div v-if="lang" class="text-white bg-[#24222F] fixed mt-8 rounded">
-                                        <div class="pr-5 pb-2 border-b-[0.06rem] border-[#CED4DA]">
+                                        <div class="pr-5 pb-2 border-b-[0.06rem] cursor-pointer border-[#CED4DA]">
                                             <button @click="changeLangEn">ENG</button>
                                         </div>
-                                        <div class="py-2">
+                                        <div class="py-2 cursor-pointer">
                                             <button @click="changeLangKa">KA</button>
                                         </div>
                                     </div>
@@ -152,7 +152,6 @@ const handleLogout = () => {
             router.push({name: "landing"})
         })
         .catch((error) => {
-          console.log(error)    
         });
 
 }
@@ -179,16 +178,11 @@ window.addEventListener('scroll', () => {
 })
 
 window.Echo.channel("add-comment").listen('.new-comment', (e) => {
-
-    //fetch posts again
-    console.log(e)
     quoteStore.quotesRefresh();
 })
 
 window.Echo.channel("add-like").listen('.new-like', (e) => {
-    //fetch posts again
-console.log(e)
-quoteStore.quotesRefresh();
+    quoteStore.quotesRefresh();
 })
 
 onMounted(()=>{
@@ -202,15 +196,12 @@ const submitSearch = () => {
         })
         .then((response) => {
           quoteStore.quotes = response.data
-          console.log(response)
         })
         .catch((error) => {
-          console.log(error);
         }); 
 }
 watch(searchValue,(newval)=>{
     if(newval.length === 0){
-        console.log(quoteStore.savedQuotes);
         quoteStore.quotes = quoteStore.savedQuotes;
     }
 })

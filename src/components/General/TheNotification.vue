@@ -84,7 +84,6 @@ const getNotifications = async () => {
           notifications.value = response.data;
           getUnread()
   } catch(error) {
-      console.log(error);
   }
 }
 
@@ -94,10 +93,8 @@ const handleRead = () => {
       .post("read")
       .then((response) => {
           getNotifications()
-          console.log(response);
       })
       .catch((error) => {
-        console.log(error);
       }); 
 }
 

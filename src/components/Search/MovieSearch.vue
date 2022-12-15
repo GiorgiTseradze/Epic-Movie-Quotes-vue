@@ -44,7 +44,6 @@ const result = ref('');
 
 const submitSearch = computed(() => {
     result.value = "Nothing found yet!"
-    console.log(searchValue.value)
     movieStore.movies.filter((item) => {
         if(item.name.en.includes(searchValue.value)) {
             result.value = "Content found!"

@@ -11,7 +11,6 @@ export const useUserStore = defineStore("user", () => {
       const response = await axiosInstance.get("/me");
           user.value = response.data.user;
     } catch(error) {
-      console.log(error);
     }
   }
 
