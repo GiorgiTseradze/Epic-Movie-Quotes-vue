@@ -156,33 +156,27 @@ const handleSubmit = (values, actions) => {
           for(const err in errors){
             if (i18n.global.locale == "en") {
                 if (err === "name") {
-                actions.setFieldError("name", "Name does not exist");
+                actions.setFieldError("name", "Name exists");
                 break;
                 }
                 if (err === "email") {
-                actions.setFieldError("email", "Email does not exist");
+                actions.setFieldError("email", "Email exists");
                 break;
                 }
                 if (err === "password") {
                 actions.setFieldError("password", "Password is incorrect");
                 }
-                if (err === "verification") {
-                actions.setFieldError("email", "Email is not verified");
-                }
             } else {
                 if (err === "name") {
-                actions.setFieldError("name", "სახელი არ არსებობს");
+                actions.setFieldError("name", "სახელი არსებობს");
                 break;
                 }
                 if (err === "email") {
-                actions.setFieldError("email", "ელ-ფოსტა არ არსებობს");
+                actions.setFieldError("email", "ელ-ფოსტა არსებობს");
                 break;
                 }
                 if (err === "password") {
                 actions.setFieldError("password", "პაროლი არასწორია");
-                }
-                if (err === "verification") {
-                actions.setFieldError("email", "ელ-ფოსტა არ არის გააქტიურებული");
                 }
             }
         }
