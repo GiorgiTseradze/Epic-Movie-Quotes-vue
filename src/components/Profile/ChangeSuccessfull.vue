@@ -6,7 +6,7 @@
                 {{ $t("profile.changes_updated_successfully") }}
             </p>
             <div @click="profileStore.handleSuccess" class="cursor-pointer p-2">
-                <img src="@/assets/x.svg" alt="close-icon" alt="close-icon" />
+                <img src="@/assets/x.svg" alt="close-icon" />
             </div>
         </div>
     </div>
