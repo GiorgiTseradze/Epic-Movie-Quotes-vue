@@ -166,14 +166,15 @@ const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
 const handleLogout = () => {
     axiosInstance
-        .post("logout")
+        .get("logout")
         .then(() => {
             authStore.authenticated = false
-            setTimeout(()=> {router.push({name: "landing"})}, 200) 
+            router.push({name: "landing"})
         })
         .catch((error) => {
           console.log(error)    
         });
+
 }
 
 const lang = ref(false);

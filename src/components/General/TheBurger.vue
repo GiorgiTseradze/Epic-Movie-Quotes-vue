@@ -59,10 +59,10 @@ const handleBurger = () => {
 
 const handleLogout = () => {
     axiosInstance
-        .post("logout")
+        .get("logout")
         .then(() => {
             authStore.authenticated = false
-            setTimeout(()=> {router.push({name: "landing"})}, 200) 
+            router.push({name: "landing"})
         })
         .catch((error) => {
           console.log(error)    

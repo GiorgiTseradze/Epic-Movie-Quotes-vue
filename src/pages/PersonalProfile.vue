@@ -400,8 +400,16 @@ const handleEditPassword = () => {
     passwordEditOn.value = true;
 }
 const handleLogout = () => {
-    setTimeout(()=> {authStore.authenticated = false}, 200) 
-    router.push({name: "landing"})
+    axiosInstance
+        .get("logout")
+        .then(() => {
+            authStore.authenticated = false
+            router.push({name: "landing"})
+        })
+        .catch((error) => {
+          console.log(error)    
+        });
+
 }
 
 const handleLang = () => {
