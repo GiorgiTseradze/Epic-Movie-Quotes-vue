@@ -53,7 +53,7 @@
                         <section class="flex text-white">{{ $t("auth.password") }}<p class="text-red-500 ml-1"> *</p></section>
                     </div>
                     <div class="flex w-[22.5rem]">
-                        <Field name="password" rules="required|min:8|max:15|lowalphanumeric" v-slot="{ field, meta }"
+                        <Field name="password" rules="required|min:8|max:15" v-slot="{ field, meta }"
                          :placeholder="$t('auth.password')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPassword ? 'text' : 'password'"
                                 :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
@@ -71,7 +71,7 @@
                         <section class="flex text-white">{{ $t("auth.password_confirmation")}}<p class="text-red-500 ml-1"> *</p></section>
                     </div>
                     <div class="flex flex-col w-[22.5rem] relative pb-2">
-                        <Field name="password_confirmation" rules="required|min:8|max:15|lowalphanumeric" v-slot="{ field, meta }"
+                        <Field name="password_confirmation" rules="required|min:8|max:15" v-slot="{ field, meta }"
                         :placeholder="$t('auth.password_confirmation')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPasswordConfirm ? 'text' : 'password'"
                                 :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
