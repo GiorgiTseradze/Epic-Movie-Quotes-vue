@@ -2,7 +2,7 @@
     <div class="flex justify-center w-full h-screen fixed bg-[#181623]">
         <div class="bg-[#181623] w-4/5 h-3/5 mt-20 rounded">
             <div class="flex justify-center">
-                <img class="mt-16" src="@/assets/ghost.svg" />
+                <img class="mt-16" src="@/assets/ghost.svg" alt="ghost" />
             </div>
             <div class="flex justify-center mt-4">
                 <p class="text-white text-2xl font-medium">Whoops!</p>

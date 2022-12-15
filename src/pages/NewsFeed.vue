@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="flex w-[90%] lg:w-full h-full lg:bg-[#181624]" :class="!quoteStore.quotes[1] ? 'h-screen' : 'h-full'">
+            <div class="flex w-[90%] lg:w-full h-full lg:bg-[#181624] min-h-[70rem]" :class="!quoteStore.quotes[1] ? 'h-screen' : 'h-full'">
                 <div class="hidden lg:flex flex-col ml-20 h-full lg:w-1/4">
                     <div class="flex mt-8 w-[15rem] ml-3">
                         <div>
@@ -130,6 +130,7 @@ import i18n from '@/i18n/index.js'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from "@/stores/auth";
 import axiosInstance from "@/config/axios/jwt-axios.js";
+import axios from "@/config/axios/index.js";
 import { useCrudStore } from "@/stores/crud";
 import { useUserStore } from "@/stores/userStore.js"
 import TheNotification from '@/components/General/TheNotification.vue';
@@ -144,15 +145,16 @@ const lang = ref(false);
 const imgUrl = import.meta.env.VITE_API_BASE_URL_IMG;
 
 const handleLogout = () => {
-    axiosInstance
-        .post("logout")
+    axios
+        .get("logout")
         .then(() => {
-            setTimeout(()=> {authStore.authenticated = false}, 200) 
+            authStore.authenticated = false
             router.push({name: "landing"})
         })
         .catch((error) => {
           console.log(error)    
         });
+
 }
 
 const handleLang = () => {

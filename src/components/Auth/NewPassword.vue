@@ -23,10 +23,10 @@
 
                     <div class="flex flex-col items-center w-full mt-6">
                         <div class="w-[22.5rem]">
-                            <section class="flex text-white">{{ $t("auth.confirm_password") }}<p class="text-red-500 ml-1"> *</p></section>
+                            <section class="flex text-white">{{ $t("auth.password_confirmation") }}<p class="text-red-500 ml-1"> *</p></section>
                         </div>
                         <div class="flex w-[22.5rem] justify-center">
-                            <Field name="password_confirmation" class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" :placeholder="$t('auth.confirm_password')" />
+                            <Field name="password_confirmation" class="bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" :placeholder="$t('auth.password_confirmation')" />
                         </div>
                     </div>
         
@@ -39,7 +39,7 @@
 
                 <div class="flex justify-center w-full mt-5" >
                     <button @click="$router.push({name:'login'})">
-                        <p class="flex text-[#6C757D]"><img class="mr-1" src="@/assets/back.svg" />{{ $t("auth.back_to_log_in")}}</p>
+                        <p class="flex text-[#6C757D]"><img class="mr-1" src="@/assets/back.svg" alt="back-icon"/>{{ $t("auth.back_to_log_in")}}</p>
                     </button>
                 </div>
     
@@ -49,12 +49,12 @@
 </template>
 
 <script setup>
-import { Field, ErrorMessage, Form } from 'vee-validate';
+import { Field, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
-import { useRoute } from 'vue-router';
-import { computed, onBeforeMount, ref } from 'vue';
-import router from "@/router";
+import { useRoute, useRouter } from 'vue-router';
+import { onBeforeMount, ref } from 'vue';
 
+const router = useRouter()
 const token = ref();
 const email = ref('');
 onBeforeMount(()=>{

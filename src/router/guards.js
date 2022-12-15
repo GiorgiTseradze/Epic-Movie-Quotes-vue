@@ -5,6 +5,10 @@ export const isAuthenticated = () => {
   if (!authStore.authenticated) {
     return "/forbidden";
   } 
+}
+export const isNotAuthenticated = () => {
+  const authStore = useAuthStore();
+  if (authStore.authenticated) {
+    return "/news-feed";
+  } 
 };
-
-export default isAuthenticated;

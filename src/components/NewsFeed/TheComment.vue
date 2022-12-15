@@ -4,7 +4,7 @@
             <div class="flex flex-col w-full border-b-2 pb-6 border-[#54535A]">
                 <div class="flex items-center">
                     <div class="">
-                        <img class="rounded-3xl w-12 h-12 object-cover" :src="comment.user?.thumbnail" />
+                        <img class="rounded-3xl w-12 h-12 object-cover" :src="comment.user?.thumbnail" alt="user-image" />
                     </div>
                     <div>
                         <p class="text-white ml-4">{{ comment?.user?.name }}</p>

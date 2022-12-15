@@ -7,7 +7,7 @@
             </div>
             <div class="flex absolute w-[22rem] lg:w-[45rem] justify-end">
                 <router-link :to="{name: 'movieList'}">
-                    <img class="mr-10" src="@/assets/x-grey.svg" />
+                    <img class="mr-10" src="@/assets/x-grey.svg" alt="close-icon" />
                 </router-link>
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="flex items-center justify-center mt-8 w-full">
             <div class="flex items-center w-[20rem] lg:w-[40rem]">
                 <div class="w-10">
-                    <img class="w-10 h-10 object-cover rounded-full" :src="userStore?.user.thumbnail" />
+                    <img class="w-10 h-10 object-cover rounded-full" :src="userStore?.user.thumbnail" alt="user-image" />
                 </div>
                 <div class="ml-4">
                     <p class="text-white text-lg">{{userStore?.user.name}}</p>
@@ -29,8 +29,8 @@
                     <Field v-model="nameEn" v-slot="{ field, meta }" rules="required|en" name="name_en"> 
                         <input v-bind="field" placeholder="Movie name" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 py-1 rounded placeholder-white outline-none bg-inherit w-full"
-                        :class="[!meta.valid && meta.touched ? 'border-red-400' 
-                        : '', meta.valid && meta.touched ? 'border-green-600' : '']"
+                        :class="[!meta.valid && meta.touched ? 'border-red-300' 
+                        : '', meta.valid && meta.touched ? 'border-green-400' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">Eng</p>
@@ -40,19 +40,19 @@
                     <Field v-model="nameKa" v-slot="{ field, meta }" rules="required|ge" name="name_ka"> 
                         <input v-bind="field" placeholder="ფილმის სახელი" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
-                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
-                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                        :class="[!meta.valid && meta.touched ? 'border-red-300' 
+                        : '', meta.valid && meta.touched ? 'border-green-400' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">ქარ</p>
                 </div>
 
                 <div class="flex flex-wrap items-center h-max py-3 border-[0.06rem] mt-4 border-[#6C757D] rounded"
-                :class="genres[0] ? 'border-green-500 active:border-green-500' : ''">
+                :class="genres[0] ? 'border-green-400 active:border-green-400' : ''">
                     <div class="flex text-white" v-for="(tag, index) in genres" :key="'tag'+index">
                         <div class="flex w-max px-2 bg-gray-500 rounded ml-2">
                             <p>{{ tag }}</p>
-                            <button class="ml-[0.3rem] w-2" @click="removeTag"><img src="@/assets/x-grey.svg" /> </button>
+                            <button class="ml-[0.3rem] w-2" @click="removeTag"><img src="@/assets/x-grey.svg" alt="close-icon" /> </button>
                         </div>
                     </div>
                         <div class="flex">
@@ -65,8 +65,8 @@
                     <Field v-model="dir" v-slot="{ field, meta }" rules="required|en" name="director_en"> 
                         <input v-bind="field" placeholder="Director" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
-                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
-                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                        :class="[!meta.valid && meta.touched ? 'border-red-300' 
+                        : '', meta.valid && meta.touched ? 'border-green-400' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">Eng</p>
@@ -75,8 +75,8 @@
                     <Field v-model="dirKa" v-slot="{ field, meta }" rules="required|ge" name="director_ka"> 
                         <input v-bind="field" placeholder="Director" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
-                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
-                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                        :class="[!meta.valid && meta.touched ? 'border-red-300' 
+                        : '', meta.valid && meta.touched ? 'border-green-400' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">ქარ</p>
@@ -85,8 +85,8 @@
                     <Field v-model="desc" v-slot="{ field, meta }" rules="required|en" name="description_en"> 
                         <input v-bind="field" placeholder="Description" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
-                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
-                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                        :class="[!meta.valid && meta.touched ? 'border-red-300' 
+                        : '', meta.valid && meta.touched ? 'border-green-400' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">Eng</p>
@@ -95,8 +95,8 @@
                     <Field v-model="descKa" v-slot="{ field, meta }" rules="required|ge" name="description_ka"> 
                         <input v-bind="field" placeholder="აღწერა" 
                         class="border-[0.06rem] border-[#6C757D] text-white px-3 mt-2 py-1 rounded placeholder-white outline-none bg-inherit w-full"
-                        :class="[!meta.valid && meta.touched ? 'border-red-600' 
-                        : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                        :class="[!meta.valid && meta.touched ? 'border-red-300' 
+                        : '', meta.valid && meta.touched ? 'border-green-400' : '']"
                         />
                     </Field>
                     <p class="ml-[17rem] lg:ml-[36.5rem] text-[#6C757D] absolute">ქარ</p>

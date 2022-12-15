@@ -17,10 +17,12 @@
                             <Field name="email" rules="required"
                                 :placeholder="$t('auth.enter_your_email')" v-slot="{ field, meta }" >
                                 <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" 
-                                :class="[!meta.valid && meta.touched || inputError === 1 ? 'border-[#E31221] border-2' 
+                                :class="[!meta.valid && meta.touched || inputError === 1 ? 'border-red-300 border-2' 
                                 : '', meta.valid && meta.touched && inputError === 0 ? 'border-green-400 border-2' : '']" />
-                                <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
-                                <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/error.svg" />
+                                <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                                src="@/assets/valid.svg" alt="valid-icon" />
+                                <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                                src="@/assets/error.svg" alt="error-icon" />
                             </Field>
                             <ErrorMessage name="email" class="absolute mt-[3rem] text-sm text-[#F15524]" />
                         </div>
@@ -31,20 +33,19 @@
                             <section class="flex text-white">{{ $t("auth.password") }}<p class="text-red-500 ml-1"> *</p></section>
                         </div>
                         <div class="flex flex-col relative w-[22.5rem]">
-                            <Field name="password" rules="required" :class="inputError === 1 ? 'bg-red-300 placeholder-white' : ''"
+                            <Field name="password" rules="required" :class="inputError === 1 ? 'bg-red-400 placeholder-white' : ''"
                              :placeholder="$t('auth.password')" v-slot="{ field, meta }">
                                 <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none"  v-bind="field" 
                                 :class="[!meta.valid && meta.touched || inputError === 1 ? 'border-[#E31221] border-2' 
                                 : '', meta.valid && meta.touched && inputError === 0 ? 'border-green-400 border-2' : '']"  :type="showPassword ? 'text' : 'password'" />
-                                <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
-                                <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/error.svg" />
+                                <img :class="meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" alt="valid-icon" />
+                                <img :class="!meta.valid && meta.touched && inputError === 0 ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/error.svg" alt="error-icon" />
                             </Field> 
                             <ErrorMessage name="password" class="absolute mt-[3rem] text-sm text-[#F15524]" />
-                            <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer p-1" src="@/assets/eye.svg" />
-                            <img v-if="!showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer p-1" src="@/assets/closed-eye.svg" />
-                            <p v-if="errorValue" class="absolute mt-[3rem] text-sm text-[#F15524]">
-                                {{errorValue === "wrong email or password" ? $t("texts.wrong_email_or_password") : errorValue }}
-                            </p>
+                            <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer p-1" 
+                            src="@/assets/eye.svg" alt="eye-icon" />
+                            <img v-if="!showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer p-1" 
+                            src="@/assets/closed-eye.svg" alt="closed-eye-icon" />
                         </div>
                     </div>
 
@@ -71,7 +72,7 @@
                     <div class="flex items-center justify-center bg-black border rounded border-white h-10 w-[22.5rem]">
                         <form :action="url">
                             <button class="flex items-center text-white">
-                            <img class="mr-2" src="@/assets/gmail.svg" /> 
+                            <img class="mr-2" src="@/assets/gmail.svg" alt="gmail-icon" /> 
                             {{ $t("auth.sign_in_with_google") }}
                             </button>
                         </form>
@@ -92,17 +93,16 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/jwt-axios.js";
 import { useRouter } from 'vue-router'
 import { useAuthStore } from "@/stores/auth";
+import i18n from '@/i18n/index.js'
 
 const authStore = useAuthStore();
 
 const router = useRouter()
-const errorValue = ref();
-const nameValue = ref('');
 const inputError = ref(0);
 const showPassword = ref(false);
 
@@ -123,17 +123,45 @@ const handleSubmit = (values, actions) => {
         .then(() => {
             authStore.authenticated = true;
             router.push({ name: 'newsFeed'});
-            errorValue.value = '';
             inputError.value = 0;
         })
         .catch((error) => {
-            errorValue.value = error.response.data
             console.log(error)
             inputError.value = 1;
             const errors = error.response.data.errors;
-            for(const key in errors){
-            actions.setFieldError(key,errors[key]);
-            } 
+            for(const err in errors){
+                if (i18n.global.locale == "en") {
+                if (err === "name") {
+                actions.setFieldError("name", "Name does not exist");
+                break;
+                }
+                if (err === "email") {
+                actions.setFieldError("email", "Email does not exist");
+                break;
+                }
+                if (err === "password") {
+                actions.setFieldError("password", "Password is incorrect");
+                }
+                if (err === "verification") {
+                actions.setFieldError("email", "Email is not verified");
+                }
+            } else {
+                if (err === "name") {
+                actions.setFieldError("name", "სახელი არ არსებობს");
+                break;
+                }
+                if (err === "email") {
+                actions.setFieldError("email", "ელ-ფოსტა არ არსებობს");
+                break;
+                }
+                if (err === "password") {
+                actions.setFieldError("password", "პაროლი არასწორია");
+                }
+                if (err === "verification") {
+                actions.setFieldError("email", "ელ-ფოსტა არ არის გააქტიურებული");
+                }
+            }
+        } 
         });
 }
 

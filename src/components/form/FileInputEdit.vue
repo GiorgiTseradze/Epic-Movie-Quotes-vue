@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center h-16 border-[0.06rem] mt-4 border-[#6C757D] rounded"
-    :class="generalStore.fileModel ? 'border-green-500' : ''">
+    :class="generalStore.fileModel ? 'border-green-400' : ''">
     <Field name="image" v-slot="{ meta, value }" v-model="generalStore.fileModel">
         <div
             @dragover.prevent 
@@ -11,7 +11,7 @@
                 {{ generalStore.fileModel.name }}
             </div>
             <div v-else class="flex items-center">
-                <img src="@/assets/photocamera.svg" />
+                <img src="@/assets/photocamera.svg" alt="camera" />
                 <span class="mt-1 ml-2 text-sm w-40 text-white lg:hidden">Upload image</span>
                 <span class="mt-1 lg:hidden text-white invisible absolute w-full">Drag and Drop</span>
                 <span class="mt-1 lg:ml-2 hidden lg:block text-white invisible lg:visible">Drag & drop your image here or</span>

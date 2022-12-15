@@ -3,10 +3,10 @@
   <div v-if="notification" @click="handleNotification" class="flex justify-center top-20 lg:top-0 lg:right-0 fixed w-screen h-[100rem] z-40"></div>        
   <div class="z-41">
       <div @click="handleNotification" class="flex relative z-41 w-10 py-2 px-2">
-          <img class="ml-[0.55rem] mt-1 cursor-pointer" src="@/assets/notification.svg" />
-          <img v-if="unread>0" class="absolute w-5 ml-5" src="@/assets/red-circle.svg" />
+          <img class="ml-[0.55rem] mt-1 cursor-pointer" src="@/assets/notification.svg" alt="notification-icon" />
+          <img v-if="unread>0" class="absolute w-5 ml-5" src="@/assets/red-circle.svg" alt="red-circle" />
           <p v-if="unread>0" class="absolute text-white text-xs mt-[0.1rem] ml-[1.65rem]">{{unread}}</p>
-          <img v-if="notification" class="absolute hidden lg:block mt-8" src="@/assets/polygon.svg" />
+          <img v-if="notification" class="absolute hidden lg:block mt-8" src="@/assets/polygon.svg" alt="polygon-icon" />
       </div>
       
       <div v-if="notification" class="absolute flex flex-col items-center w-full lg:w-[40rem] 2xl:w-[50rem] right-0 lg:right-40 pb-10 top-20 bg-[#11101A] h-max z-50">
@@ -18,7 +18,7 @@
               <div v-for="notif in notifications" class="flex mt-2 w-[20rem] lg:w-[37rem] 2xl:w-[47rem] ml-6 px-2 py-2 rounded border-[0.06rem] border-[#363A3E]">
                   <div class="flex flex-col justify-center items-center w-max lg:h-20 rounded-full">
                       <div class="rounded-full lg:w-18 lg:h-18"  :class="notif.read ? '' : 'border-2 border-[#179315ed] rounded-full'">
-                          <img class="w-10 h-10 lg:w-16 lg:h-16 object-cover rounded-full" :src="notif.sender.thumbnail" />
+                          <img class="w-10 h-10 lg:w-16 lg:h-16 object-cover rounded-full" :src="notif.sender.thumbnail" alt="profile-image" />
                       </div>
                       <p v-if="!notif.read" class="mt-1 lg:hidden lg:text-lg border-[#179315ed]">{{ $t("texts.new") }}</p>
                   </div>
@@ -28,10 +28,10 @@
                           <p class="text-[#CED4DA]">{{time_ago(notif.created_at)}}</p>
                       </div>
                       <div class="lg:flex items-center hidden py-1">
-                          <img v-if="notif.type == 'comment'" class="w-5 lg:w-6" src="@/assets/thought.svg" />
+                          <img v-if="notif.type == 'comment'" class="w-5 lg:w-6" src="@/assets/thought.svg" alt="thought-icon" />
                           <div class="flex justify-between w-full">
                               <p v-if="notif.type == 'like'" class="lg:text-xl text-[#CED4DA]">
-                                <img class="w-5 lg:w-6 inline-block" src="@/assets/red-heart.svg" />
+                                <img class="w-5 lg:w-6 inline-block" src="@/assets/red-heart.svg" alt="red-heart-icon" />
                                 {{$t("texts.reacted_to_your_quote")}}
                               </p>
                               <p v-if="notif.type == 'comment'" class="ml-2 lg:text-xl text-[#CED4DA]">{{$t("texts.commented_to_your_movie_quote")}}</p>
@@ -43,10 +43,10 @@
                           <p class="text-white">{{notif.sender.name}}</p>
                           <div class="flex py-1">
                             <p v-if="notif.type == 'like'" class="lg:text-xl text-[#CED4DA]">
-                                <img class="w-5 lg:w-6 inline-block" src="@/assets/red-heart.svg" />
+                                <img class="w-5 lg:w-6 inline-block" src="@/assets/red-heart.svg" alt="red-heart-icon" />
                                 {{$t("texts.reacted_to_your_quote")}}
                               </p>
-                              <img v-if="notif.type == 'comment'" class="w-5 lg:w-7" src="@/assets/thought.svg" />
+                              <img v-if="notif.type == 'comment'" class="w-5 lg:w-7" src="@/assets/thought.svg" alt="thought-icon" />
                               <p v-if="notif.type == 'comment'" class="ml-2 lg:text-xl text-[#CED4DA]">{{$t("texts.commented_to_your_movie_quote")}}</p>
                           </div>
                           <p class="lg:hidden text-[#CED4DA]">{{time_ago(notif.created_at)}}</p>

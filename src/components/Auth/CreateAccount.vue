@@ -25,9 +25,10 @@
                         <Field name="name" rules="required|min:3|max:15|lowalphanumeric" v-slot="{ field, meta }"
                          :placeholder="$t('auth.enter_your_name')">
                             <input class="bg-[#CED4DA] relative w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field"
-                            :class="[!meta.valid && meta.touched ? 'border-red-600 border-2' 
-                            : '', meta.valid && meta.touched ? 'border-green-500 border-2' : '']" />
-                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
+                            :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
+                            : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
+                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                            src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
                         <ErrorMessage class="absolute mt-[3rem] text-sm text-[#F15524]" name="name" />
                     </div>
@@ -41,9 +42,10 @@
                         <Field name="email" rules="required|email"
                         :placeholder="$t('auth.enter_your_email')" v-slot="{ field, meta }" >
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" 
-                            :class="[!meta.valid && meta.touched ? 'border-red-600 border-2' 
-                            : '', meta.valid && meta.touched ? 'border-green-500 border-2' : '']" />
-                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
+                            :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
+                            : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
+                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                            src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
                         <ErrorMessage class="absolute mt-[3rem] text-sm text-[#F15524]" name="email" />
                     </div>
@@ -53,33 +55,38 @@
                         <section class="flex text-white">{{ $t("auth.password") }}<p class="text-red-500 ml-1"> *</p></section>
                     </div>
                     <div class="flex w-[22.5rem]">
-                        <Field name="password" rules="required|min:8|max:15|lowalphanumeric" v-slot="{ field, meta }"
+                        <Field name="password" rules="required|min:8|max:15" v-slot="{ field, meta }"
                          :placeholder="$t('auth.password')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPassword ? 'text' : 'password'"
-                                :class="[!meta.valid && meta.touched ? 'border-red-600 border-2' 
-                                : '', meta.valid && meta.touched ? 'border-green-500 border-2' : '']" />
-                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
+                                :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
+                                : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
+                            <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" 
+                            src="@/assets/valid.svg" alt="valid-icon" />
                         </Field>
-                        <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/eye.svg" />
-                        <img v-if="!showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/closed-eye.svg" />
+                        <img v-if="showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
+                        src="@/assets/eye.svg" alt="eye-icon" />
+                        <img v-if="!showPassword" @click="handleShow" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
+                        src="@/assets/closed-eye.svg" alt="closed-eye-icon" />
                         <ErrorMessage class="absolute mt-[2.8rem] py-1 text-sm text-[#F15524]" name="password" />
                     </div>
                 </div>
 
                 <div class="flex flex-col items-center w-full mt-6">
                     <div class="w-[22.5rem]">
-                        <section class="flex text-white">{{ $t("auth.confirm_password")}}<p class="text-red-500 ml-1"> *</p></section>
+                        <section class="flex text-white">{{ $t("auth.password_confirmation")}}<p class="text-red-500 ml-1"> *</p></section>
                     </div>
                     <div class="flex flex-col w-[22.5rem] relative pb-2">
-                        <Field name="password_confirmation" rules="required|min:8|max:15|lowalphanumeric" v-slot="{ field, meta }"
-                        :placeholder="$t('auth.password_confirm')">
+                        <Field name="password_confirmation" rules="required|min:8|max:15" v-slot="{ field, meta }"
+                        :placeholder="$t('auth.password_confirmation')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPasswordConfirm ? 'text' : 'password'"
-                                :class="[!meta.valid && meta.touched ? 'border-red-600 border-2' 
-                                : '', meta.valid && meta.touched ? 'border-green-500 border-2' : '']" />
+                                :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
+                                : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
                             <img :class="meta.valid && meta.touched ? 'block' : 'hidden'" class="absolute ml-80 mt-3 cursor-pointer p-1" src="@/assets/valid.svg" />
                         </Field>
-                        <img v-if="showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/eye.svg" />
-                        <img v-if="!showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" src="@/assets/closed-eye.svg" />
+                        <img v-if="showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
+                        src="@/assets/eye.svg" alt="eye-icon" />
+                        <img v-if="!showPasswordConfirm" @click="handleShowConfirm" class="absolute ml-[18.7rem] mt-[0.9rem] cursor-pointer py-1 px-1" 
+                        src="@/assets/closed-eye.svg" alt="closed-eye-icon" />
                         <ErrorMessage class="absolute mt-[3rem] py-1 text-sm text-[#F15524]" name="password_confirmation" />
                     </div>
                 </div>
@@ -95,7 +102,7 @@
                     <div class="flex items-center justify-center bg-black border rounded border-white h-10 w-[22.5rem]">
                         <form :action="url">
                             <button class="flex items-center text-white">
-                                <img class="mr-2" src="@/assets/gmail.svg" /> 
+                                <img class="mr-2" src="@/assets/gmail.svg" alt="gmail-icon" /> 
                                 {{ $t("auth.sign_in_with_google") }}
                             </button>
                         </form>
@@ -116,7 +123,7 @@
 import { Field, ErrorMessage, Form } from 'vee-validate';
 import axiosInstance from "@/config/axios/index.js";
 import { useRouter } from 'vue-router'
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import i18n from '@/i18n/index.js'
 
 const router = useRouter()
@@ -152,37 +159,32 @@ const handleSubmit = (values, actions) => {
         })
         .catch((error) => {
           loading.value = false;
+          console.log(error)
           const errors = error.response.data.errors;
           for(const err in errors){
             if (i18n.global.locale == "en") {
                 if (err === "name") {
-                actions.setFieldError("name", "Name does not exist");
+                actions.setFieldError("name", "Name exists");
                 break;
                 }
                 if (err === "email") {
-                actions.setFieldError("email", "Email does not exist");
+                actions.setFieldError("email", "Email exists");
                 break;
                 }
                 if (err === "password") {
                 actions.setFieldError("password", "Password is incorrect");
                 }
-                if (err === "verification") {
-                actions.setFieldError("email", "Email is not verified");
-                }
             } else {
                 if (err === "name") {
-                actions.setFieldError("name", "სახელი არ არსებობს");
+                actions.setFieldError("name", "სახელი არსებობს");
                 break;
                 }
                 if (err === "email") {
-                actions.setFieldError("email", "ელ-ფოსტა არ არსებობს");
+                actions.setFieldError("email", "ელ-ფოსტა არსებობს");
                 break;
                 }
                 if (err === "password") {
                 actions.setFieldError("password", "პაროლი არასწორია");
-                }
-                if (err === "verification") {
-                actions.setFieldError("email", "ელ-ფოსტა არ არის გააქტიურებული");
                 }
             }
         }

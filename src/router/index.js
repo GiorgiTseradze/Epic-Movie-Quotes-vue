@@ -29,7 +29,7 @@ import UpdateMovie from '@/components/Movie/UpdateMovie.vue';
 import AddQuote from '@/components/Quote/AddQuote.vue';
 import UpdateQuote from '@/components/Quote/UpdateQuote.vue';
 import CurrentQuote from '@/components/Quote/CurrentQuote.vue';
-import isAuthenticated from "./guards";
+import { isAuthenticated, isNotAuthenticated } from "./guards";
 import { useAuthStore } from "@/stores/auth";
 import axios from "@/config/axios/jwt-axios.js";
 import { useUserStore } from "../stores/userStore";
@@ -43,6 +43,7 @@ const router = createRouter({
       path: "/",
       name: "landing",
       component: TheLanding,
+      beforeEnter: isNotAuthenticated,
       children: [
         {
           path: '/login',
@@ -217,9 +218,7 @@ router.beforeEach(async (to, from, next) => {
       userStore.getUser();
     } catch (err) {
       authStore.authenticated = false;
-    } finally {
-      return next();
-    }
+    } 
   }
   return next();
 });

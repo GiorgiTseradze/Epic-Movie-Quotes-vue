@@ -8,7 +8,7 @@
                 </div>
                 <div class="flex absolute w-[22rem] lg:w-[40rem] justify-end">
                     <router-link :to="{name: 'currentMovie',params:{movieId:movieId} }">
-                        <img class="mr-10" src="@/assets/x-grey.svg" />
+                        <img class="mr-10" src="@/assets/x-grey.svg" alt="close-icon" />
                     </router-link>
                 </div>
             </div>
@@ -16,7 +16,7 @@
             <div class="flex items-center justify-center mt-8 w-full">
                 <div class="flex items-center w-[20rem] lg:w-[40rem]">
                     <div class="w-10 lg:w-16 lg:h-16">
-                        <img class="rounded-full w-12 h-12 lg:w-16 lg:h-16 object-cover" :src="userStore.user?.thumbnail" />
+                        <img class="rounded-full w-12 h-12 lg:w-16 lg:h-16 object-cover" :src="userStore.user?.thumbnail" alt="profile-thumbnail" />
                     </div>
                     <div class="ml-4">
                         <p class="text-white text-lg lg:text-xl">{{ userStore.user?.name }}</p>
@@ -26,7 +26,7 @@
 
             <div class="flex w-[20rem] lg:w-[40rem] mt-5 py-2">
                 <div class="flex flex-col justify-center px-2">
-                    <img class="w-[8rem] lg:w-[16rem] object-fill h-[6rem] lg:h-[8rem] rounded" :src="imgUrl + movie?.image" />
+                    <img class="w-[8rem] lg:w-[16rem] object-fill h-[6rem] lg:h-[8rem] rounded" :src="imgUrl + movie?.image" alt="movie-image" />
                 </div>
                 <div>
                     <div class="">
@@ -38,7 +38,7 @@
                         </p>
                     </div>
                     <div class="flex">
-                        <div v-for="genre in genres" :key="genre" class="w-max mt-2 mr-2 bg-gray-500 rounded">
+                        <div v-for="genre in genres" :key="genre" class="w-max mt-2 mr-2 bg-gray-400 rounded">
                             <p class="text-[#CED4DA] px-1 lg:text-xl">
                                 {{ genre }}
                             </p>
@@ -53,8 +53,8 @@
                         <Field v-slot="{ field, meta }" rules="required|en" name="quote_en" >
                             <input type="textarea" v-bind="field" placeholder="Write new quote" 
                                 class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
-                                :class="[!meta.valid && meta.touched ? 'border-red-400' 
-                                : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                                :class="[!meta.valid && meta.touched ? 'border-red-300' 
+                                : '', meta.valid && meta.touched ? 'border-green-400' : '']"
                             />
                         </Field>
                         <p class="ml-[17rem] lg:ml-[36rem] text-white absolute">Eng</p>
@@ -63,8 +63,8 @@
                         <Field v-slot="{ field, meta }" rules="required|ge" name="quote_ka" >
                             <input type="textarea" v-bind="field" placeholder="ახალი ციტატა" 
                                 class=" border-[0.06rem] border-[#6C757D] rounded text-white w-full h-14 overflow-hidden resize-none px-3 py-3 placeholder-[#6C757D] outline-none bg-inherit"
-                                :class="[!meta.valid && meta.touched ? 'border-red-600' 
-                                : '', meta.valid && meta.touched ? 'border-green-500' : '']"
+                                :class="[!meta.valid && meta.touched ? 'border-red-300' 
+                                : '', meta.valid && meta.touched ? 'border-green-400' : '']"
                             />
                         </Field>
                         <p class="ml-[17rem] lg:ml-[36rem] text-white absolute">ქარ</p>
