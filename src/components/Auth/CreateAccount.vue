@@ -68,11 +68,11 @@
 
                 <div class="flex flex-col items-center w-full mt-6">
                     <div class="w-[22.5rem]">
-                        <section class="flex text-white">{{ $t("auth.confirm_password")}}<p class="text-red-500 ml-1"> *</p></section>
+                        <section class="flex text-white">{{ $t("auth.password_confirmation")}}<p class="text-red-500 ml-1"> *</p></section>
                     </div>
                     <div class="flex flex-col w-[22.5rem] relative pb-2">
                         <Field name="password_confirmation" rules="required|min:8|max:15|lowalphanumeric" v-slot="{ field, meta }"
-                        :placeholder="$t('auth.password_confirm')">
+                        :placeholder="$t('auth.password_confirmation')">
                             <input class="relative bg-[#CED4DA] w-full h-[2.3rem] rounded px-3 mt-2 outline-none" v-bind="field" :type="showPasswordConfirm ? 'text' : 'password'"
                                 :class="[!meta.valid && meta.touched ? 'border-red-300 border-2' 
                                 : '', meta.valid && meta.touched ? 'border-green-400 border-2' : '']" />
